@@ -1,5 +1,9 @@
 # Changelog
 
+## [V0.0.2a47](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a47) (2022-05-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a46...V0.0.2a47)
+
 ## [V0.0.2a46](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a46) (2022-05-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a45...V0.0.2a46)
