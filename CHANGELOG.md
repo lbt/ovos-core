@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a41...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a42...HEAD)
+
+**Fixed bugs:**
+
+- fix/handle bad VAD plugin [\#117](https://github.com/OpenVoiceOS/ovos-core/pull/117) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a42](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a42) (2022-05-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a41...V0.0.2a42)
 
 **Merged pull requests:**
 
