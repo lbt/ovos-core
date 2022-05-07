@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a42...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a43...HEAD)
+
+**Closed issues:**
+
+- is\_alive\(\) and all\_loaded\(\) service status enquiries seems broken [\#101](https://github.com/OpenVoiceOS/ovos-core/issues/101)
+
+**Merged pull requests:**
+
+- remove pyee, version pinned by bus client directly [\#118](https://github.com/OpenVoiceOS/ovos-core/pull/118) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a43](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a43) (2022-05-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a42...V0.0.2a43)
 
 **Fixed bugs:**
 
