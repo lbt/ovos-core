@@ -10,8 +10,8 @@ RUN apt-get update && \
   apt-get clean && \
   useradd --no-log-init mycroft -m
 
-RUN mkdir -p /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/mycroft
-RUN chown mycroft:mycroft -R /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/mycroft
+RUN mkdir -p /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/share/mycroft
+RUN chown mycroft:mycroft -R /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/share/mycroft
 
 COPY . /tmp/ovos-core
 RUN pip3 install /tmp/ovos-core
