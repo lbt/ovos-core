@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a40...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a41...HEAD)
+
+**Merged pull requests:**
+
+- refactor/relax\_deps [\#116](https://github.com/OpenVoiceOS/ovos-core/pull/116) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a41](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a41) (2022-04-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a40...V0.0.2a41)
 
 **Merged pull requests:**
 
