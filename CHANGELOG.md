@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a49...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a50...HEAD)
+
+**Merged pull requests:**
+
+- missing requirement - pyyaml [\#122](https://github.com/OpenVoiceOS/ovos-core/pull/122) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.2a50](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a50) (2022-05-09)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a49...V0.0.2a50)
 
 **Merged pull requests:**
 
