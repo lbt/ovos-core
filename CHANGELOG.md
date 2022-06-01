@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a1...HEAD)
+
+**Merged pull requests:**
+
+- Update logging so global voc resources don't appear as errors in the log [\#126](https://github.com/OpenVoiceOS/ovos-core/pull/126) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a1) (2022-05-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.3...V0.0.4a1)
 
 **Fixed bugs:**
 
