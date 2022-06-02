@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a2...HEAD)
+
+**Fixed bugs:**
+
+- refactor/tts\_mode [\#128](https://github.com/OpenVoiceOS/ovos-core/pull/128) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a2) (2022-06-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a1...V0.0.4a2)
 
 **Merged pull requests:**
 
