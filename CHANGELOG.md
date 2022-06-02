@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a2...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a3...HEAD)
+
+**Implemented enhancements:**
+
+- feat/common\_query service [\#127](https://github.com/OpenVoiceOS/ovos-core/pull/127) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a3) (2022-06-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a2...V0.0.4a3)
 
 **Fixed bugs:**
 
