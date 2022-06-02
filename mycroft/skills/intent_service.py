@@ -20,28 +20,13 @@ from mycroft.skills.intent_service_interface import open_intent_envelope
 from mycroft.skills.intent_services import (
     AdaptService, FallbackService,
     PadatiousService, PadatiousMatcher,
-    ConverseService, IntentMatch
+    ConverseService, CommonQAService,
+    IntentMatch
 )
 from mycroft.skills.permissions import ConverseMode, ConverseActivationMode
 from mycroft.util.log import LOG
 from mycroft.util.parse import normalize
-
-
-def _get_message_lang(message=None):
-    """Get the language from the message or the default language.
-
-    Args:
-        message: message to check for language code.
-
-    Returns:
-        The language code from the message or the default language.
-    """
-    message = message or dig_for_message()
-    # TODO read active locale from LF instead
-    default_lang = Configuration.get().get('lang', 'en-us')
-    if not message:
-        return default_lang
-    return message.data.get('lang', default_lang).lower()
+from ovos_utils.messagebus import get_message_lang
 
 
 def _normalize_all_utterances(utterances):
@@ -71,7 +56,7 @@ def _normalize_all_utterances(utterances):
         else:
             combined.append((utt, norm))
 
-    LOG.debug("Utterances: {}".format(combined))
+    LOG.debug(f"Utterances: {combined}")
     return combined
 
 
@@ -95,6 +80,7 @@ class IntentService:
             LOG.exception(f'Failed to create padatious handlers ({err})')
         self.fallback = FallbackService(bus)
         self.converse = ConverseService(bus)
+        self.common_qa = CommonQAService(bus)
 
         self.bus.on('register_vocab', self.handle_register_vocab)
         self.bus.on('register_intent', self.handle_register_intent)
@@ -137,7 +123,7 @@ class IntentService:
 
     @property
     def registered_intents(self):
-        lang = _get_message_lang()
+        lang = get_message_lang()
         return [parser.__dict__
                 for parser in self.adapt_service.engines[lang].intent_parsers]
 
@@ -181,7 +167,7 @@ class IntentService:
 
     def reset_converse(self, message):
         """Let skills know there was a problem with speech recognition"""
-        lang = _get_message_lang(message)
+        lang = get_message_lang(message)
         try:
             setup_locale(lang)  # restore default lang
         except Exception as e:
@@ -254,6 +240,8 @@ class IntentService:
             intent_type = f'{intent.skill_id}:converse'
         elif intent and intent.intent_service == 'Fallback':
             intent_type = 'fallback'
+        elif intent and intent.intent_service == 'CommonQuery':
+            intent_type = 'common_qa'
         elif intent:  # Handled by an other intent parser
             # Recreate skill name from skill id
             parts = intent.intent_type.split(':')
@@ -277,11 +265,12 @@ class IntentService:
         1) Active skills attempt to handle using converse()
         2) Padatious high match intents (conf > 0.95)
         3) Adapt intent handlers
-        5) High Priority Fallbacks
-        6) Padatious near match intents (conf > 0.8)
-        7) General Fallbacks
-        8) Padatious loose match intents (conf > 0.5)
-        9) Catch all fallbacks including Unknown intent handler
+        5) CommonQuery Skills
+        6) High Priority Fallbacks
+        7) Padatious near match intents (conf > 0.8)
+        8) General Fallbacks
+        9) Padatious loose match intents (conf > 0.5)
+        10) Catch all fallbacks including Unknown intent handler
 
         If all these fail the complete_intent_failure message will be sent
         and a generic info of the failure will be spoken.
@@ -290,7 +279,7 @@ class IntentService:
             message (Message): The messagebus data
         """
         try:
-            lang = _get_message_lang(message)
+            lang = get_message_lang(message)
             try:
                 setup_locale(lang)
             except Exception as e:
@@ -308,9 +297,10 @@ class IntentService:
             # These are listed in priority order.
             match_funcs = [
                 self.converse.converse_with_skills, padatious_matcher.match_high,
-                self.adapt_service.match_intent, self.fallback.high_prio,
-                padatious_matcher.match_medium, self.fallback.medium_prio,
-                padatious_matcher.match_low, self.fallback.low_prio
+                self.adapt_service.match_intent, self.common_qa.match,
+                self.fallback.high_prio, padatious_matcher.match_medium,
+                self.fallback.medium_prio, padatious_matcher.match_low,
+                self.fallback.low_prio
             ]
 
             match = None
@@ -367,7 +357,7 @@ class IntentService:
         entity_type = message.data.get('entity_type')
         regex_str = message.data.get('regex')
         alias_of = message.data.get('alias_of')
-        lang = _get_message_lang(message)
+        lang = get_message_lang(message)
         self.adapt_service.register_vocabulary(entity_value, entity_type,
                                                alias_of, regex_str, lang)
         self.registered_vocab.append(message.data)
@@ -441,7 +431,7 @@ class IntentService:
             message (Message): message containing utterance
         """
         utterance = message.data["utterance"]
-        lang = _get_message_lang(message)
+        lang = get_message_lang(message)
         combined = _normalize_all_utterances([utterance])
 
         # Create matchers
@@ -503,7 +493,7 @@ class IntentService:
             message (Message): message containing utterance
         """
         utterance = message.data["utterance"]
-        lang = _get_message_lang(message)
+        lang = get_message_lang(message)
         combined = _normalize_all_utterances([utterance])
         intent = self.adapt_service.match_intent(combined, lang)
         intent_data = intent.intent_data if intent else None
