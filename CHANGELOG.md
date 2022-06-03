@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a6...HEAD)
+
+**Merged pull requests:**
+
+- port of the resource file handling refactor from mk2 [\#130](https://github.com/OpenVoiceOS/ovos-core/pull/130) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a6) (2022-06-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a5...V0.0.4a6)
 
 **Implemented enhancements:**
 
