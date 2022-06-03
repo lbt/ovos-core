@@ -19,6 +19,11 @@ accessing and curating mycroft's cache.
 """
 
 import os
+import time
+from os.path import dirname
+
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 from ovos_utils.file_utils import get_temp_path
 from ovos_utils.configuration import get_xdg_base, get_xdg_data_dirs, get_xdg_data_save_path
@@ -56,7 +61,7 @@ def resolve_resource_file(res_name):
     Returns:
         (str) path to resource or None if no resource found
     """
-    config = mycroft.configuration.Configuration.get()
+    config = mycroft.configuration.Configuration()
 
     # First look for fully qualified file (e.g. a user setting)
     if os.path.isfile(res_name):
@@ -150,7 +155,7 @@ def get_cache_directory(domain=None):
     Returns:
         (str) a path to the directory where you can cache data
     """
-    config = mycroft.configuration.Configuration.get(remote=False)
+    config = mycroft.configuration.Configuration()
     directory = config.get("cache_path")
     if not directory:
         directory = os.path.join(get_xdg_data_save_path(), "cache")
@@ -198,3 +203,36 @@ def create_file(filename):
     with open(filename, 'w') as f:
         f.write('')
     os.chmod(filename, 0o777)
+
+
+class FileWatcher:
+    def __init__(self, files, callback):
+        self.observer = Observer()
+        self.handlers = []
+        for file_path in files:
+            watch_dir = dirname(file_path)
+            self.observer.schedule(FileEventHandler(file_path, callback),
+                                   watch_dir, recursive=False)
+        self.observer.start()
+
+    def shutdown(self):
+        self.observer.unschedule_all()
+        self.observer.stop()
+
+
+class FileEventHandler(FileSystemEventHandler):
+    def __init__(self, file_path, callback):
+        super().__init__()
+        self._callback = callback
+        self._file_path = file_path
+        self._debounce = 1
+        self._last_update = 0
+
+    def on_any_event(self, event):
+        if event.is_directory:
+            return
+        elif event.event_type in ('created', 'modified'):
+            if event.src_path == self._file_path:
+                if time.time() - self._last_update >= self._debounce:
+                    self._callback(event.src_path)
+                    self._last_update = time.time()
