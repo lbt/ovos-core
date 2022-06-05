@@ -15,8 +15,10 @@
 import json
 import time
 import os
+from os.path import isfile, dirname, expanduser
+import shutil
 
-from mycroft.filesystem import FileSystemAccess
+from ovos_utils.configuration import get_xdg_config_save_path, get_xdg_base
 from mycroft.util.log import LOG
 from combo_lock import ComboLock
 
@@ -38,16 +40,24 @@ class DeviceIdentity:
 
 
 class IdentityManager:
+    IDENTITY_FILE = f"{get_xdg_config_save_path()}/identity/identity2.json"
+    OLD_IDENTITY_FILE = expanduser(f"~/.{get_xdg_base()}/identity/identity2.json")
     __identity = None
 
     @staticmethod
     def _load():
-        LOG.debug('Loading identity')
-        try:
-            with FileSystemAccess('identity').open('identity2.json', 'r') as f:
-                IdentityManager.__identity = DeviceIdentity(**json.load(f))
-        except Exception:
-            IdentityManager.__identity = DeviceIdentity()
+        if isfile(IdentityManager.OLD_IDENTITY_FILE) and \
+                not isfile(IdentityManager.IDENTITY_FILE):
+            shutil.move(IdentityManager.OLD_IDENTITY_FILE, IdentityManager.IDENTITY_FILE)
+        if isfile(IdentityManager.IDENTITY_FILE):
+            LOG.debug('Loading identity')
+            try:
+                with open(IdentityManager.IDENTITY_FILE) as f:
+                    IdentityManager.__identity = DeviceIdentity(**json.load(f))
+                return
+            except Exception:
+                pass
+        IdentityManager.__identity = DeviceIdentity()
 
     @staticmethod
     def load(lock=True):
@@ -68,7 +78,10 @@ class IdentityManager:
         try:
             if login:
                 IdentityManager._update(login)
-            with FileSystemAccess('identity').open('identity2.json', 'w') as f:
+
+            os.makedirs(dirname(IdentityManager.IDENTITY_FILE), exist_ok=True)
+
+            with open(IdentityManager.IDENTITY_FILE, "w") as f:
                 json.dump(IdentityManager.__identity.__dict__, f)
                 f.flush()
                 os.fsync(f.fileno())
