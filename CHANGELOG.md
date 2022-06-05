@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a9...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a10...HEAD)
+
+**Implemented enhancements:**
+
+- feat/setup\_events [\#136](https://github.com/OpenVoiceOS/ovos-core/pull/136) ([NeonJarbas](https://github.com/NeonJarbas))
+
+**Fixed bugs:**
+
+- fix/identity\_file migration [\#137](https://github.com/OpenVoiceOS/ovos-core/pull/137) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a10) (2022-06-05)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a9...V0.0.4a10)
 
 **Fixed bugs:**
 
