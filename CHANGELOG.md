@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a11...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a12...HEAD)
+
+**Fixed bugs:**
+
+- Fix/qml resources [\#135](https://github.com/OpenVoiceOS/ovos-core/pull/135) ([NeonJarbas](https://github.com/NeonJarbas))
+
+**Closed issues:**
+
+- port -  resource file handling utils [\#41](https://github.com/OpenVoiceOS/ovos-core/issues/41)
+
+## [V0.0.4a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a12) (2022-06-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a11...V0.0.4a12)
 
 **Fixed bugs:**
 
