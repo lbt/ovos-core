@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a12...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a13...HEAD)
+
+**Implemented enhancements:**
+
+- feat/skill\_settings\_filewatch [\#139](https://github.com/OpenVoiceOS/ovos-core/pull/139) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a13) (2022-06-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a12...V0.0.4a13)
 
 **Fixed bugs:**
 
@@ -114,13 +122,10 @@
 
 **Fixed bugs:**
 
+- Unsupported LF language prevents intent handling [\#123](https://github.com/OpenVoiceOS/ovos-core/issues/123)
 - Failure when no fallback stt set [\#84](https://github.com/OpenVoiceOS/ovos-core/issues/84)
 - fix/LF\_unsupported\_lang [\#125](https://github.com/OpenVoiceOS/ovos-core/pull/125) ([NeonJarbas](https://github.com/NeonJarbas))
 - fix/converse\_get\_response [\#124](https://github.com/OpenVoiceOS/ovos-core/pull/124) ([NeonJarbas](https://github.com/NeonJarbas))
-
-**Closed issues:**
-
-- Unsupported LF language prevents intent handling [\#123](https://github.com/OpenVoiceOS/ovos-core/issues/123)
 
 ## [V0.0.3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.3) (2022-05-09)
 
@@ -178,7 +183,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a43...V0.0.2a44)
 
-**Closed issues:**
+**Fixed bugs:**
 
 - is\_alive\(\) and all\_loaded\(\) service status enquiries seems broken [\#101](https://github.com/OpenVoiceOS/ovos-core/issues/101)
 
@@ -389,11 +394,8 @@
 
 **Fixed bugs:**
 
-- Fix/ready timeout [\#88](https://github.com/OpenVoiceOS/ovos-core/pull/88) ([NeonJarbas](https://github.com/NeonJarbas))
-
-**Closed issues:**
-
 - \_ensure\_device\_is\_paired\(\) is called before load\_priority skills it should be called after [\#79](https://github.com/OpenVoiceOS/ovos-core/issues/79)
+- Fix/ready timeout [\#88](https://github.com/OpenVoiceOS/ovos-core/pull/88) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a18) (2022-03-16)
 
