@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a16...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a17...HEAD)
+
+**Fixed bugs:**
+
+- fix/core\_resources [\#145](https://github.com/OpenVoiceOS/ovos-core/pull/145) ([NeonJarbas](https://github.com/NeonJarbas))
+
+**Merged pull requests:**
+
+- Refactor audio module into service [\#146](https://github.com/OpenVoiceOS/ovos-core/pull/146) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a17) (2022-06-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a16...V0.0.4a17)
 
 **Merged pull requests:**
 
