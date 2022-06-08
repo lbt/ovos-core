@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a15...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a16...HEAD)
+
+**Merged pull requests:**
+
+- refactor/ready\_check\_bus\_spam [\#144](https://github.com/OpenVoiceOS/ovos-core/pull/144) ([NeonJarbas](https://github.com/NeonJarbas))
+- refactor/skill\_reload [\#143](https://github.com/OpenVoiceOS/ovos-core/pull/143) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a16) (2022-06-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a15...V0.0.4a16)
 
 **Implemented enhancements:**
 
@@ -11,10 +20,6 @@
 **Fixed bugs:**
 
 - fix/config\_hotreload [\#142](https://github.com/OpenVoiceOS/ovos-core/pull/142) ([NeonJarbas](https://github.com/NeonJarbas))
-
-**Merged pull requests:**
-
-- refactor/ready\_check\_bus\_spam [\#144](https://github.com/OpenVoiceOS/ovos-core/pull/144) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a15) (2022-06-08)
 
