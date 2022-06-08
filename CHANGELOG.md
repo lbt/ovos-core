@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a13...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a14...HEAD)
+
+**Implemented enhancements:**
+
+- Add color scheme modes and color scheme custom generator support [\#140](https://github.com/OpenVoiceOS/ovos-core/pull/140) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.4a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a14) (2022-06-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a13...V0.0.4a14)
 
 **Implemented enhancements:**
 
