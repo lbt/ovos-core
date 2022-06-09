@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a19...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a20...HEAD)
+
+**Merged pull requests:**
+
+- refactor/native\_ocp [\#154](https://github.com/OpenVoiceOS/ovos-core/pull/154) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a20) (2022-06-09)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a19...V0.0.4a20)
 
 **Implemented enhancements:**
 
@@ -526,10 +534,6 @@
 ## [V0.0.2a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a10) (2022-02-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a9...V0.0.2a10)
-
-**Implemented enhancements:**
-
-- port - mk2 gui refactor [\#42](https://github.com/OpenVoiceOS/ovos-core/issues/42)
 
 **Fixed bugs:**
 
