@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a23...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a24...HEAD)
+
+**Fixed bugs:**
+
+- Fix typo in resource resolver [\#158](https://github.com/OpenVoiceOS/ovos-core/pull/158) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a24](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a24) (2022-06-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a23...V0.0.4a24)
 
 **Fixed bugs:**
 
@@ -579,10 +587,6 @@
 ## [V0.0.2a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a8) (2022-02-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/0.0.2a4...V0.0.2a8)
-
-**Implemented enhancements:**
-
-- feat/configurable\_fallback\_tts [\#49](https://github.com/OpenVoiceOS/ovos-core/pull/49) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Fixed bugs:**
 
