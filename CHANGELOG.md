@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a22...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a23...HEAD)
+
+**Fixed bugs:**
+
+- fix/skill\_settings\_callback [\#155](https://github.com/OpenVoiceOS/ovos-core/pull/155) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a23](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a23) (2022-06-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a22...V0.0.4a23)
 
 **Merged pull requests:**
 
@@ -599,10 +607,6 @@
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/0.0.2a3...0.0.2a4)
-
-**Fixed bugs:**
-
-- fix/log config [\#48](https://github.com/OpenVoiceOS/ovos-core/pull/48) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [0.0.2a3](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a3) (2022-01-24)
 
