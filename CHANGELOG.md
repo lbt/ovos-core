@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a20...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a21...HEAD)
+
+**Merged pull requests:**
+
+- fix bigscreen start [\#156](https://github.com/OpenVoiceOS/ovos-core/pull/156) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.4a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a21) (2022-06-09)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a20...V0.0.4a21)
 
 **Merged pull requests:**
 
@@ -583,11 +591,6 @@
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/0.0.2a3...0.0.2a4)
-
-**Implemented enhancements:**
-
-- feat/PHAL [\#46](https://github.com/OpenVoiceOS/ovos-core/pull/46) ([NeonJarbas](https://github.com/NeonJarbas))
-- refactor/settings continued [\#44](https://github.com/OpenVoiceOS/ovos-core/pull/44) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Fixed bugs:**
 
