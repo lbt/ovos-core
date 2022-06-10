@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a21...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a22...HEAD)
+
+**Merged pull requests:**
+
+- Use phal instead of enclosure and enable venv [\#157](https://github.com/OpenVoiceOS/ovos-core/pull/157) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.4a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a22) (2022-06-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a21...V0.0.4a22)
 
 **Merged pull requests:**
 
@@ -595,7 +603,6 @@
 **Fixed bugs:**
 
 - fix/log config [\#48](https://github.com/OpenVoiceOS/ovos-core/pull/48) ([NeonJarbas](https://github.com/NeonJarbas))
-- fix/speech [\#47](https://github.com/OpenVoiceOS/ovos-core/pull/47) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [0.0.2a3](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a3) (2022-01-24)
 
