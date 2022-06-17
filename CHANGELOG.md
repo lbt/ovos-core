@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a24...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a25...HEAD)
+
+**Fixed bugs:**
+
+- Resolve occasional config init bug [\#161](https://github.com/OpenVoiceOS/ovos-core/pull/161) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a25](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a25) (2022-06-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a24...V0.0.4a25)
 
 **Fixed bugs:**
 
@@ -590,7 +598,6 @@
 
 **Fixed bugs:**
 
-- Copyleft detected - list of deps & util to detect them [\#51](https://github.com/OpenVoiceOS/ovos-core/issues/51)
 - Port mk2 GUI service with additional improvements to core [\#66](https://github.com/OpenVoiceOS/ovos-core/pull/66) ([AIIX](https://github.com/AIIX))
 - fix/skill\_manager\_events [\#62](https://github.com/OpenVoiceOS/ovos-core/pull/62) ([NeonJarbas](https://github.com/NeonJarbas))
 - Fix/adapt lang missing [\#61](https://github.com/OpenVoiceOS/ovos-core/pull/61) ([NeonJarbas](https://github.com/NeonJarbas))
