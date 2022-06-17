@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a26...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a27...HEAD)
+
+**Merged pull requests:**
+
+- Update default cache directory to `XDG_CACHE_HOME` [\#159](https://github.com/OpenVoiceOS/ovos-core/pull/159) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a27](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a27) (2022-06-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a26...V0.0.4a27)
 
 **Implemented enhancements:**
 
@@ -620,7 +628,6 @@
 - add codecov [\#60](https://github.com/OpenVoiceOS/ovos-core/pull/60) ([ChanceNCounter](https://github.com/ChanceNCounter))
 - more license tests [\#56](https://github.com/OpenVoiceOS/ovos-core/pull/56) ([NeonJarbas](https://github.com/NeonJarbas))
 - feat/license tests workflow [\#54](https://github.com/OpenVoiceOS/ovos-core/pull/54) ([JarbasAl](https://github.com/JarbasAl))
-- Refactor/remove pyxdg [\#53](https://github.com/OpenVoiceOS/ovos-core/pull/53) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
