@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a25...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a26...HEAD)
+
+**Implemented enhancements:**
+
+- feat/speak\_error\_flag [\#152](https://github.com/OpenVoiceOS/ovos-core/pull/152) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a26](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a26) (2022-06-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a25...V0.0.4a26)
 
 **Fixed bugs:**
 
@@ -613,7 +621,6 @@
 - more license tests [\#56](https://github.com/OpenVoiceOS/ovos-core/pull/56) ([NeonJarbas](https://github.com/NeonJarbas))
 - feat/license tests workflow [\#54](https://github.com/OpenVoiceOS/ovos-core/pull/54) ([JarbasAl](https://github.com/JarbasAl))
 - Refactor/remove pyxdg [\#53](https://github.com/OpenVoiceOS/ovos-core/pull/53) ([NeonJarbas](https://github.com/NeonJarbas))
-- bump requests to avoid GPL transient dependency [\#52](https://github.com/OpenVoiceOS/ovos-core/pull/52) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
