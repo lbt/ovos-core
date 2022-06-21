@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a27...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a28...HEAD)
+
+**Implemented enhancements:**
+
+- feat/yaml\_support [\#162](https://github.com/OpenVoiceOS/ovos-core/pull/162) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a28) (2022-06-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a27...V0.0.4a28)
 
 **Merged pull requests:**
 
@@ -627,7 +635,6 @@
 - bump/non\_alpha\_opm+utils [\#63](https://github.com/OpenVoiceOS/ovos-core/pull/63) ([NeonJarbas](https://github.com/NeonJarbas))
 - add codecov [\#60](https://github.com/OpenVoiceOS/ovos-core/pull/60) ([ChanceNCounter](https://github.com/ChanceNCounter))
 - more license tests [\#56](https://github.com/OpenVoiceOS/ovos-core/pull/56) ([NeonJarbas](https://github.com/NeonJarbas))
-- feat/license tests workflow [\#54](https://github.com/OpenVoiceOS/ovos-core/pull/54) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
