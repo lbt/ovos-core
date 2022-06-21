@@ -14,6 +14,7 @@
 #
 import json
 import re
+import yaml
 from os.path import isfile
 from mycroft_bus_client.message import Message
 from mycroft.configuration.locations import *
@@ -91,6 +92,23 @@ class LocalConf(dict):
         if path:
             self.load_local(path)
 
+    def _get_file_format(self, path=None):
+        """The config file format
+        supported file extensions:
+        - json (.json)
+        - commented json (.conf)
+        - yaml (.yaml/.yml)
+
+        returns "yaml" or "json"
+        """
+        path = path or self.path
+        if not path:
+            return "dict"
+        if path.endswith(".yml") or path.endswith(".yaml"):
+            return "yaml"
+        else:
+            return "json"
+
     def load_local(self, path=None):
         """Load local json file into self.
 
@@ -103,7 +121,11 @@ class LocalConf(dict):
             return
         if exists(path) and isfile(path):
             try:
-                config = load_commented_json(path)
+                if self._get_file_format(path) == "yaml":
+                    with open(path) as f:
+                        config = yaml.safe_load(f)
+                else:
+                    config = load_commented_json(path)
                 for key in config:
                     self.__setitem__(key, config[key])
                 LOG.debug(f"Configuration {path} loaded")
@@ -125,8 +147,13 @@ class LocalConf(dict):
         if not path:
             LOG.error(f"in memory configuration, no save location")
             return
-        with open(path, 'w') as f:
-            json.dump(self, f, indent=2)
+        if self._get_file_format(path) == "yaml":
+            with open(path, 'w') as f:
+                yaml.dump(dict(self), f, allow_unicode=True,
+                          default_flow_style=False, sort_keys=False)
+        else:
+            with open(path, 'w') as f:
+                json.dump(self, f, indent=2)
 
     def merge(self, conf):
         merge_dict(self, conf)
