@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a28...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a29...HEAD)
+
+**Breaking changes:**
+
+- refactor/rename\_audiospeech\_services [\#151](https://github.com/OpenVoiceOS/ovos-core/pull/151) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a29) (2022-06-21)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a28...V0.0.4a29)
 
 **Implemented enhancements:**
 
@@ -626,7 +634,6 @@
 - fix/skill\_manager\_events [\#62](https://github.com/OpenVoiceOS/ovos-core/pull/62) ([NeonJarbas](https://github.com/NeonJarbas))
 - Fix/adapt lang missing [\#61](https://github.com/OpenVoiceOS/ovos-core/pull/61) ([NeonJarbas](https://github.com/NeonJarbas))
 - Fix/intent issues [\#59](https://github.com/OpenVoiceOS/ovos-core/pull/59) ([NeonJarbas](https://github.com/NeonJarbas))
-- fix/skill\_settings backwards compat [\#55](https://github.com/OpenVoiceOS/ovos-core/pull/55) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Merged pull requests:**
 
