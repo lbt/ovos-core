@@ -40,10 +40,10 @@ def on_error(e='Unknown'):
     LOG.error('Audio service failed to launch ({}).'.format(repr(e)))
 
 
-class SpeechClient(Thread):
+class SpeechService(Thread):
     def __init__(self, on_ready=on_ready, on_error=on_error,
                  on_stopping=on_stopping, watchdog=lambda: None):
-        super(SpeechClient, self).__init__()
+        super(SpeechService, self).__init__()
 
         callbacks = StatusCallbackMap(on_ready=on_ready,
                                       on_error=on_error,
@@ -231,3 +231,8 @@ class SpeechClient(Thread):
             self.status.set_error(e)
         self.status.set_stopping()
 
+        
+class SpeechClient(SpeechService):
+    def __init__(self, *args, **kwargs):
+        LOG.warning("SpeechClient has been renamed to SpeechService, it will be removed in 0.1.0)
+        super().__init__(self, *args, **kwargs)
