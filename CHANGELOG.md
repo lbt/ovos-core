@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a29...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a30...HEAD)
+
+**Merged pull requests:**
+
+- Add display configuration for smartspeakers [\#164](https://github.com/OpenVoiceOS/ovos-core/pull/164) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.4a30](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a30) (2022-06-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a29...V0.0.4a30)
 
 **Breaking changes:**
 
@@ -641,7 +649,6 @@
 - add pypi automations [\#65](https://github.com/OpenVoiceOS/ovos-core/pull/65) ([JarbasAl](https://github.com/JarbasAl))
 - bump/non\_alpha\_opm+utils [\#63](https://github.com/OpenVoiceOS/ovos-core/pull/63) ([NeonJarbas](https://github.com/NeonJarbas))
 - add codecov [\#60](https://github.com/OpenVoiceOS/ovos-core/pull/60) ([ChanceNCounter](https://github.com/ChanceNCounter))
-- more license tests [\#56](https://github.com/OpenVoiceOS/ovos-core/pull/56) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
