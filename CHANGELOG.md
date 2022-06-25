@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a31...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a32...HEAD)
+
+**Merged pull requests:**
+
+- Move ovos\_workshop import out of top-level to allow load without skills extra [\#166](https://github.com/OpenVoiceOS/ovos-core/pull/166) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a32](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a32) (2022-06-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a31...V0.0.4a32)
 
 **Merged pull requests:**
 
@@ -649,7 +657,6 @@
 - Port mk2 GUI service with additional improvements to core [\#66](https://github.com/OpenVoiceOS/ovos-core/pull/66) ([AIIX](https://github.com/AIIX))
 - fix/skill\_manager\_events [\#62](https://github.com/OpenVoiceOS/ovos-core/pull/62) ([NeonJarbas](https://github.com/NeonJarbas))
 - Fix/adapt lang missing [\#61](https://github.com/OpenVoiceOS/ovos-core/pull/61) ([NeonJarbas](https://github.com/NeonJarbas))
-- Fix/intent issues [\#59](https://github.com/OpenVoiceOS/ovos-core/pull/59) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Merged pull requests:**
 
