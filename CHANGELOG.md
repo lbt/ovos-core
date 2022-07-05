@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a32...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a33...HEAD)
+
+**Merged pull requests:**
+
+- refactor/ovos\_config\_pkg [\#167](https://github.com/OpenVoiceOS/ovos-core/pull/167) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a33) (2022-06-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a32...V0.0.4a33)
 
 **Merged pull requests:**
 
@@ -663,7 +671,6 @@
 - Tests/port template workflows [\#69](https://github.com/OpenVoiceOS/ovos-core/pull/69) ([JarbasAl](https://github.com/JarbasAl))
 - add pypi automations [\#65](https://github.com/OpenVoiceOS/ovos-core/pull/65) ([JarbasAl](https://github.com/JarbasAl))
 - bump/non\_alpha\_opm+utils [\#63](https://github.com/OpenVoiceOS/ovos-core/pull/63) ([NeonJarbas](https://github.com/NeonJarbas))
-- add codecov [\#60](https://github.com/OpenVoiceOS/ovos-core/pull/60) ([ChanceNCounter](https://github.com/ChanceNCounter))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
