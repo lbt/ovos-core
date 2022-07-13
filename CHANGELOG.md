@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a33...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a34...HEAD)
+
+**Fixed bugs:**
+
+- fix/hotword reload [\#169](https://github.com/OpenVoiceOS/ovos-core/pull/169) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a34) (2022-07-05)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a33...V0.0.4a34)
 
 **Merged pull requests:**
 
@@ -664,7 +672,6 @@
 
 - Port mk2 GUI service with additional improvements to core [\#66](https://github.com/OpenVoiceOS/ovos-core/pull/66) ([AIIX](https://github.com/AIIX))
 - fix/skill\_manager\_events [\#62](https://github.com/OpenVoiceOS/ovos-core/pull/62) ([NeonJarbas](https://github.com/NeonJarbas))
-- Fix/adapt lang missing [\#61](https://github.com/OpenVoiceOS/ovos-core/pull/61) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Merged pull requests:**
 
