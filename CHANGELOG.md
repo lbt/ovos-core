@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a34...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a35...HEAD)
+
+**Fixed bugs:**
+
+- Handle recursive inspection of resource directories [\#170](https://github.com/OpenVoiceOS/ovos-core/pull/170) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a35) (2022-07-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a34...V0.0.4a35)
 
 **Fixed bugs:**
 
@@ -671,7 +679,6 @@
 **Fixed bugs:**
 
 - Port mk2 GUI service with additional improvements to core [\#66](https://github.com/OpenVoiceOS/ovos-core/pull/66) ([AIIX](https://github.com/AIIX))
-- fix/skill\_manager\_events [\#62](https://github.com/OpenVoiceOS/ovos-core/pull/62) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Merged pull requests:**
 
