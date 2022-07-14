@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a35...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a36...HEAD)
+
+**Fixed bugs:**
+
+- Add config reference for backwards-compat [\#171](https://github.com/OpenVoiceOS/ovos-core/pull/171) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a36) (2022-07-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a35...V0.0.4a36)
 
 **Fixed bugs:**
 
@@ -684,7 +692,6 @@
 
 - Tests/port template workflows [\#69](https://github.com/OpenVoiceOS/ovos-core/pull/69) ([JarbasAl](https://github.com/JarbasAl))
 - add pypi automations [\#65](https://github.com/OpenVoiceOS/ovos-core/pull/65) ([JarbasAl](https://github.com/JarbasAl))
-- bump/non\_alpha\_opm+utils [\#63](https://github.com/OpenVoiceOS/ovos-core/pull/63) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
