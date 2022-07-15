@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a36...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a37...HEAD)
+
+**Merged pull requests:**
+
+- Handle 'None' configuration values for deprecated directory params [\#172](https://github.com/OpenVoiceOS/ovos-core/pull/172) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a37) (2022-07-14)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a36...V0.0.4a37)
 
 **Fixed bugs:**
 
