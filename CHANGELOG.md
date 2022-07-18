@@ -2,9 +2,17 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a37...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a38...HEAD)
 
-**Merged pull requests:**
+**Fixed bugs:**
+
+- Prevent duplicate language intent registration [\#173](https://github.com/OpenVoiceOS/ovos-core/pull/173) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a38](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a38) (2022-07-15)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a37...V0.0.4a38)
+
+**Fixed bugs:**
 
 - Handle 'None' configuration values for deprecated directory params [\#172](https://github.com/OpenVoiceOS/ovos-core/pull/172) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -44,7 +52,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a32...V0.0.4a33)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Move ovos\_workshop import out of top-level to allow load without skills extra [\#166](https://github.com/OpenVoiceOS/ovos-core/pull/166) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -52,7 +60,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a31...V0.0.4a32)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Patch typo in warning log [\#165](https://github.com/OpenVoiceOS/ovos-core/pull/165) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -699,7 +707,6 @@
 **Merged pull requests:**
 
 - Tests/port template workflows [\#69](https://github.com/OpenVoiceOS/ovos-core/pull/69) ([JarbasAl](https://github.com/JarbasAl))
-- add pypi automations [\#65](https://github.com/OpenVoiceOS/ovos-core/pull/65) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
