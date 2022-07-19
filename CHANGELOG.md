@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a38...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a39...HEAD)
+
+**Merged pull requests:**
+
+- Adds advanced configuration GUI interface for drop down menu [\#174](https://github.com/OpenVoiceOS/ovos-core/pull/174) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.4a39](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a39) (2022-07-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a38...V0.0.4a39)
 
 **Fixed bugs:**
 
@@ -68,7 +76,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a30...V0.0.4a31)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Add display configuration for smartspeakers [\#164](https://github.com/OpenVoiceOS/ovos-core/pull/164) ([AIIX](https://github.com/AIIX))
 
@@ -699,10 +707,6 @@
 ## [V0.0.2a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a8) (2022-02-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/0.0.2a4...V0.0.2a8)
-
-**Fixed bugs:**
-
-- Port mk2 GUI service with additional improvements to core [\#66](https://github.com/OpenVoiceOS/ovos-core/pull/66) ([AIIX](https://github.com/AIIX))
 
 **Merged pull requests:**
 
