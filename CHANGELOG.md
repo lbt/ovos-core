@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a39...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a40...HEAD)
+
+**Merged pull requests:**
+
+- Add Translations and Language support for de es pt it fr nl [\#177](https://github.com/OpenVoiceOS/ovos-core/pull/177) ([AIIX](https://github.com/AIIX))
+- Update release tag workflows to include version change commits [\#175](https://github.com/OpenVoiceOS/ovos-core/pull/175) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a40](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a40) (2022-07-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a39...V0.0.4a40)
 
 **Merged pull requests:**
 
@@ -689,7 +698,6 @@
 
 **Fixed bugs:**
 
-- Mismatched converse event names [\#68](https://github.com/OpenVoiceOS/ovos-core/issues/68)
 - Fix/unify converse namespace [\#71](https://github.com/OpenVoiceOS/ovos-core/pull/71) ([JarbasAl](https://github.com/JarbasAl))
 
 **Merged pull requests:**
@@ -699,10 +707,6 @@
 ## [V0.0.2a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a9) (2022-02-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a8...V0.0.2a9)
-
-**Implemented enhancements:**
-
-- Refactor/skill process status [\#67](https://github.com/OpenVoiceOS/ovos-core/pull/67) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a8) (2022-02-25)
 
