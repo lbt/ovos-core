@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a43...HEAD)
+
+**Implemented enhancements:**
+
+- refactor/native\_sources [\#179](https://github.com/OpenVoiceOS/ovos-core/pull/179) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a43](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a43) (2022-07-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a42...V0.0.4a43)
+
 ## [V0.0.4a42](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a42) (2022-07-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a41...V0.0.4a42)
@@ -707,10 +719,6 @@
 **Fixed bugs:**
 
 - Fix/unify converse namespace [\#71](https://github.com/OpenVoiceOS/ovos-core/pull/71) ([JarbasAl](https://github.com/JarbasAl))
-
-**Merged pull requests:**
-
-- Fix/changelog text [\#70](https://github.com/OpenVoiceOS/ovos-core/pull/70) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a9) (2022-02-25)
 
