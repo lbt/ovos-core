@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a40...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a41...HEAD)
+
+**Merged pull requests:**
+
+- Update references to `ovos_config` [\#178](https://github.com/OpenVoiceOS/ovos-core/pull/178) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a41](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a41) (2022-07-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a40...V0.0.4a41)
 
 **Merged pull requests:**
 
@@ -711,10 +719,6 @@
 ## [V0.0.2a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a8) (2022-02-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/0.0.2a4...V0.0.2a8)
-
-**Merged pull requests:**
-
-- Tests/port template workflows [\#69](https://github.com/OpenVoiceOS/ovos-core/pull/69) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [0.0.2a4](https://github.com/OpenVoiceOS/ovos-core/tree/0.0.2a4) (2022-02-10)
 
