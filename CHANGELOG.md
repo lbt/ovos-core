@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a43...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a44...HEAD)
+
+**Implemented enhancements:**
+
+- feat/queue\_audio [\#180](https://github.com/OpenVoiceOS/ovos-core/pull/180) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a44](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a44) (2022-07-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a43...V0.0.4a44)
 
 **Implemented enhancements:**
 
@@ -715,10 +723,6 @@
 ## [V0.0.2a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a10) (2022-02-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a9...V0.0.2a10)
-
-**Fixed bugs:**
-
-- Fix/unify converse namespace [\#71](https://github.com/OpenVoiceOS/ovos-core/pull/71) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a9) (2022-02-25)
 
