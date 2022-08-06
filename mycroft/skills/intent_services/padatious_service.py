@@ -13,7 +13,6 @@
 # limitations under the License.
 #
 """Intent service wrapping padatious."""
-from functools import lru_cache
 from subprocess import call
 from threading import Event
 from time import time as get_time, sleep
@@ -26,7 +25,43 @@ from mycroft.messagebus.message import Message
 from mycroft.util.log import LOG
 from mycroft.skills.intent_services.base import IntentMatch
 
-from padaos import IntentContainer as PadaosIntentContainer
+from padacioso import IntentContainer as FallbackIntentContainer
+
+try:
+    import padatious as _pd
+    from padatious.match_data import MatchData as PadatiousIntent
+except ImportError:
+    _pd = None
+
+    # padatious is optional, this class is just for compat
+    class PadatiousIntent:
+        """
+        A set of data describing how a query fits into an intent
+        Attributes:
+            name (str): Name of matched intent
+            sent (str): The query after entity extraction
+            conf (float): Confidence (from 0.0 to 1.0)
+            matches (dict of str -> str): Key is the name of the entity and
+                value is the extracted part of the sentence
+        """
+
+        def __init__(self, name, sent, matches=None, conf=0.0):
+            self.name = name
+            self.sent = sent
+            self.matches = matches or {}
+            self.conf = conf
+
+        def __getitem__(self, item):
+            return self.matches.__getitem__(item)
+
+        def __contains__(self, item):
+            return self.matches.__contains__(item)
+
+        def get(self, key, default=None):
+            return self.matches.get(key, default)
+
+        def __repr__(self):
+            return repr(self.__dict__)
 
 
 class PadatiousMatcher:
@@ -53,17 +88,6 @@ class PadatiousMatcher:
             for utt in utterances:
                 for variant in utt:
                     intent = self.service.calc_intent(variant, lang)
-                    if self.service._padaos:
-                        if not intent.get("name"):
-                            continue
-                        # exact matches only
-                        return IntentMatch(
-                            'Padaos',
-                            intent["name"],
-                            intent["entities"],
-                            intent["name"].split(':')[0]
-                        )
-
                     if intent:
                         best = padatious_intent.conf if padatious_intent else 0.0
                         if best < intent.conf:
@@ -114,7 +138,6 @@ class PadatiousService:
         self.padatious_config = config
         self.bus = bus
         intent_cache = expanduser(self.padatious_config['intent_cache'])
-        self._padaos = self.padatious_config.get("padaos_only", False)
 
         core_config = Configuration()
         self.lang = core_config.get("lang", "en-us")
@@ -122,26 +145,22 @@ class PadatiousService:
         if self.lang not in langs:
             langs.append(self.lang)
 
-        try:
-            if not self._padaos:
-                from padatious import IntentContainer
-                self.containers = {
-                    lang: IntentContainer(path.join(intent_cache, lang))
-                    for lang in langs}
-        except ImportError:
-            LOG.error('Padatious not installed. Falling back to Padaos, pure regex alternative')
-            try:
-                call(['notify-send', 'Padatious not installed',
-                      'Falling back to Padaos, pure regex alternative'])
-            except OSError:
-                pass
-            self._padaos = True
-
-        if self._padaos:
-            LOG.warning('using padaos instead of padatious. Some intents may '
-                        'be hard to trigger')
-            self.containers = {lang: PadaosIntentContainer()
+        if self.is_regex_only:
+            if not _pd:
+                LOG.error('Padatious not installed. Falling back to pure regex alternative')
+                try:
+                    call(['notify-send', 'Padatious not installed',
+                          'Falling back to pure regex alternative'])
+                except OSError:
+                    pass
+            LOG.warning('using pure regex intent parser. '
+                        'Some intents may be hard to trigger')
+            self.containers = {lang: FallbackIntentContainer(self.padatious_config.get("fuzz"))
                                for lang in langs}
+        else:
+            self.containers = {
+                lang: _pd.IntentContainer(path.join(intent_cache, lang))
+                for lang in langs}
 
         self.bus.on('padatious:register_intent', self.register_intent)
         self.bus.on('padatious:register_entity', self.register_entity)
@@ -158,6 +177,12 @@ class PadatiousService:
         self.registered_intents = []
         self.registered_entities = []
 
+    @property
+    def is_regex_only(self):
+        if not _pd:
+            return True
+        return self.padatious_config.get("regex_only") or False
+
     def train(self, message=None):
         """Perform padatious training.
 
@@ -165,18 +190,17 @@ class PadatiousService:
             message (Message): optional triggering message
         """
         self.finished_training_event.clear()
-        if not self._padaos:
+        if not self.is_regex_only:
             padatious_single_thread = self.padatious_config['single_thread']
             if message is None:
                 single_thread = padatious_single_thread
             else:
                 single_thread = message.data.get('single_thread',
                                                  padatious_single_thread)
-            LOG.info('Training... (single_thread={})'.format(single_thread))
             for lang in self.containers:
                 self.containers[lang].train(single_thread=single_thread)
-            LOG.info('Training complete.')
 
+        LOG.info('Training complete.')
         self.finished_training_event.set()
         if not self.finished_initial_train:
             self.bus.emit(Message('mycroft.skills.trained'))
@@ -241,7 +265,7 @@ class PadatiousService:
             LOG.warning('Could not find file ' + file_name)
             return
 
-        if self._padaos:
+        if self.is_regex_only:
             # padaos does not accept a file path like padatious
             with open(file_name) as f:
                 samples = [l.strip() for l in f.readlines()]
@@ -258,9 +282,10 @@ class PadatiousService:
             message (Message): message triggering action
         """
         lang = message.data.get('lang', self.lang)
+        lang = lang.lower()
         if lang in self.containers:
             self.registered_intents.append(message.data['name'])
-            if self._padaos:
+            if self.is_regex_only:
                 self._register_object(
                     message, 'intent', self.containers[lang].add_intent)
             else:
@@ -274,9 +299,10 @@ class PadatiousService:
             message (Message): message triggering action
         """
         lang = message.data.get('lang', self.lang)
+        lang = lang.lower()
         if lang in self.containers:
             self.registered_entities.append(message.data)
-            if self._padaos:
+            if self.is_regex_only:
                 self._register_object(
                     message, 'intent', self.containers[lang].add_entity)
             else:
@@ -289,13 +315,16 @@ class PadatiousService:
         This improves speed when called multiple times for different confidence
         levels.
 
-        NOTE: This cache will keep a reference to this class
-        (PadatiousService), but we can live with that since it is used as a
-        singleton.
-
         Args:
             utt (str): utterance to calculate best intent for
         """
         lang = lang or self.lang
+        lang = lang.lower()
         if lang in self.containers:
-            return self.containers[lang].calc_intent(utt)
+            intent = self.containers[lang].calc_intent(utt)
+            if isinstance(intent, dict):
+                if "entities" in intent:
+                    intent["matches"] = intent.pop("entities")
+                intent["sent"] = utt
+                intent = PadatiousIntent(**intent)
+            return intent
