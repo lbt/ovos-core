@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a45...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a46...HEAD)
+
+**Implemented enhancements:**
+
+- refactor/padacioso [\#183](https://github.com/OpenVoiceOS/ovos-core/pull/183) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a46](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a46) (2022-08-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a45...V0.0.4a46)
 
 **Fixed bugs:**
 
@@ -719,10 +727,6 @@
 ## [V0.0.2a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a11) (2022-03-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a10...V0.0.2a11)
-
-**Implemented enhancements:**
-
-- Add GUI Extensions Support [\#73](https://github.com/OpenVoiceOS/ovos-core/pull/73) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.2a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a10) (2022-02-25)
 
