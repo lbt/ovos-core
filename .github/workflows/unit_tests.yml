@@ -36,6 +36,7 @@ jobs:
       matrix:
         python-version: [ 3.7, 3.8, 3.9]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v2
       - name: Set up python ${{ matrix.python-version }}
@@ -49,7 +50,7 @@ jobs:
           python -m pip install build wheel
       - name: Install core repo
         run: |
-          pip install .[audio-backend,mark1,stt,tts,skills,gui,bus,PHAL,all,deprecated]
+          pip install .[audio,mark1,stt,tts,skills,gui,bus,PHAL,all,deprecated]
       - name: Install test dependencies
         run: |
           pip install -r requirements/tests.txt
