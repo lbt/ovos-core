@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a46...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a47...HEAD)
+
+**Merged pull requests:**
+
+- add Workshop integration tests [\#187](https://github.com/OpenVoiceOS/ovos-core/pull/187) ([NeonDaniel](https://github.com/NeonDaniel))
+- feat/integration\_tests [\#184](https://github.com/OpenVoiceOS/ovos-core/pull/184) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.4a47](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a47) (2022-08-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a46...V0.0.4a47)
 
 **Implemented enhancements:**
 
@@ -664,7 +673,6 @@
 
 **Fixed bugs:**
 
-- \_ensure\_device\_is\_paired\(\) is called before load\_priority skills it should be called after [\#79](https://github.com/OpenVoiceOS/ovos-core/issues/79)
 - Fix/ready timeout [\#88](https://github.com/OpenVoiceOS/ovos-core/pull/88) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a18) (2022-03-16)
@@ -704,10 +712,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a13...V0.0.2a14)
 
-**Implemented enhancements:**
-
-- feat/fallback\_stt [\#77](https://github.com/OpenVoiceOS/ovos-core/pull/77) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.2a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a13) (2022-03-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a12...V0.0.2a13)
@@ -719,10 +723,6 @@
 ## [V0.0.2a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a12) (2022-03-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a11...V0.0.2a12)
-
-**Merged pull requests:**
-
-- bump\_requirements [\#74](https://github.com/OpenVoiceOS/ovos-core/pull/74) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a11) (2022-03-01)
 
