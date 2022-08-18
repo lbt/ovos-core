@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a47...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a48...HEAD)
+
+**Merged pull requests:**
+
+- Bump dependencies to non-alpha versions [\#176](https://github.com/OpenVoiceOS/ovos-core/pull/176) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.4a48](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a48) (2022-08-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a47...V0.0.4a48)
 
 **Merged pull requests:**
 
@@ -715,10 +723,6 @@
 ## [V0.0.2a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a13) (2022-03-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a12...V0.0.2a13)
-
-**Fixed bugs:**
-
-- call device prepare after skill manager has started [\#80](https://github.com/OpenVoiceOS/ovos-core/pull/80) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.2a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a12) (2022-03-01)
 
