@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a1...HEAD)
+
+**Implemented enhancements:**
+
+- Port supported languages API from Neon speech/audio modules [\#190](https://github.com/OpenVoiceOS/ovos-core/pull/190) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a1) (2022-08-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4...V0.0.5a1)
 
 **Merged pull requests:**
 
@@ -722,7 +730,6 @@
 **Merged pull requests:**
 
 - matrix chatbot [\#83](https://github.com/OpenVoiceOS/ovos-core/pull/83) ([JarbasAl](https://github.com/JarbasAl))
-- Rewrite MutableStream class for microphone. [\#82](https://github.com/OpenVoiceOS/ovos-core/pull/82) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a14) (2022-03-03)
 
