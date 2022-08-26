@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a2...HEAD)
+
+**Merged pull requests:**
+
+- Fix Neon leftovers from ported language API [\#191](https://github.com/OpenVoiceOS/ovos-core/pull/191) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a2) (2022-08-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a1...V0.0.5a2)
 
 **Implemented enhancements:**
 
@@ -726,10 +734,6 @@
 ## [V0.0.2a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a15) (2022-03-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a14...V0.0.2a15)
-
-**Merged pull requests:**
-
-- matrix chatbot [\#83](https://github.com/OpenVoiceOS/ovos-core/pull/83) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a14) (2022-03-03)
 
