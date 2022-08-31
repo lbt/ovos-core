@@ -21,7 +21,7 @@ import pyaudio
 from pyee import EventEmitter
 
 from mycroft.listener.hotword_factory import HotWordFactory
-from mycroft.listener.mic import MutableMicrophone, ResponsiveRecognizer
+from mycroft.listener.mic import MutableMicrophone, ResponsiveRecognizer, ListenerState
 from ovos_config.config import Configuration
 from mycroft.metrics import Stopwatch, report_timing
 from mycroft.session import SessionManager
@@ -126,12 +126,6 @@ class AudioConsumer(Thread):
         self.daemon = True
         self.loop = loop
 
-    @property
-    def wakeup_engines(self):
-        """ wake from sleep mode """
-        return [(ww, w["engine"]) for ww, w in self.loop.engines.items()
-                if w["wakeup"]]
-
     def run(self):
         while self.loop.state.running:
             self.read()
@@ -176,9 +170,11 @@ class AudioConsumer(Thread):
                 transcription = self.transcribe(audio, lang)
             if transcription:
                 ident = str(stopwatch.timestamp) + str(hash(transcription))
+
                 # STT succeeded, send the transcribed speech on for processing
+                utts = [transcription]
                 payload = {
-                    'utterances': [transcription],
+                    'utterances': utts,
                     'lang': self.loop.stt.lang,
                     'session': SessionManager.get().session_id,
                     'ident': ident
@@ -195,7 +191,8 @@ class AudioConsumer(Thread):
     def transcribe(self, audio, lang):
         def send_unknown_intent():
             """ Send message that nothing was transcribed. """
-            self.loop.emit('recognizer_loop:speech.recognition.unknown')
+            if self.loop.responsive_recognizer.listen_state == ListenerState.WAKEWORD:
+                self.loop.emit('recognizer_loop:speech.recognition.unknown')
 
         try:
             # Invoke the STT engine on the audio clip
@@ -272,6 +269,42 @@ class RecognizerLoop(EventEmitter):
         if fallback_stt:
             self.fallback_stt = fallback_stt
 
+    @property
+    def wakeup_words(self):
+        return {k: v for k, v in self.engines.items()
+                if v.get("wakeup")}
+
+    @property
+    def listen_words(self):
+        return {k: v for k, v in self.engines.items()
+                if v.get("listen")}
+
+    @property
+    def stop_words(self):
+        return {k: v for k, v in self.engines.items()
+                if v.get("stopword")}
+
+    @property
+    def hot_words(self):
+        return {k: v for k, v in self.engines.items()
+                if not v.get("stopword") and not v.get("wakeup")}
+
+    @property
+    def listen_state(self):
+        return self.responsive_recognizer.listen_state
+
+    @listen_state.setter
+    def listen_state(self, val):
+        self.responsive_recognizer.listen_state = val
+
+    @property
+    def listen_mode(self):
+        return self.responsive_recognizer.listen_mode
+
+    @listen_mode.setter
+    def listen_mode(self, val):
+        self.responsive_recognizer.listen_mode = val
+
     def _load_config(self):
         """Load configuration parameters from configuration."""
         config = Configuration()
@@ -306,6 +339,7 @@ class RecognizerLoop(EventEmitter):
                 utterance = data.get("utterance")
                 listen = data.get("listen", False)
                 wakeup = data.get("wakeup", False)
+                stopword = data.get("stopword", False)
                 trigger = data.get("trigger", False)
                 lang = data.get("stt_lang", self.lang)
                 enabled = data.get("active", True)
@@ -330,7 +364,8 @@ class RecognizerLoop(EventEmitter):
                                           "utterance": utterance,
                                           "stt_lang": lang,
                                           "listen": listen,
-                                          "wakeup": wakeup}
+                                          "wakeup": wakeup,
+                                          "stopword": stopword}
             except Exception as e:
                 LOG.error("Failed to load hotword: " + word)
 

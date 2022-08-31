@@ -17,6 +17,7 @@ from threading import Thread
 
 from mycroft import dialog
 from mycroft.listener import RecognizerLoop
+from mycroft.listener.mic import ListenerState, ListeningMode
 from ovos_config.config import Configuration
 from mycroft.enclosure.api import EnclosureAPI
 from mycroft.identity import IdentityManager
@@ -69,12 +70,12 @@ class SpeechService(Thread):
                    'source': 'audio'}
         self.bus.emit(Message('recognizer_loop:record_begin', context=context))
 
-    def handle_record_end(self):
+    def handle_record_end(self, event):
         """Forward internal bus message to external bus."""
         LOG.info("End Recording...")
         context = {'client_name': 'mycroft_listener',
                    'source': 'audio'}
-        self.bus.emit(Message('recognizer_loop:record_end', context=context))
+        self.bus.emit(Message('recognizer_loop:record_end', event, context=context))
 
     def handle_no_internet(self):
         LOG.debug("Notifying enclosure of no internet connection")
@@ -90,12 +91,20 @@ class SpeechService(Thread):
         self.bus.emit(Message('mycroft.awoken', context=context))
 
     def handle_wakeword(self, event):
-        LOG.info("Wakeword Detected: " + event['utterance'])
+        LOG.info("Wakeword Detected: " + event['hotword'])
         self.bus.emit(Message('recognizer_loop:wakeword', event))
 
     def handle_hotword(self, event):
         LOG.info("Hotword Detected: " + event['hotword'])
         self.bus.emit(Message('recognizer_loop:hotword', event))
+
+    def handle_stopword(self, event):
+        LOG.info("Stop word Detected: " + event['hotword'])
+        self.bus.emit(Message('recognizer_loop:stopword', event))
+
+    def handle_wakeupword(self, event):
+        LOG.info("WakeUp word Detected: " + event['hotword'])
+        self.bus.emit(Message('recognizer_loop:wakeupword', event))
 
     def handle_hotword_event(self, event):
         """ hotword configured to emit a bus event
@@ -133,6 +142,56 @@ class SpeechService(Thread):
         context = {'client_name': 'mycroft_listener',
                    'source': 'audio'}
         self.bus.emit(Message('speak', data, context))
+
+    def handle_change_state(self, event):
+        """Set listening state."""
+        state = event.data.get("state")
+        mode = event.data.get("mode")
+        needs_skip = self.loop.listen_state == ListenerState.WAKEWORD
+
+        if state:
+            if state == ListenerState.WAKEWORD:
+                self.loop.listen_state = ListenerState.WAKEWORD
+            elif state == ListenerState.CONTINUOUS:
+                self.loop.listen_state = ListenerState.CONTINUOUS
+            elif state == ListenerState.RECORDING:
+                self.loop.listen_state = ListenerState.RECORDING
+            else:
+                LOG.error(f"Invalid listening state: {state}")
+
+        if mode:
+            if mode == ListeningMode.WAKEWORD:
+                self.loop.listen_mode = ListeningMode.WAKEWORD
+            elif mode == ListeningMode.CONTINUOUS:
+                self.loop.listen_mode = ListeningMode.CONTINUOUS
+            elif mode == ListeningMode.HYBRID:
+                self.loop.listen_mode = ListeningMode.HYBRID
+            else:
+                LOG.error(f"Invalid listen mode: {mode}")
+
+        # signal the recognizer to stop waiting for a wakeword
+        # in order for it to enter the new state
+        if needs_skip:
+            self.loop.responsive_recognizer._listen_triggered = True
+
+        self.handle_get_state(event)
+
+    def handle_get_state(self, event):
+        """Query listening state"""
+        data = {'mode': self.loop.listen_mode,
+                "state": self.loop.listen_state}
+        self.bus.emit(event.reply("recognizer_loop:state", data))
+
+    def handle_stop_recording(self, event):
+        """Stop current recording session """
+        self.loop.responsive_recognizer.stop_recording()
+
+    def handle_extend_listening(self, event):
+        """ when a skill is activated (converse) reset
+        the timeout until wakeword is needed again
+        only used when in hybrid listening mode """
+        if self.loop.listen_mode == ListeningMode.HYBRID:
+            self.loop.responsive_recognizer.extend_listening()
 
     def handle_sleep(self, event):
         """Put the recognizer loop to sleep."""
@@ -210,6 +269,8 @@ class SpeechService(Thread):
         self.loop.on('recognizer_loop:awoken', self.handle_awoken)
         self.loop.on('recognizer_loop:wakeword', self.handle_wakeword)
         self.loop.on('recognizer_loop:hotword', self.handle_hotword)
+        self.loop.on('recognizer_loop:stopword', self.handle_stopword)
+        self.loop.on('recognizer_loop:wakeupword', self.handle_wakeupword)
         self.loop.on('recognizer_loop:record_end', self.handle_record_end)
         self.loop.on('recognizer_loop:no_internet', self.handle_no_internet)
         self.loop.on('recognizer_loop:hotword_event',
@@ -222,6 +283,9 @@ class SpeechService(Thread):
                     self.handle_complete_intent_failure)
         self.bus.on('recognizer_loop:sleep', self.handle_sleep)
         self.bus.on('recognizer_loop:wake_up', self.handle_wake_up)
+        self.bus.on('recognizer_loop:record_stop', self.handle_stop_recording)
+        self.bus.on('recognizer_loop:state.set', self.handle_change_state)
+        self.bus.on('recognizer_loop:state.get', self.handle_get_state)
         self.bus.on('mycroft.mic.mute', self.handle_mic_mute)
         self.bus.on('mycroft.mic.unmute', self.handle_mic_unmute)
         self.bus.on('mycroft.mic.get_status', self.handle_mic_get_status)
@@ -232,6 +296,7 @@ class SpeechService(Thread):
         self.bus.on('recognizer_loop:audio_output_end', self.handle_audio_end)
         self.bus.on('mycroft.stop', self.handle_stop)
         self.bus.on("ovos.languages.stt", self.handle_get_languages_stt)
+        self.bus.on("intent.service.skills.activated", self.handle_extend_listening)
 
     def run(self):
         self.status.set_started()
