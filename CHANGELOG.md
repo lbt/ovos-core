@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a4...HEAD)
+
+**Merged pull requests:**
+
+- Update data structure passed to GUI about page [\#185](https://github.com/OpenVoiceOS/ovos-core/pull/185) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a4) (2022-08-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a3...V0.0.5a4)
 
 **Implemented enhancements:**
 
@@ -733,10 +741,6 @@
 ## [V0.0.2a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a16) (2022-03-14)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a15...V0.0.2a16)
-
-**Fixed bugs:**
-
-- Handle empty priority/blacklist configuration params [\#85](https://github.com/OpenVoiceOS/ovos-core/pull/85) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.2a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a15) (2022-03-07)
 
