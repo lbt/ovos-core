@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a4...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a5...HEAD)
+
+**Merged pull requests:**
+
+- Cast available langauges set to list for JSON compat. [\#192](https://github.com/OpenVoiceOS/ovos-core/pull/192) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a5) (2022-09-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a4...V0.0.5a5)
 
 **Merged pull requests:**
 
@@ -733,10 +741,6 @@
 ## [V0.0.2a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a17) (2022-03-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a16...V0.0.2a17)
-
-**Implemented enhancements:**
-
-- SmartSpeaker Extension: Add GUI interface for additional settings [\#86](https://github.com/OpenVoiceOS/ovos-core/pull/86) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.2a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a16) (2022-03-14)
 
