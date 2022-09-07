@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a6...HEAD)
+
+**Implemented enhancements:**
+
+- Add mobile extension to gui interface for mobile gui app [\#193](https://github.com/OpenVoiceOS/ovos-core/pull/193) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.5a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a6) (2022-09-06)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a5...V0.0.5a6)
 
 **Merged pull requests:**
 
@@ -733,10 +741,6 @@
 ## [V0.0.2a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a18) (2022-03-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a17...V0.0.2a18)
-
-**Merged pull requests:**
-
-- deprecate DevicePrimer [\#87](https://github.com/OpenVoiceOS/ovos-core/pull/87) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a17) (2022-03-15)
 
