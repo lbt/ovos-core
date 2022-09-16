@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a6...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a7...HEAD)
+
+**Merged pull requests:**
+
+- Implement namespace global back button management for mobile [\#194](https://github.com/OpenVoiceOS/ovos-core/pull/194) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.5a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a7) (2022-09-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a6...V0.0.5a7)
 
 **Implemented enhancements:**
 
@@ -733,10 +741,6 @@
 ## [V0.0.2a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a19) (2022-03-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a18...V0.0.2a19)
-
-**Fixed bugs:**
-
-- Fix/ready timeout [\#88](https://github.com/OpenVoiceOS/ovos-core/pull/88) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a18) (2022-03-16)
 
