@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a8...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a9...HEAD)
+
+**Fixed bugs:**
+
+- Hotwords init bug fixes [\#198](https://github.com/OpenVoiceOS/ovos-core/pull/198) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a9) (2022-09-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a8...V0.0.5a9)
 
 **Fixed bugs:**
 
@@ -741,10 +749,6 @@
 ## [V0.0.2a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a20) (2022-03-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a19...V0.0.2a20)
-
-**Merged pull requests:**
-
-- refator/process\_utils from ovos\_utils [\#90](https://github.com/OpenVoiceOS/ovos-core/pull/90) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a19) (2022-03-16)
 
