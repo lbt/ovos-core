@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a9...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a10...HEAD)
+
+**Fixed bugs:**
+
+- fix/listen\_sound [\#195](https://github.com/OpenVoiceOS/ovos-core/pull/195) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a10) (2022-09-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a9...V0.0.5a10)
 
 **Fixed bugs:**
 
@@ -737,10 +745,6 @@
 ## [V0.0.2a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a22) (2022-03-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a21...V0.0.2a22)
-
-**Fixed bugs:**
-
-- fix/double\_stt [\#91](https://github.com/OpenVoiceOS/ovos-core/pull/91) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a21) (2022-03-17)
 
