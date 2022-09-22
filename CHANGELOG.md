@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a10...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a11...HEAD)
+
+**Implemented enhancements:**
+
+- refactor/selene\_api [\#189](https://github.com/OpenVoiceOS/ovos-core/pull/189) ([NeonJarbas](https://github.com/NeonJarbas))
+
+## [V0.0.5a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a11) (2022-09-21)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a10...V0.0.5a11)
 
 **Fixed bugs:**
 
@@ -740,7 +748,6 @@
 **Fixed bugs:**
 
 - fix/loop\_race\_condition [\#93](https://github.com/OpenVoiceOS/ovos-core/pull/93) ([NeonJarbas](https://github.com/NeonJarbas))
-- fix/mycroft\_ready [\#92](https://github.com/OpenVoiceOS/ovos-core/pull/92) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a22) (2022-03-17)
 
