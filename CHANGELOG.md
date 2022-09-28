@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a11...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a12...HEAD)
+
+**Fixed bugs:**
+
+- fix the message sent to the protocol for send\_event [\#200](https://github.com/OpenVoiceOS/ovos-core/pull/200) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.5a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a12) (2022-09-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a11...V0.0.5a12)
 
 **Implemented enhancements:**
 
@@ -744,10 +752,6 @@
 ## [V0.0.2a23](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a23) (2022-03-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a22...V0.0.2a23)
-
-**Fixed bugs:**
-
-- fix/loop\_race\_condition [\#93](https://github.com/OpenVoiceOS/ovos-core/pull/93) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a22) (2022-03-17)
 
