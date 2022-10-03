@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a12...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a13...HEAD)
+
+**Merged pull requests:**
+
+- \[requirements\] Add ovos-stt-plugin-vosk to extra-stt.txt [\#202](https://github.com/OpenVoiceOS/ovos-core/pull/202) ([goldyfruit](https://github.com/goldyfruit))
+
+## [V0.0.5a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a13) (2022-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a12...V0.0.5a13)
 
 **Fixed bugs:**
 
@@ -744,10 +752,6 @@
 ## [V0.0.2a24](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a24) (2022-03-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a23...V0.0.2a24)
-
-**Fixed bugs:**
-
-- monitor all logs [\#94](https://github.com/OpenVoiceOS/ovos-core/pull/94) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a23](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a23) (2022-03-18)
 
