@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a13...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a14...HEAD)
+
+**Fixed bugs:**
+
+- Fix UI buttons vertical screen issues in developer settings [\#203](https://github.com/OpenVoiceOS/ovos-core/pull/203) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.5a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a14) (2022-10-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a13...V0.0.5a14)
 
 **Merged pull requests:**
 
@@ -744,10 +752,6 @@
 ## [V0.0.2a25](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a25) (2022-03-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a24...V0.0.2a25)
-
-**Fixed bugs:**
-
-- fix/fallback\_tts [\#95](https://github.com/OpenVoiceOS/ovos-core/pull/95) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a24](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a24) (2022-03-18)
 
