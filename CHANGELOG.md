@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a15...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a16...HEAD)
+
+**Implemented enhancements:**
+
+- feat/lf\_ask\_yeno [\#204](https://github.com/OpenVoiceOS/ovos-core/pull/204) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a16) (2022-10-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a15...V0.0.5a16)
 
 **Implemented enhancements:**
 
@@ -740,10 +748,6 @@
 ## [V0.0.2a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a28) (2022-03-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a27...V0.0.2a28)
-
-**Fixed bugs:**
-
-- Fix bug in streaming STT audio stream handling [\#98](https://github.com/OpenVoiceOS/ovos-core/pull/98) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.2a27](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a27) (2022-03-24)
 
