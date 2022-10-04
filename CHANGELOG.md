@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a14...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a15...HEAD)
+
+**Implemented enhancements:**
+
+- refactor/selene\_api -\> ovos-backend-client [\#201](https://github.com/OpenVoiceOS/ovos-core/pull/201) ([JarbasAl](https://github.com/JarbasAl))
+
+**Merged pull requests:**
+
+- Allow specifying no retries in MutableMicrophone class [\#168](https://github.com/OpenVoiceOS/ovos-core/pull/168) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a15) (2022-10-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a14...V0.0.5a15)
 
 **Fixed bugs:**
 
@@ -737,17 +749,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a26...V0.0.2a27)
 
-**Implemented enhancements:**
-
-- Implement Color Schemes and Settings UI updates [\#97](https://github.com/OpenVoiceOS/ovos-core/pull/97) ([AIIX](https://github.com/AIIX))
-
 ## [V0.0.2a26](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a26) (2022-03-22)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a25...V0.0.2a26)
-
-**Fixed bugs:**
-
-- Fix/tts logs and shutdown [\#96](https://github.com/OpenVoiceOS/ovos-core/pull/96) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a25](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a25) (2022-03-18)
 
