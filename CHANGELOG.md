@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a17...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a18...HEAD)
+
+**Fixed bugs:**
+
+- Remove priority skills from default config \(inherited from Mycroft\) [\#208](https://github.com/OpenVoiceOS/ovos-core/pull/208) ([NeonDaniel](https://github.com/NeonDaniel))
+- fix/ww\_cfg [\#207](https://github.com/OpenVoiceOS/ovos-core/pull/207) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a18) (2022-10-05)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a17...V0.0.5a18)
 
 **Merged pull requests:**
 
@@ -621,10 +630,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a43...V0.0.2a44)
 
-**Fixed bugs:**
-
-- is\_alive\(\) and all\_loaded\(\) service status enquiries seems broken [\#101](https://github.com/OpenVoiceOS/ovos-core/issues/101)
-
 **Merged pull requests:**
 
 - remove pyee, version pinned by bus client directly [\#118](https://github.com/OpenVoiceOS/ovos-core/pull/118) ([JarbasAl](https://github.com/JarbasAl))
@@ -744,10 +749,6 @@
 ## [V0.0.2a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a29) (2022-04-05)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a28...V0.0.2a29)
-
-**Fixed bugs:**
-
-- Add is\_alive service check support to GUI Service [\#102](https://github.com/OpenVoiceOS/ovos-core/pull/102) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.2a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a28) (2022-03-25)
 
