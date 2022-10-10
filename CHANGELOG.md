@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a20...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a21...HEAD)
+
+**Fixed bugs:**
+
+- fix backend tests [\#209](https://github.com/OpenVoiceOS/ovos-core/pull/209) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a21) (2022-10-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a20...V0.0.5a21)
 
 **Fixed bugs:**
 
@@ -737,10 +745,6 @@
 ## [V0.0.2a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a33) (2022-04-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a32...V0.0.2a33)
-
-**Fixed bugs:**
-
-- fix/skill settings using wrong xdg path [\#104](https://github.com/OpenVoiceOS/ovos-core/pull/104) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a32](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a32) (2022-04-11)
 
