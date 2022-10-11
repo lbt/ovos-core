@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a24...HEAD)
+
+**Merged pull requests:**
+
+- Update setup state Message types to match skill [\#212](https://github.com/OpenVoiceOS/ovos-core/pull/212) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a24](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a24) (2022-10-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a23...V0.0.5a24)
+
 ## [V0.0.5a23](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a23) (2022-10-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a22...V0.0.5a23)
@@ -734,10 +746,6 @@
 ## [V0.0.2a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a35) (2022-04-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a34...V0.0.2a35)
-
-**Fixed bugs:**
-
-- remove skill settings bad migration path [\#107](https://github.com/OpenVoiceOS/ovos-core/pull/107) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a34) (2022-04-12)
 
