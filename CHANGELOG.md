@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a24...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a25...HEAD)
+
+**Fixed bugs:**
+
+- fix/backwards\_compat [\#213](https://github.com/OpenVoiceOS/ovos-core/pull/213) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a25](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a25) (2022-10-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a24...V0.0.5a25)
 
 **Merged pull requests:**
 
@@ -738,10 +746,6 @@
 ## [V0.0.2a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a36) (2022-04-14)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a35...V0.0.2a36)
-
-**Fixed bugs:**
-
-- py3.10 compat [\#108](https://github.com/OpenVoiceOS/ovos-core/pull/108) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a35) (2022-04-12)
 
