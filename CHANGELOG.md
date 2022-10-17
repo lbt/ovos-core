@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a26...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a27...HEAD)
+
+**Fixed bugs:**
+
+- change ssh events in ssh gui drop down [\#215](https://github.com/OpenVoiceOS/ovos-core/pull/215) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.5a27](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a27) (2022-10-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a26...V0.0.5a27)
 
 **Merged pull requests:**
 
@@ -738,10 +746,6 @@
 ## [V0.0.2a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a37) (2022-04-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a36...V0.0.2a37)
-
-**Fixed bugs:**
-
-- Fix/plugins shutdown [\#110](https://github.com/OpenVoiceOS/ovos-core/pull/110) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Merged pull requests:**
 
