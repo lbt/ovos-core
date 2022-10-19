@@ -11,6 +11,7 @@ from mycroft.util import check_for_signal, start_message_bus_client
 from mycroft.util.log import LOG
 from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
 from ovos_plugin_manager.tts import get_tts_supported_langs, get_tts_lang_configs, get_tts_module_configs
+from ovos_plugin_manager.audio import get_audio_service_configs
 
 
 def on_ready():
@@ -93,7 +94,7 @@ class PlaybackService(Thread):
                 tts_opts.append(voice)
         return tts_opts
 
-    def handle_opm_query(self, message):
+    def handle_opm_tts_query(self, message):
         plugs = get_tts_supported_langs()
         data = {
             "plugins": list(plugs.values()),
@@ -102,6 +103,14 @@ class PlaybackService(Thread):
                         for m in plugs.values()},
             "options": {lang: self.get_tts_lang_options(lang)
                         for lang in plugs.keys()}
+        }
+        self.bus.emit(message.response(data))
+
+    def handle_opm_audio_query(self, message):
+        cfgs = get_audio_service_configs()
+        data = {
+            "plugins": list(cfgs.keys()),
+            "configs": cfgs
         }
         self.bus.emit(message.response(data))
 
@@ -279,4 +288,5 @@ class PlaybackService(Thread):
         self.bus.on('mycroft.audio.queue', self.handle_queue_audio)
         self.bus.on('speak', self.handle_speak)
         self.bus.on('ovos.languages.tts', self.handle_get_languages_tts)
-        self.bus.on("opm.tts.query", self.handle_opm_query)
+        self.bus.on("opm.tts.query", self.handle_opm_tts_query)
+        self.bus.on("opm.audio.query", self.handle_opm_audio_query)
