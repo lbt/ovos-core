@@ -15,12 +15,7 @@
 import unittest
 import unittest.mock as mock
 
-from shutil import rmtree
-from threading import Thread
-from time import sleep
-
-from os.path import exists
-
+from ovos_config import Configuration
 from mycroft.audio.service import PlaybackService
 from mycroft.messagebus import Message
 from mycroft.tts.remote_tts import RemoteTTSTimeoutException
@@ -31,9 +26,11 @@ from mycroft.tts.remote_tts import RemoteTTSTimeoutException
 tts_mock = mock.Mock()
 
 
-def setup_mocks(config_mock, tts_factory_mock):
+def setup_mocks(config_mock, tts_factory_mock, fallback="A"):
     """Do the common setup for the mocks."""
-    config_mock.get.return_value = {}
+    c = Configuration.get()
+    c["tts"] = {"module": "A", "fallback_module": fallback}
+    config_mock.return_value = c
 
     tts_factory_mock.create.return_value = tts_mock
     config_mock.reset_mock()
@@ -81,6 +78,50 @@ class TestSpeech(unittest.TestCase):
         speech.handle_stop(Message('mycroft.stop'))
         self.assertNotEqual(speech._last_stop_signal, 0)
         speech.shutdown()
+
+    def test_no_fallback_tts(self, tts_factory_mock, config_mock):
+        """Ensure the init and shutdown behaves as expected."""
+        setup_mocks(config_mock, tts_factory_mock)
+        bus = mock.Mock()
+        PlaybackService._get_tts_fallback = mock.Mock()
+        PlaybackService.execute_fallback_tts = mock.Mock()
+        PlaybackService.tts = mock.Mock()
+        speech = PlaybackService(bus=bus)
+        self.assertTrue(tts_factory_mock.create.called)
+        self.assertFalse(speech._get_tts_fallback.called)
+
+        speech.execute_tts("hello", "123")
+        self.assertTrue(speech.tts.execute.called)
+        self.assertFalse(speech.execute_fallback_tts.called)
+
+    def test_fallback_tts(self, tts_factory_mock, config_mock):
+        """Ensure the init and shutdown behaves as expected."""
+        setup_mocks(config_mock, tts_factory_mock, fallback="B")
+        bus = mock.Mock()
+        PlaybackService._get_tts_fallback = mock.Mock()
+
+        speech = PlaybackService(bus=bus)
+        self.assertTrue(tts_factory_mock.create.called)
+        self.assertTrue(speech._get_tts_fallback.called)
+
+    def test_fallback_tts_trigger(self, tts_factory_mock, config_mock):
+        """Ensure the init and shutdown behaves as expected."""
+        setup_mocks(config_mock, tts_factory_mock, fallback="B")
+        bus = mock.Mock()
+        PlaybackService._get_tts_fallback = mock.Mock()
+        PlaybackService.execute_fallback_tts = mock.Mock()
+
+        class FailingTTS:
+            def execute(*args, **kwargs):
+                raise RuntimeError("oops")
+
+        speech = PlaybackService(bus=bus)
+        speech.tts = FailingTTS()
+
+        self.assertTrue(speech._get_tts_fallback.called)
+
+        speech.execute_tts("hello", "123")
+        self.assertTrue(speech.execute_fallback_tts.called)
 
 
 if __name__ == "__main__":
