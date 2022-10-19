@@ -10,7 +10,7 @@ from mycroft.audio.audioservice import AudioService
 from mycroft.util import check_for_signal, start_message_bus_client
 from mycroft.util.log import LOG
 from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
-from ovos_plugin_manager.tts import get_tts_supported_langs, get_tts_lang_configs
+from ovos_plugin_manager.tts import get_tts_supported_langs, get_tts_lang_configs, get_tts_module_configs
 
 
 def on_ready():
@@ -97,7 +97,10 @@ class PlaybackService(Thread):
         plugs = get_tts_supported_langs()
         data = {
             "plugins": list(plugs.values()),
-            "configs": {lang:  self.get_tts_lang_options(lang)
+            "langs": list(plugs.keys()),
+            "configs": {m: get_tts_module_configs(m)
+                        for m in plugs.values()},
+            "options": {lang: self.get_tts_lang_options(lang)
                         for lang in plugs.keys()}
         }
         self.bus.emit(message.response(data))

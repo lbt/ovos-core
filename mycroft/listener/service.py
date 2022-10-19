@@ -26,7 +26,8 @@ from mycroft.util import (
 )
 from mycroft.util.log import LOG
 from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
-from ovos_plugin_manager.stt import get_stt_lang_configs, get_stt_supported_langs
+from ovos_plugin_manager.stt import get_stt_lang_configs, get_stt_supported_langs, get_stt_module_configs
+from ovos_plugin_manager.wakewords import get_ww_lang_configs, get_ww_supported_langs, get_ww_module_configs
 
 
 def on_ready():
@@ -272,11 +273,43 @@ class SpeechService(Thread):
                 stt_opts.append(config)
         return stt_opts
 
+    @staticmethod
+    def get_ww_lang_options(lang, blacklist=None):
+        blacklist = blacklist or []
+        stt_opts = []
+        cfgs = get_ww_lang_configs(lang=lang, include_dialects=True)
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for config in configs:
+                config["plugin_name"] = plugin_display_name
+                config["engine"] = engine
+                config["lang"] = config.get("lang") or lang
+                stt_opts.append(config)
+        return stt_opts
+
     def handle_opm_stt_query(self, message):
         plugs = get_stt_supported_langs()
         data = {
             "plugins": list(plugs.values()),
-            "configs": {lang:  self.get_stt_lang_options(lang)
+            "langs": list(plugs.keys()),
+            "configs": {m: get_stt_module_configs(m)
+                        for m in plugs.values()},
+            "options": {lang:  self.get_stt_lang_options(lang)
+                        for lang in plugs.keys()}
+        }
+        self.bus.emit(message.response(data))
+
+    def handle_opm_ww_query(self, message):
+        plugs = get_ww_supported_langs()
+        data = {
+            "plugins": list(plugs.values()),
+            "langs": list(plugs.keys()),
+            "configs": {m: get_ww_module_configs(m)
+                        for m in plugs.values()},
+            "options": {lang:  self.get_ww_lang_options(lang)
                         for lang in plugs.keys()}
         }
         self.bus.emit(message.response(data))
@@ -317,6 +350,7 @@ class SpeechService(Thread):
         self.bus.on("ovos.languages.stt", self.handle_get_languages_stt)
         self.bus.on("intent.service.skills.activated", self.handle_extend_listening)
         self.bus.on("opm.stt.query", self.handle_opm_stt_query)
+        self.bus.on("opm.ww.query", self.handle_opm_ww_query)
 
     def run(self):
         self.status.set_started()
