@@ -260,7 +260,7 @@ class SpeechService(Thread):
     @staticmethod
     def get_stt_lang_options(lang, blacklist=None):
         blacklist = blacklist or []
-        stt_opts = []
+        opts = []
         cfgs = get_stt_lang_configs(lang=lang, include_dialects=True)
         for engine, configs in cfgs.items():
             if engine in blacklist:
@@ -271,13 +271,13 @@ class SpeechService(Thread):
                 config["plugin_name"] = plugin_display_name
                 config["engine"] = engine
                 config["lang"] = config.get("lang") or lang
-                stt_opts.append(config)
-        return stt_opts
+                opts.append(config)
+        return opts
 
     @staticmethod
     def get_ww_lang_options(lang, blacklist=None):
         blacklist = blacklist or []
-        stt_opts = []
+        opts = []
         cfgs = get_ww_lang_configs(lang=lang, include_dialects=True)
         for engine, configs in cfgs.items():
             if engine in blacklist:
@@ -288,8 +288,8 @@ class SpeechService(Thread):
                 config["plugin_name"] = plugin_display_name
                 config["engine"] = engine
                 config["lang"] = config.get("lang") or lang
-                stt_opts.append(config)
-        return stt_opts
+                opts.append(config)
+        return opts
 
     @staticmethod
     def get_vad_options(blacklist=None):

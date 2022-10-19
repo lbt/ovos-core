@@ -81,7 +81,7 @@ class PlaybackService(Thread):
     @staticmethod
     def get_tts_lang_options(lang, blacklist=None):
         blacklist = blacklist or []
-        tts_opts = []
+        opts = []
         cfgs = get_tts_lang_configs(lang=lang, include_dialects=True)
         for engine, configs in cfgs.items():
             if engine in blacklist:
@@ -92,13 +92,13 @@ class PlaybackService(Thread):
                 voice["plugin_name"] = plugin_display_name
                 voice["engine"] = engine
                 voice["lang"] = voice.get("lang") or lang
-                tts_opts.append(voice)
-        return tts_opts
+                opts.append(voice)
+        return opts
 
     @staticmethod
     def get_g2p_lang_options(lang, blacklist=None):
         blacklist = blacklist or []
-        tts_opts = []
+        opts = []
         cfgs = get_g2p_lang_configs(lang=lang, include_dialects=True)
         for engine, configs in cfgs.items():
             if engine in blacklist:
@@ -109,13 +109,13 @@ class PlaybackService(Thread):
                 voice["plugin_name"] = plugin_display_name
                 voice["engine"] = engine
                 voice["lang"] = voice.get("lang") or lang
-                tts_opts.append(voice)
-        return tts_opts
+                opts.append(voice)
+        return opts
 
     @staticmethod
     def get_audio_options(blacklist=None):
         blacklist = blacklist or []
-        tts_opts = []
+        opts = []
         cfgs = get_audio_service_configs()
         for engine, configs in cfgs.items():
             if engine in blacklist:
@@ -125,8 +125,8 @@ class PlaybackService(Thread):
             for voice in configs:
                 voice["plugin_name"] = plugin_display_name
                 voice["engine"] = engine
-                tts_opts.append(voice)
-        return tts_opts
+                opts.append(voice)
+        return opts
 
     def handle_opm_tts_query(self, message):
         plugs = get_tts_supported_langs()
