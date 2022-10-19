@@ -79,6 +79,16 @@ class TestSpeech(unittest.TestCase):
         self.assertNotEqual(speech._last_stop_signal, 0)
         speech.shutdown()
 
+    def test_fallback_tts_creation(self, tts_factory_mock, config_mock):
+        """Ensure the init and shutdown behaves as expected."""
+        setup_mocks(config_mock, tts_factory_mock, fallback="B")
+        bus = mock.Mock()
+        speech = PlaybackService(bus=bus)
+        speech.fallback_tts = None
+        speech._get_tts_fallback()
+        self.assertIsNotNone(speech.fallback_tts)
+        self.assertTrue(tts_mock.init.called)
+
     def test_no_fallback_tts(self, tts_factory_mock, config_mock):
         """Ensure the init and shutdown behaves as expected."""
         setup_mocks(config_mock, tts_factory_mock)
