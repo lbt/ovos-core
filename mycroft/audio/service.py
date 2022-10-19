@@ -9,7 +9,7 @@ from mycroft.metrics import report_timing, Stopwatch
 from mycroft.audio.audioservice import AudioService
 from mycroft.util import check_for_signal, start_message_bus_client
 from mycroft.util.log import LOG
-from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
+from ovos_utils.process_utils import ProcessStatus, StatusCallbackMap
 from ovos_plugin_manager.tts import get_tts_supported_langs, get_tts_lang_configs, get_tts_module_configs
 from ovos_plugin_manager.audio import get_audio_service_configs
 from ovos_plugin_manager.g2p import get_g2p_lang_configs, get_g2p_supported_langs, get_g2p_module_configs
@@ -162,6 +162,7 @@ class PlaybackService(Thread):
         self.bus.emit(message.response(data))
 
     def run(self):
+        self.status.set_alive()
         if self.audio.wait_for_load():
             if len(self.audio.service) == 0:
                 LOG.warning('No audio backends loaded! '
@@ -270,9 +271,9 @@ class PlaybackService(Thread):
             listen (bool): True if interaction should end with mycroft listening
         """
         try:
-            self.tts = self._get_tts_fallback()
+            tts = self._get_tts_fallback()
             LOG.debug("TTS fallback, utterance : " + str(utterance))
-            self.tts.execute(utterance, ident, listen)
+            tts.execute(utterance, ident, listen)
             return
         except Exception as e:
             LOG.error(e)

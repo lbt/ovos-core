@@ -20,6 +20,7 @@ from mycroft import MYCROFT_ROOT_PATH
 from mycroft.audio.service import PlaybackService
 from mycroft.messagebus import Message
 from ovos_config import Configuration
+from ovos_utils.process_utils import ProcessState
 
 """Tests for speech dispatch service."""
 
@@ -47,8 +48,9 @@ class TestSpeech(unittest.TestCase):
         bus = mock.Mock()
         speech = PlaybackService(bus=bus)
         speech.daemon = True
+        self.assertTrue(ProcessState.NOT_STARTED <= speech.status.state < ProcessState.ALIVE)
         speech.run()
-
+        self.assertTrue(speech.status.state >= ProcessState.ALIVE)
         self.assertTrue(tts_factory_mock.create.called)
         self.assertTrue(speech.tts.init.called)
 
@@ -57,7 +59,9 @@ class TestSpeech(unittest.TestCase):
                                speech.handle_stop)
         bus.on.assert_any_call('speak', speech.handle_speak)
 
+        self.assertTrue(speech.status.state > ProcessState.STOPPING)
         speech.shutdown()
+        self.assertTrue(speech.status.state <= ProcessState.STOPPING)
         self.assertFalse(speech.is_alive())
 
     @mock.patch('mycroft.audio.service.check_for_signal')
@@ -143,6 +147,11 @@ class TestSpeech(unittest.TestCase):
         setup_mocks(config_mock, tts_factory_mock)
         bus = mock.Mock()
         speech = PlaybackService(bus=bus)
+
+        with self.assertRaises(ValueError):
+            msg = Message("", {})
+            speech.handle_queue_audio(msg)
+
         with self.assertRaises(FileNotFoundError):
             msg = Message("", {"filename": "no_exist.mp3"})
             speech.handle_queue_audio(msg)
