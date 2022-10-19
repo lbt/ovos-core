@@ -87,12 +87,14 @@ class TestSpeech(unittest.TestCase):
         speech.fallback_tts = None
         speech._get_tts_fallback()
         self.assertIsNotNone(speech.fallback_tts)
-        self.assertTrue(tts_mock.init.called)
+        self.assertTrue(speech.fallback_tts.init.called)
 
     def test_no_fallback_tts(self, tts_factory_mock, config_mock):
         """Ensure the init and shutdown behaves as expected."""
         setup_mocks(config_mock, tts_factory_mock)
         bus = mock.Mock()
+
+        _real = PlaybackService._get_tts_fallback
         PlaybackService._get_tts_fallback = mock.Mock()
         PlaybackService.execute_fallback_tts = mock.Mock()
         PlaybackService.tts = mock.Mock()
@@ -104,20 +106,26 @@ class TestSpeech(unittest.TestCase):
         self.assertTrue(speech.tts.execute.called)
         self.assertFalse(speech.execute_fallback_tts.called)
 
+        PlaybackService._get_tts_fallback = _real
+
     def test_fallback_tts(self, tts_factory_mock, config_mock):
         """Ensure the init and shutdown behaves as expected."""
         setup_mocks(config_mock, tts_factory_mock, fallback="B")
         bus = mock.Mock()
+        _real = PlaybackService._get_tts_fallback
         PlaybackService._get_tts_fallback = mock.Mock()
 
         speech = PlaybackService(bus=bus)
         self.assertTrue(tts_factory_mock.create.called)
         self.assertTrue(speech._get_tts_fallback.called)
 
+        PlaybackService._get_tts_fallback = _real
+
     def test_fallback_tts_trigger(self, tts_factory_mock, config_mock):
         """Ensure the init and shutdown behaves as expected."""
         setup_mocks(config_mock, tts_factory_mock, fallback="B")
         bus = mock.Mock()
+        _real = PlaybackService._get_tts_fallback
         PlaybackService._get_tts_fallback = mock.Mock()
         PlaybackService.execute_fallback_tts = mock.Mock()
 
@@ -132,6 +140,8 @@ class TestSpeech(unittest.TestCase):
 
         speech.execute_tts("hello", "123")
         self.assertTrue(speech.execute_fallback_tts.called)
+
+        PlaybackService._get_tts_fallback = _real
 
 
 if __name__ == "__main__":
