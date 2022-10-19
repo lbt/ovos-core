@@ -291,6 +291,22 @@ class SpeechService(Thread):
                 stt_opts.append(config)
         return stt_opts
 
+    @staticmethod
+    def get_vad_options(blacklist=None):
+        blacklist = blacklist or []
+        tts_opts = []
+        cfgs = get_vad_configs()
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for voice in configs:
+                voice["plugin_name"] = plugin_display_name
+                voice["engine"] = engine
+                tts_opts.append(voice)
+        return tts_opts
+
     def handle_opm_stt_query(self, message):
         plugs = get_stt_supported_langs()
         data = {
@@ -319,7 +335,8 @@ class SpeechService(Thread):
         cfgs = get_vad_configs()
         data = {
             "plugins": list(cfgs.keys()),
-            "configs": cfgs
+            "configs": cfgs,
+            "options": self.get_vad_options()
         }
         self.bus.emit(message.response(data))
 

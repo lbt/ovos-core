@@ -12,6 +12,7 @@ from mycroft.util.log import LOG
 from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
 from ovos_plugin_manager.tts import get_tts_supported_langs, get_tts_lang_configs, get_tts_module_configs
 from ovos_plugin_manager.audio import get_audio_service_configs
+from ovos_plugin_manager.g2p import get_g2p_lang_configs, get_g2p_supported_langs, get_g2p_module_configs
 
 
 def on_ready():
@@ -94,6 +95,39 @@ class PlaybackService(Thread):
                 tts_opts.append(voice)
         return tts_opts
 
+    @staticmethod
+    def get_g2p_lang_options(lang, blacklist=None):
+        blacklist = blacklist or []
+        tts_opts = []
+        cfgs = get_g2p_lang_configs(lang=lang, include_dialects=True)
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for voice in configs:
+                voice["plugin_name"] = plugin_display_name
+                voice["engine"] = engine
+                voice["lang"] = voice.get("lang") or lang
+                tts_opts.append(voice)
+        return tts_opts
+
+    @staticmethod
+    def get_audio_options(blacklist=None):
+        blacklist = blacklist or []
+        tts_opts = []
+        cfgs = get_audio_service_configs()
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for voice in configs:
+                voice["plugin_name"] = plugin_display_name
+                voice["engine"] = engine
+                tts_opts.append(voice)
+        return tts_opts
+
     def handle_opm_tts_query(self, message):
         plugs = get_tts_supported_langs()
         data = {
@@ -106,11 +140,24 @@ class PlaybackService(Thread):
         }
         self.bus.emit(message.response(data))
 
+    def handle_opm_g2p_query(self, message):
+        plugs = get_g2p_supported_langs()
+        data = {
+            "plugins": list(plugs.values()),
+            "langs": list(plugs.keys()),
+            "configs": {m: get_g2p_module_configs(m)
+                        for m in plugs.values()},
+            "options": {lang: self.get_g2p_lang_options(lang)
+                        for lang in plugs.keys()}
+        }
+        self.bus.emit(message.response(data))
+
     def handle_opm_audio_query(self, message):
         cfgs = get_audio_service_configs()
         data = {
             "plugins": list(cfgs.keys()),
-            "configs": cfgs
+            "configs": cfgs,
+            "options": self.get_audio_options()
         }
         self.bus.emit(message.response(data))
 
@@ -290,3 +337,4 @@ class PlaybackService(Thread):
         self.bus.on('ovos.languages.tts', self.handle_get_languages_tts)
         self.bus.on("opm.tts.query", self.handle_opm_tts_query)
         self.bus.on("opm.audio.query", self.handle_opm_audio_query)
+        self.bus.on("opm.g2p.query", self.handle_opm_g2p_query)
