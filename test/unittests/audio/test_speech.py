@@ -164,6 +164,32 @@ class TestSpeech(unittest.TestCase):
         self.assertEqual(data[1], f)
         self.assertEqual(data[-1], False)
 
+    @mock.patch('mycroft.audio.service.report_timing')
+    def test_speak(self, mock_timing, tts_factory_mock, config_mock):
+
+        setup_mocks(config_mock, tts_factory_mock)
+        bus = mock.Mock()
+        speech = PlaybackService(bus=bus)
+        speech.execute_tts = mock.Mock()
+
+        msg = Message("speak", {"utterance": "hello world"})
+
+        # test message.context.destination
+        msg.context["destination"] = "external"
+        speech.handle_speak(msg)
+        self.assertFalse(speech.execute_tts.called)
+        self.assertFalse(mock_timing.called)
+
+        msg.context["destination"] = "audio"
+        speech.handle_speak(msg)
+        self.assertTrue(speech.execute_tts.called)
+        self.assertTrue(mock_timing.called)
+
+        msg.context.pop("destination")
+        speech.handle_speak(msg)
+        self.assertTrue(speech.execute_tts.called)
+        self.assertTrue(mock_timing.called)
+
 
 if __name__ == "__main__":
     unittest.main()
