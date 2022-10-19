@@ -183,23 +183,26 @@ class TestSpeech(unittest.TestCase):
         speech = PlaybackService(bus=bus)
         speech.execute_tts = mock.Mock()
 
-        msg = Message("speak", {"utterance": "hello world"})
+        msg = Message("speak", {"utterance": "hello world"}, {"ident": "123"})
 
         # test message.context.destination
-        msg.context["destination"] = "external"
+        msg.context["destination"] = "external"  # not native source, ignore
         speech.handle_speak(msg)
         self.assertFalse(speech.execute_tts.called)
         self.assertFalse(mock_timing.called)
 
-        msg.context["destination"] = "audio"
+        msg.context["destination"] = "audio"  # native source
         speech.handle_speak(msg)
         self.assertTrue(speech.execute_tts.called)
         self.assertTrue(mock_timing.called)
+        self.assertEqual(mock_timing.call_args[0][0], "123")
 
-        msg.context.pop("destination")
+        msg.context.pop("destination")  # multi cast
+        msg.context.pop("ident")  # optional
         speech.handle_speak(msg)
         self.assertTrue(speech.execute_tts.called)
         self.assertTrue(mock_timing.called)
+        self.assertEqual(mock_timing.call_args[0][0], "unknown")
 
 
 if __name__ == "__main__":
