@@ -64,6 +64,17 @@ class TestSpeech(unittest.TestCase):
         self.assertTrue(speech.status.state <= ProcessState.STOPPING)
         self.assertFalse(speech.is_alive())
 
+    def test_error_life_cycle(self, tts_factory_mock, config_mock):
+        """Ensure the init and shutdown behaves as expected."""
+        setup_mocks(config_mock, tts_factory_mock)
+        bus = mock.Mock()
+        speech = PlaybackService(bus=bus)
+        speech.daemon = True
+        speech.tts = None
+        self.assertTrue(ProcessState.NOT_STARTED <= speech.status.state < ProcessState.ALIVE)
+        speech.run()
+        self.assertTrue(speech.status.state == ProcessState.ERROR)
+
     @mock.patch('mycroft.audio.service.check_for_signal')
     def test_stop(self, check_for_signal_mock, tts_factory_mock, config_mock):
         """Ensure the stop handler signals stop correctly."""
