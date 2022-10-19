@@ -14,14 +14,14 @@
 #
 import unittest
 import unittest.mock as mock
+from queue import Queue
 
-from ovos_config import Configuration
+from mycroft import MYCROFT_ROOT_PATH
 from mycroft.audio.service import PlaybackService
 from mycroft.messagebus import Message
-from mycroft.tts.remote_tts import RemoteTTSTimeoutException
+from ovos_config import Configuration
 
 """Tests for speech dispatch service."""
-
 
 tts_mock = mock.Mock()
 
@@ -50,6 +50,8 @@ class TestSpeech(unittest.TestCase):
         speech.run()
 
         self.assertTrue(tts_factory_mock.create.called)
+        self.assertTrue(speech.tts.init.called)
+
         bus.on.assert_any_call('mycroft.stop', speech.handle_stop)
         bus.on.assert_any_call('mycroft.audio.speech.stop',
                                speech.handle_stop)
@@ -57,9 +59,6 @@ class TestSpeech(unittest.TestCase):
 
         speech.shutdown()
         self.assertFalse(speech.is_alive())
-        # TODO TTS.playback is now a singleton, this test does not reach it anymore when using mock
-        #self.assertTrue(tts_mock.playback.stop.called)
-        #self.assertTrue(tts_mock.playback.join.called)
 
     @mock.patch('mycroft.audio.service.check_for_signal')
     def test_stop(self, check_for_signal_mock, tts_factory_mock, config_mock):
@@ -137,6 +136,24 @@ class TestSpeech(unittest.TestCase):
 
         speech.execute_tts("hello", "123")
         self.assertTrue(speech.fallback_tts.execute.called)
+
+    @mock.patch('mycroft.audio.service.TTS')
+    def test_queue(self, mock_TTS, tts_factory_mock, config_mock):
+        mock_TTS.queue = Queue()
+        setup_mocks(config_mock, tts_factory_mock)
+        bus = mock.Mock()
+        speech = PlaybackService(bus=bus)
+        with self.assertRaises(FileNotFoundError):
+            msg = Message("", {"filename": "no_exist.mp3"})
+            speech.handle_queue_audio(msg)
+
+        f = f"{MYCROFT_ROOT_PATH}/mycroft/res/snd/start_listening.wav"
+        msg = Message("", {"filename": f})
+        speech.handle_queue_audio(msg)
+        data = mock_TTS.queue.get()
+        self.assertEqual(data[0], "wav")
+        self.assertEqual(data[1], f)
+        self.assertEqual(data[-1], False)
 
 
 if __name__ == "__main__":
