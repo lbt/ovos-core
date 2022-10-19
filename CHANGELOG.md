@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a29...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a30...HEAD)
+
+**Implemented enhancements:**
+
+- reviewed german qml translation [\#221](https://github.com/OpenVoiceOS/ovos-core/pull/221) ([emphasize](https://github.com/emphasize))
+
+## [V0.0.5a30](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a30) (2022-10-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a29...V0.0.5a30)
 
 **Merged pull requests:**
 
@@ -739,10 +747,6 @@
 ## [V0.0.2a40](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a40) (2022-04-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a39...V0.0.2a40)
-
-**Merged pull requests:**
-
-- change matrix chat message [\#114](https://github.com/OpenVoiceOS/ovos-core/pull/114) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a39](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a39) (2022-04-20)
 
