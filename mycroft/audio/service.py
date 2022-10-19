@@ -10,6 +10,7 @@ from mycroft.audio.audioservice import AudioService
 from mycroft.util import check_for_signal, start_message_bus_client
 from mycroft.util.log import LOG
 from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
+from ovos_plugin_manager.tts import get_tts_supported_langs, get_tts_lang_configs
 
 
 def on_ready():
@@ -74,6 +75,31 @@ class PlaybackService(Thread):
         except Exception as e:
             LOG.exception(e)
             self.status.set_error(e)
+
+    @staticmethod
+    def get_tts_lang_options(lang, blacklist=None):
+        blacklist = blacklist or []
+        tts_opts = []
+        cfgs = get_tts_lang_configs(lang=lang, include_dialects=True)
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for voice in configs:
+                voice["plugin_name"] = plugin_display_name
+                voice["engine"] = engine
+                tts_opts.append(voice)
+        return tts_opts
+
+    def handle_opm_query(self, message):
+        plugs = get_tts_supported_langs()
+        data = {
+            "plugins": list(plugs.values()),
+            "configs": {lang:  self.get_tts_lang_options(lang)
+                        for lang in plugs.keys()}
+        }
+        self.bus.emit(message.response(data))
 
     def run(self):
         if self.audio.wait_for_load():
@@ -249,3 +275,4 @@ class PlaybackService(Thread):
         self.bus.on('mycroft.audio.queue', self.handle_queue_audio)
         self.bus.on('speak', self.handle_speak)
         self.bus.on('ovos.languages.tts', self.handle_get_languages_tts)
+        self.bus.on("opm.tts.query", self.handle_opm_query)
