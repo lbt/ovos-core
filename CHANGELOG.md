@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a28...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a29...HEAD)
+
+**Merged pull requests:**
+
+- bump ovos workshop [\#219](https://github.com/OpenVoiceOS/ovos-core/pull/219) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a29) (2022-10-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a28...V0.0.5a29)
 
 **Merged pull requests:**
 
@@ -731,10 +739,6 @@
 ## [V0.0.2a40](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a40) (2022-04-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a39...V0.0.2a40)
-
-**Implemented enhancements:**
-
-- refactor/default\_offline [\#113](https://github.com/OpenVoiceOS/ovos-core/pull/113) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Merged pull requests:**
 
