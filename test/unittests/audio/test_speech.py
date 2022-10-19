@@ -95,6 +95,7 @@ class TestSpeech(unittest.TestCase):
         bus = mock.Mock()
 
         _real = PlaybackService._get_tts_fallback
+        _real2 = PlaybackService.execute_fallback_tts
         PlaybackService._get_tts_fallback = mock.Mock()
         PlaybackService.execute_fallback_tts = mock.Mock()
         PlaybackService.tts = mock.Mock()
@@ -107,6 +108,7 @@ class TestSpeech(unittest.TestCase):
         self.assertFalse(speech.execute_fallback_tts.called)
 
         PlaybackService._get_tts_fallback = _real
+        PlaybackService.execute_fallback_tts = _real2
 
     def test_fallback_tts(self, tts_factory_mock, config_mock):
         """Ensure the init and shutdown behaves as expected."""
@@ -121,13 +123,10 @@ class TestSpeech(unittest.TestCase):
 
         PlaybackService._get_tts_fallback = _real
 
-    def test_fallback_tts_trigger(self, tts_factory_mock, config_mock):
+    def test_fallback_tts_execute(self, tts_factory_mock, config_mock):
         """Ensure the init and shutdown behaves as expected."""
         setup_mocks(config_mock, tts_factory_mock, fallback="B")
         bus = mock.Mock()
-        _real = PlaybackService._get_tts_fallback
-        PlaybackService._get_tts_fallback = mock.Mock()
-        PlaybackService.execute_fallback_tts = mock.Mock()
 
         class FailingTTS:
             def execute(*args, **kwargs):
@@ -136,12 +135,8 @@ class TestSpeech(unittest.TestCase):
         speech = PlaybackService(bus=bus)
         speech.tts = FailingTTS()
 
-        self.assertTrue(speech._get_tts_fallback.called)
-
         speech.execute_tts("hello", "123")
-        self.assertTrue(speech.execute_fallback_tts.called)
-
-        PlaybackService._get_tts_fallback = _real
+        self.assertTrue(speech.fallback_tts.execute.called)
 
 
 if __name__ == "__main__":
