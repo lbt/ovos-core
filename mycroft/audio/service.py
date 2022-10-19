@@ -130,25 +130,35 @@ class PlaybackService(Thread):
 
     def handle_opm_tts_query(self, message):
         plugs = get_tts_supported_langs()
+        configs = {}
+        opts = {}
+        for lang, m in plugs.items():
+            for p in m:
+                configs[p] = get_tts_module_configs(p)
+            opts[lang] = self.get_tts_lang_options(lang)
+
         data = {
-            "plugins": list(plugs.values()),
+            "plugins": plugs,
             "langs": list(plugs.keys()),
-            "configs": {m: get_tts_module_configs(m)
-                        for m in plugs.values()},
-            "options": {lang: self.get_tts_lang_options(lang)
-                        for lang in plugs.keys()}
+            "configs": configs,
+            "options": opts
         }
         self.bus.emit(message.response(data))
 
     def handle_opm_g2p_query(self, message):
         plugs = get_g2p_supported_langs()
+        configs = {}
+        opts = {}
+        for lang, m in plugs.items():
+            for p in m:
+                configs[p] = get_g2p_module_configs(p)
+            opts[lang] = self.get_g2p_lang_options(lang)
+
         data = {
-            "plugins": list(plugs.values()),
+            "plugins": plugs,
             "langs": list(plugs.keys()),
-            "configs": {m: get_g2p_module_configs(m)
-                        for m in plugs.values()},
-            "options": {lang: self.get_g2p_lang_options(lang)
-                        for lang in plugs.keys()}
+            "configs": configs,
+            "options": opts
         }
         self.bus.emit(message.response(data))
 

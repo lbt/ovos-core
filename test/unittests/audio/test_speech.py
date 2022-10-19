@@ -12,14 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import json
 import unittest
 import unittest.mock as mock
 from queue import Queue
 
 from mycroft import MYCROFT_ROOT_PATH
 from mycroft.audio.service import PlaybackService
-from mycroft.messagebus import Message
 from ovos_config import Configuration
+from ovos_utils.messagebus import Message, FakeBus
 from ovos_utils.process_utils import ProcessState
 
 """Tests for speech dispatch service."""
@@ -177,7 +178,6 @@ class TestSpeech(unittest.TestCase):
 
     @mock.patch('mycroft.audio.service.report_timing')
     def test_speak(self, mock_timing, tts_factory_mock, config_mock):
-
         setup_mocks(config_mock, tts_factory_mock)
         bus = mock.Mock()
         speech = PlaybackService(bus=bus)
@@ -205,6 +205,90 @@ class TestSpeech(unittest.TestCase):
         self.assertTrue(mock_timing.called)
         self.assertEqual(mock_timing.call_args[0][0], "unknown")
 
+    @mock.patch('mycroft.audio.service.get_tts_lang_configs')
+    @mock.patch('mycroft.audio.service.get_tts_supported_langs')
+    @mock.patch('mycroft.audio.service.get_tts_module_configs')
+    def test_opm_tts(self,
+                     mock_get_configs, mock_get_lang, mock_get_lang_configs,
+                     tts_factory_mock, config_mock):
+        setup_mocks(config_mock, tts_factory_mock)
+        en = {'display_name': 'Pretty Name',
+              'lang': 'en-us',
+              'offline': True,
+              'priority': 50}
+
+        mock_get_lang.return_value = {"en-us": ['my-plugin']}
+        # mocking same return val for all lang inputs (!)
+        # used to generate selectable options list
+        mock_get_lang_configs.return_value = {
+            "my-plugin": [en]}
+
+        # per module configs, mocking same return val for all plugin inputs (!)
+        mock_get_configs.return_value = {"en-us": [en]}
+
+        bus = FakeBus()
+        speech = PlaybackService(bus=bus)
+
+        def rcvm(msg):
+            msg = json.loads(msg)
+
+            self.assertEqual(msg["type"], "opm.tts.query.response")
+            en2 = dict(en)
+            en2["engine"] = "my-plugin"
+            self.assertEqual(msg["data"]["langs"], ['en-us'])
+            self.assertEqual(msg["data"]["plugins"], {'en-us': ['my-plugin']})
+            self.assertEqual(msg["data"]["configs"]["my-plugin"]["en-us"], [en2])
+            en2["plugin_name"] = 'My Plugin'
+            self.assertEqual(msg["data"]["options"]["en-us"], [en2])
+
+        bus.on("message", rcvm)
+
+        speech.handle_opm_tts_query(Message("opm.tts.query"))
+
+    @mock.patch('mycroft.audio.service.get_g2p_lang_configs')
+    @mock.patch('mycroft.audio.service.get_g2p_supported_langs')
+    @mock.patch('mycroft.audio.service.get_g2p_module_configs')
+    def test_opm_g2p(self,
+                     mock_get_configs, mock_get_lang, mock_get_lang_configs,
+                     tts_factory_mock, config_mock):
+        setup_mocks(config_mock, tts_factory_mock)
+        en = {'display_name': 'Pretty Name',
+              'lang': 'en-us',
+              'offline': True,
+              'priority': 50}
+
+        mock_get_lang.return_value = {"en-us": ['my-plugin']}
+        # mocking same return val for all lang inputs (!)
+        # used to generate selectable options list
+        mock_get_lang_configs.return_value = {
+            "my-plugin": [en]}
+
+        # per module configs, mocking same return val for all plugin inputs (!)
+        mock_get_configs.return_value = {"en-us": [en]}
+
+        bus = FakeBus()
+        speech = PlaybackService(bus=bus)
+
+        def rcvm(msg):
+            msg = json.loads(msg)
+
+            self.assertEqual(msg["type"], "opm.g2p.query.response")
+            en2 = dict(en)
+            en2["engine"] = "my-plugin"
+            self.assertEqual(msg["data"]["langs"], ['en-us'])
+            self.assertEqual(msg["data"]["plugins"], {'en-us': ['my-plugin']})
+            self.assertEqual(msg["data"]["configs"]["my-plugin"]["en-us"], [en2])
+            en2["plugin_name"] = 'My Plugin'
+            self.assertEqual(msg["data"]["options"]["en-us"], [en2])
+
+        bus.on("message", rcvm)
+
+        speech.handle_opm_g2p_query(Message("opm.g2p.query"))
+
 
 if __name__ == "__main__":
+    from ovos_plugin_manager.tts import get_tts_lang_configs
+    from pprint import pprint
+
+    pprint(get_tts_lang_configs("en-us"))
     unittest.main()
