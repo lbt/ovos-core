@@ -258,18 +258,19 @@ class SpeechService(Thread):
     @staticmethod
     def get_stt_lang_options(lang, blacklist=None):
         blacklist = blacklist or []
-        tts_opts = []
+        stt_opts = []
         cfgs = get_stt_lang_configs(lang=lang, include_dialects=True)
         for engine, configs in cfgs.items():
             if engine in blacklist:
                 continue
             # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
             plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
-            for voice in configs:
-                voice["plugin_name"] = plugin_display_name
-                voice["engine"] = engine
-                tts_opts.append(voice)
-        return tts_opts
+            for config in configs:
+                config["plugin_name"] = plugin_display_name
+                config["engine"] = engine
+                config["lang"] = config.get("lang") or lang
+                stt_opts.append(config)
+        return stt_opts
 
     def handle_opm_stt_query(self, message):
         plugs = get_stt_supported_langs()

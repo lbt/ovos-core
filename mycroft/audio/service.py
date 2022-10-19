@@ -89,6 +89,7 @@ class PlaybackService(Thread):
             for voice in configs:
                 voice["plugin_name"] = plugin_display_name
                 voice["engine"] = engine
+                voice["lang"] = voice.get("lang") or lang
                 tts_opts.append(voice)
         return tts_opts
 
