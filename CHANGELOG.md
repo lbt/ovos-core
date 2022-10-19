@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a27...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a28...HEAD)
+
+**Merged pull requests:**
+
+- feat/new license workflow [\#218](https://github.com/OpenVoiceOS/ovos-core/pull/218) ([JarbasAl](https://github.com/JarbasAl))
+- pipaudit workflow [\#217](https://github.com/OpenVoiceOS/ovos-core/pull/217) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a28) (2022-10-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a27...V0.0.5a28)
 
 **Fixed bugs:**
 
@@ -735,10 +744,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a38...V0.0.2a39)
 
-**Merged pull requests:**
-
-- deprecate/optional\_xdg [\#112](https://github.com/OpenVoiceOS/ovos-core/pull/112) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.2a38](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a38) (2022-04-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a37...V0.0.2a38)
@@ -746,10 +751,6 @@
 ## [V0.0.2a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a37) (2022-04-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a36...V0.0.2a37)
-
-**Merged pull requests:**
-
-- fix/remove lf duplicated tests [\#111](https://github.com/OpenVoiceOS/ovos-core/pull/111) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a36) (2022-04-14)
 
