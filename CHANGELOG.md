@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a31...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a32...HEAD)
+
+**Fixed bugs:**
+
+- Add ovos\_workshop dependency for MycroftSkill imports [\#223](https://github.com/OpenVoiceOS/ovos-core/pull/223) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a32](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a32) (2022-10-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a31...V0.0.5a32)
 
 **Merged pull requests:**
 
@@ -739,10 +747,6 @@
 ## [V0.0.2a42](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a42) (2022-05-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a41...V0.0.2a42)
-
-**Merged pull requests:**
-
-- refactor/relax\_deps [\#116](https://github.com/OpenVoiceOS/ovos-core/pull/116) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a41](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a41) (2022-04-30)
 
