@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a32...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a33...HEAD)
+
+**Fixed bugs:**
+
+- fix/reload mid tts/stt [\#225](https://github.com/OpenVoiceOS/ovos-core/pull/225) ([JarbasAl](https://github.com/JarbasAl))
+
+**Merged pull requests:**
+
+- refactor SkillGUI class to import from ovos\_utils [\#224](https://github.com/OpenVoiceOS/ovos-core/pull/224) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a33) (2022-10-21)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a32...V0.0.5a33)
 
 **Fixed bugs:**
 
@@ -732,17 +744,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a43...V0.0.2a44)
 
-**Merged pull requests:**
-
-- remove pyee, version pinned by bus client directly [\#118](https://github.com/OpenVoiceOS/ovos-core/pull/118) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [V0.0.2a43](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a43) (2022-05-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a42...V0.0.2a43)
-
-**Fixed bugs:**
-
-- fix/handle bad VAD plugin [\#117](https://github.com/OpenVoiceOS/ovos-core/pull/117) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a42](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a42) (2022-05-07)
 
