@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a33...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a34...HEAD)
+
+**Merged pull requests:**
+
+- Update dependencies to stable versions [\#226](https://github.com/OpenVoiceOS/ovos-core/pull/226) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a34) (2022-10-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a33...V0.0.5a34)
 
 **Fixed bugs:**
 
@@ -735,10 +743,6 @@
 ## [V0.0.2a45](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a45) (2022-05-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a44...V0.0.2a45)
-
-**Merged pull requests:**
-
-- add automation/docker [\#119](https://github.com/OpenVoiceOS/ovos-core/pull/119) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a44](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a44) (2022-05-07)
 
