@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a34...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a35...HEAD)
+
+**Merged pull requests:**
+
+- emit theme get on theme change [\#227](https://github.com/OpenVoiceOS/ovos-core/pull/227) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.5a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a35) (2022-10-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a34...V0.0.5a35)
 
 **Merged pull requests:**
 
@@ -723,10 +731,6 @@
 ## [V0.0.2a49](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a49) (2022-05-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a48...V0.0.2a49)
-
-**Merged pull requests:**
-
-- refactor/no\_adapt [\#120](https://github.com/OpenVoiceOS/ovos-core/pull/120) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.2a48](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a48) (2022-05-07)
 
