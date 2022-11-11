@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a36...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a37...HEAD)
+
+**Fixed bugs:**
+
+-  Replace / by \_ in name to avoid issue when writing the cache file. [\#228](https://github.com/OpenVoiceOS/ovos-core/pull/228) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.5a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a37) (2022-11-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a36...V0.0.5a37)
 
 **Implemented enhancements:**
 
@@ -723,10 +731,6 @@
 ## [V0.0.2a51](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a51) (2022-05-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.2a50...V0.0.2a51)
-
-**Merged pull requests:**
-
-- missing requirement - pyyaml [\#122](https://github.com/OpenVoiceOS/ovos-core/pull/122) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.2a50](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.2a50) (2022-05-09)
 
