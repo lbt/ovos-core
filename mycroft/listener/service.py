@@ -26,6 +26,9 @@ from mycroft.util import (
 )
 from mycroft.util.log import LOG
 from mycroft.util.process_utils import ProcessStatus, StatusCallbackMap
+from ovos_plugin_manager.stt import get_stt_lang_configs, get_stt_supported_langs, get_stt_module_configs
+from ovos_plugin_manager.wakewords import get_ww_lang_configs, get_ww_supported_langs, get_ww_module_configs
+from ovos_plugin_manager.vad import get_vad_configs
 
 
 def on_ready():
@@ -42,7 +45,8 @@ def on_error(e='Unknown'):
 
 class SpeechService(Thread):
     def __init__(self, on_ready=on_ready, on_error=on_error,
-                 on_stopping=on_stopping, watchdog=lambda: None):
+                 on_stopping=on_stopping, watchdog=lambda: None,
+                 bus=None, loop=None):
         super(SpeechService, self).__init__()
 
         callbacks = StatusCallbackMap(on_ready=on_ready,
@@ -52,12 +56,12 @@ class SpeechService(Thread):
         self.status.set_started()
 
         self.config = Configuration()
-        self.bus = start_message_bus_client("VOICE")
+        self.bus = bus or start_message_bus_client("VOICE")
 
         self.status.bind(self.bus)
 
         # Register handlers on internal RecognizerLoop bus
-        self.loop = RecognizerLoop(self.bus, watchdog)
+        self.loop = loop or RecognizerLoop(self.bus, watchdog)
         self.connect_loop_events()
         self.connect_bus_events()
 
@@ -254,6 +258,99 @@ class SpeechService(Thread):
         LOG.debug(f"Got stt_langs: {stt_langs}")
         self.bus.emit(message.response({'langs': list(stt_langs)}))
 
+    @staticmethod
+    def get_stt_lang_options(lang, blacklist=None):
+        blacklist = blacklist or []
+        opts = []
+        cfgs = get_stt_lang_configs(lang=lang, include_dialects=True)
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for config in configs:
+                config["plugin_name"] = plugin_display_name
+                config["engine"] = engine
+                config["lang"] = config.get("lang") or lang
+                opts.append(config)
+        return opts
+
+    @staticmethod
+    def get_ww_lang_options(lang, blacklist=None):
+        blacklist = blacklist or []
+        opts = []
+        cfgs = get_ww_lang_configs(lang=lang, include_dialects=True)
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for config in configs:
+                config["plugin_name"] = plugin_display_name
+                config["engine"] = engine
+                config["lang"] = config.get("lang") or lang
+                opts.append(config)
+        return opts
+
+    @staticmethod
+    def get_vad_options(blacklist=None):
+        blacklist = blacklist or []
+        tts_opts = []
+        cfgs = get_vad_configs()
+        for engine, configs in cfgs.items():
+            if engine in blacklist:
+                continue
+            # For Display purposes, we want to show the engine name without the underscore or dash and capitalized all
+            plugin_display_name = engine.replace("_", " ").replace("-", " ").title()
+            for voice in configs:
+                voice["plugin_name"] = plugin_display_name
+                voice["engine"] = engine
+                tts_opts.append(voice)
+        return tts_opts
+
+    def handle_opm_stt_query(self, message):
+        plugs = get_stt_supported_langs()
+        configs = {}
+        opts = {}
+        for lang, m in plugs.items():
+            for p in m:
+                configs[p] = get_stt_module_configs(p)
+            opts[lang] = self.get_stt_lang_options(lang)
+
+        data = {
+            "plugins": plugs,
+            "langs": list(plugs.keys()),
+            "configs": configs,
+            "options": opts
+        }
+        self.bus.emit(message.response(data))
+
+    def handle_opm_ww_query(self, message):
+        plugs = get_ww_supported_langs()
+        configs = {}
+        opts = {}
+        for lang, m in plugs.items():
+            for p in m:
+                configs[p] = get_ww_module_configs(p)
+            opts[lang] = self.get_ww_lang_options(lang)
+
+        data = {
+            "plugins": plugs,
+            "langs": list(plugs.keys()),
+            "configs": configs,
+            "options": opts
+        }
+        self.bus.emit(message.response(data))
+
+    def handle_opm_vad_query(self, message):
+        cfgs = get_vad_configs()
+        data = {
+            "plugins": list(cfgs.keys()),
+            "configs": cfgs,
+            "options": self.get_vad_options()
+        }
+        self.bus.emit(message.response(data))
+
     def connect_loop_events(self):
         self.loop.on('recognizer_loop:utterance', self.handle_utterance)
         self.loop.on('recognizer_loop:speech.recognition.unknown',
@@ -289,18 +386,27 @@ class SpeechService(Thread):
         self.bus.on('mycroft.stop', self.handle_stop)
         self.bus.on("ovos.languages.stt", self.handle_get_languages_stt)
         self.bus.on("intent.service.skills.activated", self.handle_extend_listening)
+        self.bus.on("opm.stt.query", self.handle_opm_stt_query)
+        self.bus.on("opm.ww.query", self.handle_opm_ww_query)
+        self.bus.on("opm.vad.query", self.handle_opm_vad_query)
 
     def run(self):
-        self.status.set_started()
+        self.status.set_alive()
         try:
             self.status.set_ready()
             self.loop.run()
         except Exception as e:
             self.status.set_error(e)
-        self.status.set_stopping()
 
-        
+        self.shutdown()
+
+    def shutdown(self):
+        self.status.set_stopping()
+        self.loop.stop()
+
+
 class SpeechClient(SpeechService):
     def __init__(self, *args, **kwargs):
         LOG.warning("SpeechClient has been renamed to SpeechService, it will be removed in 0.1.0")
         super().__init__(self, *args, **kwargs)
+
