@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a37...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a38...HEAD)
+
+**Merged pull requests:**
+
+- Update alpha dependencies to stable versions [\#230](https://github.com/OpenVoiceOS/ovos-core/pull/230) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.5a38](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a38) (2022-11-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a37...V0.0.5a38)
 
 **Fixed bugs:**
 
@@ -716,7 +724,6 @@
 
 **Fixed bugs:**
 
-- Unsupported LF language prevents intent handling [\#123](https://github.com/OpenVoiceOS/ovos-core/issues/123)
 - fix/LF\_unsupported\_lang [\#125](https://github.com/OpenVoiceOS/ovos-core/pull/125) ([NeonJarbas](https://github.com/NeonJarbas))
 - fix/converse\_get\_response [\#124](https://github.com/OpenVoiceOS/ovos-core/pull/124) ([NeonJarbas](https://github.com/NeonJarbas))
 
