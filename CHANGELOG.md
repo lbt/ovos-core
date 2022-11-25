@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a1...HEAD)
+
+**Merged pull requests:**
+
+- Fix show\_pages index api [\#234](https://github.com/OpenVoiceOS/ovos-core/pull/234) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.6a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a1) (2022-11-23)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5...V0.0.6a1)
 
 **Merged pull requests:**
 
@@ -733,10 +741,6 @@
 ## [V0.0.4a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a1) (2022-05-22)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.3...V0.0.4a1)
-
-**Fixed bugs:**
-
-- fix/LF\_unsupported\_lang [\#125](https://github.com/OpenVoiceOS/ovos-core/pull/125) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.3) (2022-05-09)
 
