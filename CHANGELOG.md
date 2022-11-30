@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a2...HEAD)
+
+**Merged pull requests:**
+
+- page background color support for show image and show animated image [\#236](https://github.com/OpenVoiceOS/ovos-core/pull/236) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.6a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a2) (2022-11-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a1...V0.0.6a2)
 
 **Merged pull requests:**
 
@@ -733,10 +741,6 @@
 ## [V0.0.4a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a2) (2022-06-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a1...V0.0.4a2)
-
-**Merged pull requests:**
-
-- Update logging so global voc resources don't appear as errors in the log [\#126](https://github.com/OpenVoiceOS/ovos-core/pull/126) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a1) (2022-05-22)
 
