@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a4...HEAD)
+
+**Merged pull requests:**
+
+- Add config option to retry mic init on start \(default True\) [\#238](https://github.com/OpenVoiceOS/ovos-core/pull/238) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a4) (2022-12-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a3...V0.0.6a4)
 
 **Merged pull requests:**
 
@@ -737,10 +745,6 @@
 ## [V0.0.4a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a3) (2022-06-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a2...V0.0.4a3)
-
-**Fixed bugs:**
-
-- refactor/tts\_mode [\#128](https://github.com/OpenVoiceOS/ovos-core/pull/128) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a2) (2022-06-01)
 
