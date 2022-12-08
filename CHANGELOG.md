@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a2...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a3...HEAD)
+
+**Merged pull requests:**
+
+- Fix display settings ui [\#237](https://github.com/OpenVoiceOS/ovos-core/pull/237) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.6a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a3) (2022-11-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a2...V0.0.6a3)
 
 **Merged pull requests:**
 
@@ -725,10 +733,6 @@
 ## [V0.0.4a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a4) (2022-06-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a3...V0.0.4a4)
-
-**Implemented enhancements:**
-
-- feat/common\_query service [\#127](https://github.com/OpenVoiceOS/ovos-core/pull/127) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a3) (2022-06-02)
 
