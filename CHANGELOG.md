@@ -2,7 +2,20 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a4...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a5...HEAD)
+
+**Fixed bugs:**
+
+- port/fix/ intent name colision [\#233](https://github.com/OpenVoiceOS/ovos-core/issues/233)
+- Handle multiple intents with the same name \(\#2921\) [\#235](https://github.com/OpenVoiceOS/ovos-core/pull/235) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- Install confusion [\#239](https://github.com/OpenVoiceOS/ovos-core/issues/239)
+
+## [V0.0.6a5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a5) (2022-12-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a4...V0.0.6a5)
 
 **Merged pull requests:**
 
@@ -710,10 +723,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a7...V0.0.4a8)
 
-**Implemented enhancements:**
-
-- feat/user resources [\#131](https://github.com/OpenVoiceOS/ovos-core/pull/131) ([NeonJarbas](https://github.com/NeonJarbas))
-
 **Fixed bugs:**
 
 - fix/pairing readiness [\#132](https://github.com/OpenVoiceOS/ovos-core/pull/132) ([NeonJarbas](https://github.com/NeonJarbas))
@@ -722,10 +731,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a6...V0.0.4a7)
 
-**Merged pull requests:**
-
-- port of the resource file handling refactor from mk2 [\#130](https://github.com/OpenVoiceOS/ovos-core/pull/130) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.4a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a6) (2022-06-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a5...V0.0.4a6)
@@ -733,10 +738,6 @@
 ## [V0.0.4a5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a5) (2022-06-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a4...V0.0.4a5)
-
-**Merged pull requests:**
-
-- Fix typo in log from \#126 [\#129](https://github.com/OpenVoiceOS/ovos-core/pull/129) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a4) (2022-06-02)
 
