@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a6...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a7...HEAD)
+
+**Merged pull requests:**
+
+- relax lingua\_franca version [\#242](https://github.com/OpenVoiceOS/ovos-core/pull/242) ([builderjer](https://github.com/builderjer))
+
+## [V0.0.6a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a7) (2022-12-14)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a6...V0.0.6a7)
 
 **Merged pull requests:**
 
@@ -715,17 +723,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a9...V0.0.4a10)
 
-**Fixed bugs:**
-
-- fix/identity\_file migration [\#134](https://github.com/OpenVoiceOS/ovos-core/pull/134) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.4a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a9) (2022-06-05)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a8...V0.0.4a9)
-
-**Fixed bugs:**
-
-- fix/filesystem\_path [\#133](https://github.com/OpenVoiceOS/ovos-core/pull/133) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a8) (2022-06-04)
 
