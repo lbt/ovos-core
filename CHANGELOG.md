@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a6...HEAD)
+
+**Merged pull requests:**
+
+- Reorg shutdown to prevent logged exceptions in skill shutdown [\#240](https://github.com/OpenVoiceOS/ovos-core/pull/240) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a6) (2022-12-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a5...V0.0.6a6)
 
 **Fixed bugs:**
 
@@ -722,10 +730,6 @@
 ## [V0.0.4a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a8) (2022-06-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a7...V0.0.4a8)
-
-**Fixed bugs:**
-
-- fix/pairing readiness [\#132](https://github.com/OpenVoiceOS/ovos-core/pull/132) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a7) (2022-06-03)
 
