@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a8...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a9...HEAD)
+
+**Merged pull requests:**
+
+- Update factory reset message [\#247](https://github.com/OpenVoiceOS/ovos-core/pull/247) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a9) (2022-12-15)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a8...V0.0.6a9)
 
 **Merged pull requests:**
 
@@ -707,17 +715,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a11...V0.0.4a12)
 
-**Fixed bugs:**
-
-- fix/filesystem\_path\_collision [\#138](https://github.com/OpenVoiceOS/ovos-core/pull/138) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.4a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a11) (2022-06-05)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a10...V0.0.4a11)
-
-**Fixed bugs:**
-
-- fix/identity\_file migration [\#137](https://github.com/OpenVoiceOS/ovos-core/pull/137) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a10) (2022-06-05)
 
