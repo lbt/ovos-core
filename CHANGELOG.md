@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a9...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a10...HEAD)
+
+**Implemented enhancements:**
+
+- add "last.voc" ressource [\#248](https://github.com/OpenVoiceOS/ovos-core/pull/248) ([emphasize](https://github.com/emphasize))
+
+## [V0.0.6a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a10) (2022-12-31)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a9...V0.0.6a10)
 
 **Merged pull requests:**
 
@@ -702,10 +710,6 @@
 ## [V0.0.4a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a14) (2022-06-06)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a13...V0.0.4a14)
-
-**Implemented enhancements:**
-
-- feat/skill\_settings\_filewatch [\#139](https://github.com/OpenVoiceOS/ovos-core/pull/139) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a13) (2022-06-06)
 
