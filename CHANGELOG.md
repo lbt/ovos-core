@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a10...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a11...HEAD)
+
+**Closed issues:**
+
+- voice service has multiple errors, DeviceAPI and Hotword engine [\#216](https://github.com/OpenVoiceOS/ovos-core/issues/216)
+
+## [V0.0.6a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a11) (2023-01-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a10...V0.0.6a11)
 
 **Implemented enhancements:**
 
@@ -702,10 +710,6 @@
 ## [V0.0.4a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a15) (2022-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a14...V0.0.4a15)
-
-**Implemented enhancements:**
-
-- Add color scheme modes and color scheme custom generator support [\#140](https://github.com/OpenVoiceOS/ovos-core/pull/140) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.4a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a14) (2022-06-06)
 
