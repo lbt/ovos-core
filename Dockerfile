@@ -13,6 +13,8 @@ RUN apt-get update && \
 RUN mkdir -p /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/share/mycroft
 RUN chown mycroft:mycroft -R /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/share/mycroft
 
+RUN pip3 install rapidfuzz
+
 COPY . /tmp/ovos-core
 RUN pip3 install /tmp/ovos-core
 
