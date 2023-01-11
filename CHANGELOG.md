@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a11...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a12...HEAD)
+
+**Fixed bugs:**
+
+- Fix system url web view [\#251](https://github.com/OpenVoiceOS/ovos-core/pull/251) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.6a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a12) (2023-01-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a11...V0.0.6a12)
 
 **Closed issues:**
 
@@ -698,10 +706,6 @@
 ## [V0.0.4a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a16) (2022-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a15...V0.0.4a16)
-
-**Implemented enhancements:**
-
-- feat/feat/improve\_cq\_matching [\#141](https://github.com/OpenVoiceOS/ovos-core/pull/141) ([NeonJarbas](https://github.com/NeonJarbas))
 
 **Fixed bugs:**
 
