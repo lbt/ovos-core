@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a12...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a13...HEAD)
+
+**Merged pull requests:**
+
+- Prevent exceptions if a user doesn't reply to an `ask_yesno` prompt [\#252](https://github.com/OpenVoiceOS/ovos-core/pull/252) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a13) (2023-01-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a12...V0.0.6a13)
 
 **Fixed bugs:**
 
@@ -706,10 +714,6 @@
 ## [V0.0.4a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a16) (2022-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a15...V0.0.4a16)
-
-**Fixed bugs:**
-
-- fix/config\_hotreload [\#142](https://github.com/OpenVoiceOS/ovos-core/pull/142) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a15) (2022-06-08)
 
