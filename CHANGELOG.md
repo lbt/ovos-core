@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a13...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a14...HEAD)
+
+**Merged pull requests:**
+
+- Prevent logging errors when a blacklisted skill is handled as expected [\#257](https://github.com/OpenVoiceOS/ovos-core/pull/257) ([NeonDaniel](https://github.com/NeonDaniel))
+- Ignore setuptools pip-audit failure [\#253](https://github.com/OpenVoiceOS/ovos-core/pull/253) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a14) (2023-01-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a13...V0.0.6a14)
 
 **Merged pull requests:**
 
@@ -686,30 +695,13 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a18...V0.0.4a19)
 
-**Fixed bugs:**
-
-- hotfix/deprecated\_method [\#147](https://github.com/OpenVoiceOS/ovos-core/pull/147) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [V0.0.4a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a18) (2022-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a17...V0.0.4a18)
 
-**Breaking changes:**
-
-- Refactor audio module into service [\#146](https://github.com/OpenVoiceOS/ovos-core/pull/146) ([NeonDaniel](https://github.com/NeonDaniel))
-
-**Fixed bugs:**
-
-- fix/core\_resources [\#145](https://github.com/OpenVoiceOS/ovos-core/pull/145) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.4a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a17) (2022-06-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a16...V0.0.4a17)
-
-**Merged pull requests:**
-
-- refactor/ready\_check\_bus\_spam [\#144](https://github.com/OpenVoiceOS/ovos-core/pull/144) ([NeonJarbas](https://github.com/NeonJarbas))
-- refactor/skill\_reload [\#143](https://github.com/OpenVoiceOS/ovos-core/pull/143) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a16) (2022-06-08)
 
