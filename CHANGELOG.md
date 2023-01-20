@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a14...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a15...HEAD)
+
+**Merged pull requests:**
+
+- Refactor/skill class from workshop [\#246](https://github.com/OpenVoiceOS/ovos-core/pull/246) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.6a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a15) (2023-01-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a14...V0.0.6a15)
 
 **Merged pull requests:**
 
@@ -686,10 +694,6 @@
 **Implemented enhancements:**
 
 - Add About Page To Additional Settings and SmartSpeaker Extension [\#149](https://github.com/OpenVoiceOS/ovos-core/pull/149) ([AIIX](https://github.com/AIIX))
-
-**Merged pull requests:**
-
-- Update changelog action [\#148](https://github.com/OpenVoiceOS/ovos-core/pull/148) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a19) (2022-06-08)
 
