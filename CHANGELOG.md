@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a15...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a16...HEAD)
+
+**Merged pull requests:**
+
+- Bump minimum plugin version for ocp fix [\#259](https://github.com/OpenVoiceOS/ovos-core/pull/259) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a16) (2023-01-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a15...V0.0.6a16)
 
 **Merged pull requests:**
 
@@ -690,10 +698,6 @@
 ## [V0.0.4a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a20) (2022-06-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a19...V0.0.4a20)
-
-**Implemented enhancements:**
-
-- Add About Page To Additional Settings and SmartSpeaker Extension [\#149](https://github.com/OpenVoiceOS/ovos-core/pull/149) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.4a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a19) (2022-06-08)
 
