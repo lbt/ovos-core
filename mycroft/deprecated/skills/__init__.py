@@ -11,13 +11,11 @@ import csv
 import re
 from os import walk
 from os.path import splitext, join
-import mycroft.skills.skill_data
 from ovos_backend_client.pairing import is_paired
 from mycroft.enclosure.api import EnclosureAPI
 from mycroft.util.format import expand_options
 from mycroft.util.log import LOG
-from ovos_utils.messagebus import to_alnum
-
+from ovos_utils.intents.intent_service_interface import munge_regex, to_alnum
 
 RASPBERRY_PI_PLATFORMS = ('mycroft_mark_1', 'picroft', 'mycroft_mark_2pi')
 
@@ -100,8 +98,7 @@ def load_regex_from_file(path, skill_id):
                 if line.startswith("#"):
                     continue
                 LOG.debug('regex pre-munge: ' + line.strip())
-                regex = mycroft.skills.skill_data.munge_regex(line.strip(),
-                                                              skill_id)
+                regex = munge_regex(line.strip(), skill_id)
                 LOG.debug('regex post-munge: ' + regex)
                 # Raise error if regex can't be compiled
                 try:
