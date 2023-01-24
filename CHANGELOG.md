@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a16...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a17...HEAD)
+
+**Implemented enhancements:**
+
+- sync lang resouces with mycroft-core [\#199](https://github.com/OpenVoiceOS/ovos-core/issues/199)
+- Lng: Add cs-cz noise words [\#260](https://github.com/OpenVoiceOS/ovos-core/pull/260) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a17) (2023-01-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a16...V0.0.6a17)
 
 **Merged pull requests:**
 
@@ -433,10 +442,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a3...V0.0.5a4)
 
-**Implemented enhancements:**
-
-- feat/listening\_modes [\#150](https://github.com/OpenVoiceOS/ovos-core/pull/150) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.5a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a3) (2022-08-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a2...V0.0.5a3)
@@ -618,10 +623,6 @@
 ## [V0.0.4a30](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a30) (2022-06-22)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a29...V0.0.4a30)
-
-**Breaking changes:**
-
-- refactor/rename\_audiospeech\_services [\#151](https://github.com/OpenVoiceOS/ovos-core/pull/151) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a29) (2022-06-21)
 
