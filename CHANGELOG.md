@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a17...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a18...HEAD)
+
+**Merged pull requests:**
+
+- Actually use the advertised audio device and sample rate with the audio test. [\#265](https://github.com/OpenVoiceOS/ovos-core/pull/265) ([gmsoft-tuxicoman](https://github.com/gmsoft-tuxicoman))
+
+## [V0.0.6a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a18) (2023-01-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a17...V0.0.6a18)
 
 **Implemented enhancements:**
 
@@ -644,10 +652,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a26...V0.0.4a27)
 
-**Implemented enhancements:**
-
-- feat/speak\_error\_flag [\#152](https://github.com/OpenVoiceOS/ovos-core/pull/152) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.4a26](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a26) (2022-06-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a25...V0.0.4a26)
@@ -668,10 +672,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a23...V0.0.4a24)
 
-**Fixed bugs:**
-
-- fix/skill\_settings\_callback [\#155](https://github.com/OpenVoiceOS/ovos-core/pull/155) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.4a23](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a23) (2022-06-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a22...V0.0.4a23)
@@ -691,10 +691,6 @@
 ## [V0.0.4a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a21) (2022-06-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a20...V0.0.4a21)
-
-**Merged pull requests:**
-
-- refactor/native\_ocp [\#154](https://github.com/OpenVoiceOS/ovos-core/pull/154) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a20) (2022-06-09)
 
