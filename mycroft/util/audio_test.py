@@ -21,7 +21,7 @@ from speech_recognition import Recognizer
 
 from mycroft.listener.mic import MutableMicrophone
 from ovos_config.config import Configuration
-from mycroft.util.audio_utils import play_wav
+from mycroft.util.audio_utils import play_wav, find_input_device
 from mycroft.util.log import LOG
 import logging
 from mycroft.util.file_utils import get_temp_path
@@ -61,8 +61,8 @@ def mute_output():
             os.close(fd)
 
 
-def record(filename, duration):
-    mic = MutableMicrophone()
+def record(filename, duration, device_index=None, sample_rate=16000):
+    mic = MutableMicrophone(device_index, sample_rate)
     recognizer = Recognizer()
     with mic as source:
         audio = recognizer.record(source, duration=duration)
@@ -99,21 +99,28 @@ def main():
         for device_index in range(pa.get_device_count()):
             dev = pa.get_device_info_by_index(device_index)
             if dev['maxInputChannels'] > 0:
-                print('   {}:       {}'.format(device_index, dev['name']))
+                print(f'   {device_index}:       {dev["name"]}')
         print()
 
     config = Configuration()
+    device_index = None
     if "device_name" in config["listener"]:
         dev = config["listener"]["device_name"]
+        device_index = find_input_device(dev)
+        if not device_index:
+            raise ValueError(f"Device with name {dev} not found, check your configuration")
+        dev += f" (index {device_index})"
     elif "device_index" in config["listener"]:
-        dev = "Device at index {}".format(config["listener"]["device_index"])
+        dev = f"Device at index {config['listener']['device_index']}"
+        device_index = int(config["listener"]["device_index"])
     else:
         dev = "Default device"
-    samplerate = config["listener"]["sample_rate"]
+    sample_rate = config["listener"]["sample_rate"]
     play_cmd = config["play_wav_cmdline"].replace("%1", "WAV_FILE")
+
     print(" ========================== Info ===========================")
-    print(" Input device: {} @ Sample rate: {} Hz".format(dev, samplerate))
-    print(" Playback commandline: {}".format(play_cmd))
+    print(f" Input device: {dev} @ Sample rate: {sample_rate} Hz")
+    print(f" Playback commandline: {play_cmd}")
     print()
     print(" ===========================================================")
     print(" ==         STARTING TO RECORD, MAKE SOME NOISE!          ==")
@@ -121,16 +128,16 @@ def main():
 
     if not args.verbose:
         with mute_output():
-            record(args.filename, args.duration)
+            record(args.filename, args.duration, device_index=device_index, sample_rate=sample_rate)
     else:
-        record(args.filename, args.duration)
+        record(args.filename, args.duration, device_index=device_index, sample_rate=sample_rate)
 
     print(" ===========================================================")
     print(" ==           DONE RECORDING, PLAYING BACK...             ==")
     print(" ===========================================================")
     status = play_wav(args.filename).wait()
     if status:
-        print('An error occured while playing back audio ({})'.format(status))
+        print(f'An error occured while playing back audio ({status})')
 
 
 if __name__ == "__main__":
