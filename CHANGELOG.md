@@ -2,9 +2,17 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a19...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a20...HEAD)
 
-**Merged pull requests:**
+**Implemented enhancements:**
+
+- improve skill loading [\#245](https://github.com/OpenVoiceOS/ovos-core/pull/245) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.6a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a20) (2023-01-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a19...V0.0.6a20)
+
+**Implemented enhancements:**
 
 - Add `skills-essential` optional dependencies [\#266](https://github.com/OpenVoiceOS/ovos-core/pull/266) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -12,7 +20,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a18...V0.0.6a19)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Actually use the advertised audio device and sample rate with the audio test. [\#265](https://github.com/OpenVoiceOS/ovos-core/pull/265) ([gmsoft-tuxicoman](https://github.com/gmsoft-tuxicoman))
 
@@ -29,7 +37,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a16...V0.0.6a17)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Bump minimum plugin version for ocp fix [\#259](https://github.com/OpenVoiceOS/ovos-core/pull/259) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -37,7 +45,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a15...V0.0.6a16)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Refactor/skill class from workshop [\#246](https://github.com/OpenVoiceOS/ovos-core/pull/246) ([JarbasAl](https://github.com/JarbasAl))
 
@@ -45,7 +53,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a14...V0.0.6a15)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Prevent logging errors when a blacklisted skill is handled as expected [\#257](https://github.com/OpenVoiceOS/ovos-core/pull/257) ([NeonDaniel](https://github.com/NeonDaniel))
 - Ignore setuptools pip-audit failure [\#253](https://github.com/OpenVoiceOS/ovos-core/pull/253) ([NeonDaniel](https://github.com/NeonDaniel))
@@ -54,7 +62,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a13...V0.0.6a14)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Prevent exceptions if a user doesn't reply to an `ask_yesno` prompt [\#252](https://github.com/OpenVoiceOS/ovos-core/pull/252) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -86,7 +94,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a9...V0.0.6a10)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Update factory reset message [\#247](https://github.com/OpenVoiceOS/ovos-core/pull/247) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -94,7 +102,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a8...V0.0.6a9)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Add display setting for menu labels [\#244](https://github.com/OpenVoiceOS/ovos-core/pull/244) ([AIIX](https://github.com/AIIX))
 
@@ -110,7 +118,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a6...V0.0.6a7)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Reorg shutdown to prevent logged exceptions in skill shutdown [\#240](https://github.com/OpenVoiceOS/ovos-core/pull/240) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -131,7 +139,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a4...V0.0.6a5)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Add config option to retry mic init on start \(default True\) [\#238](https://github.com/OpenVoiceOS/ovos-core/pull/238) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -139,7 +147,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a3...V0.0.6a4)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Fix display settings ui [\#237](https://github.com/OpenVoiceOS/ovos-core/pull/237) ([AIIX](https://github.com/AIIX))
 
@@ -147,7 +155,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a2...V0.0.6a3)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - page background color support for show image and show animated image [\#236](https://github.com/OpenVoiceOS/ovos-core/pull/236) ([AIIX](https://github.com/AIIX))
 
@@ -155,7 +163,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a1...V0.0.6a2)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Fix show\_pages index api [\#234](https://github.com/OpenVoiceOS/ovos-core/pull/234) ([AIIX](https://github.com/AIIX))
 
@@ -163,7 +171,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5...V0.0.6a1)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - add factory reset ui [\#231](https://github.com/OpenVoiceOS/ovos-core/pull/231) ([AIIX](https://github.com/AIIX))
 
@@ -175,7 +183,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a38...V0.0.5a39)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Update alpha dependencies to stable versions [\#230](https://github.com/OpenVoiceOS/ovos-core/pull/230) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -199,7 +207,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a35...V0.0.5a36)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - emit theme get on theme change [\#227](https://github.com/OpenVoiceOS/ovos-core/pull/227) ([AIIX](https://github.com/AIIX))
 
@@ -207,7 +215,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a34...V0.0.5a35)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Update dependencies to stable versions [\#226](https://github.com/OpenVoiceOS/ovos-core/pull/226) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -292,7 +300,7 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a24...V0.0.5a25)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
 - Update setup state Message types to match skill [\#212](https://github.com/OpenVoiceOS/ovos-core/pull/212) ([NeonDaniel](https://github.com/NeonDaniel))
 
@@ -683,10 +691,6 @@
 ## [V0.0.4a23](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a23) (2022-06-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a22...V0.0.4a23)
-
-**Merged pull requests:**
-
-- Use phal instead of enclosure and enable venv [\#157](https://github.com/OpenVoiceOS/ovos-core/pull/157) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.4a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a22) (2022-06-10)
 
