@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a18...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a19...HEAD)
+
+**Merged pull requests:**
+
+- Add `skills-essential` optional dependencies [\#266](https://github.com/OpenVoiceOS/ovos-core/pull/266) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a19) (2023-01-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a18...V0.0.6a19)
 
 **Merged pull requests:**
 
@@ -683,10 +691,6 @@
 ## [V0.0.4a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a22) (2022-06-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a21...V0.0.4a22)
-
-**Merged pull requests:**
-
-- fix bigscreen start [\#156](https://github.com/OpenVoiceOS/ovos-core/pull/156) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.4a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a21) (2022-06-09)
 
