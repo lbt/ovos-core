@@ -24,7 +24,7 @@ from time import time
 from ovos_config.locations import get_xdg_data_dirs, get_xdg_data_save_path
 from ovos_config.meta import get_xdg_base
 from ovos_plugin_manager.skills import find_skill_plugins
-
+from ovos_workshop.skills.base import SkillNetworkRequirements, BaseSkill
 from ovos_config.config import Configuration
 from mycroft.messagebus import Message
 from mycroft.skills.mycroft_skill.mycroft_skill import MycroftSkill
@@ -298,20 +298,75 @@ def get_create_skill_function(skill_module):
 
 
 class SkillLoader:
-    def __init__(self, bus, skill_directory):
+    def __init__(self, bus, skill_directory=None):
         self.bus = bus
-        self.skill_directory = skill_directory
-        self.skill_id = os.path.basename(skill_directory)
+        self._skill_directory = skill_directory
+        self._skill_id = None
+        self._skill_class = None
+        self._loaded = None
         self.load_attempted = False
-        self.loaded = False
         self.last_modified = 0
         self.last_loaded = 0
-        self.instance = None
+        self.instance: BaseSkill = None
         self.active = True
         self._watchdog = None
         self.config = Configuration()
 
         self.modtime_error_log_written = False
+        self.skill_module = None
+
+    @property
+    def loaded(self):
+        return self._loaded  # or self.instance is None
+
+    @loaded.setter
+    def loaded(self, val):
+        self._loaded = val
+
+    @property
+    def skill_directory(self):
+        skill_dir = self._skill_directory
+        if self.instance and not skill_dir:
+            skill_dir = self.instance.root_dir
+        return skill_dir
+
+    @skill_directory.setter
+    def skill_directory(self, val):
+        self._skill_directory = val
+
+    @property
+    def skill_id(self):
+        skill_id = self._skill_id
+        if self.instance and not skill_id:
+            LOG.debug(f"skill_id from instance")
+            skill_id = self.instance.skill_id
+        if self.skill_directory and not skill_id:
+            LOG.debug(f"skill_id from directory")
+            skill_id = os.path.basename(self.skill_directory)
+        return skill_id
+
+    @skill_id.setter
+    def skill_id(self, val):
+        self._skill_id = val
+
+    @property
+    def skill_class(self):
+        skill_class = self._skill_class
+        if self.instance and not skill_class:
+            skill_class = self.instance.__class__
+        if self.skill_module and not skill_class:
+            skill_class = get_skill_class(self.skill_module)
+        return skill_class
+
+    @skill_class.setter
+    def skill_class(self, val):
+        self._skill_class = val
+
+    @property
+    def network_requirements(self):
+        if not self.skill_class:
+            return SkillNetworkRequirements()
+        return self.skill_class.network_requirements
 
     @property
     def is_blacklisted(self):
@@ -334,7 +389,7 @@ class SkillLoader:
         return self.instance is None
 
     def reload(self):
-        LOG.info('ATTEMPTING TO RELOAD SKILL: ' + self.skill_id)
+        LOG.info(f'ATTEMPTING TO RELOAD SKILL: {self.skill_id}')
         if self.instance:
             if not self.instance.reload_skill:
                 LOG.info("skill does not allow reloading!")
@@ -343,7 +398,7 @@ class SkillLoader:
         return self._load()
 
     def load(self):
-        LOG.info('ATTEMPTING TO LOAD SKILL: ' + self.skill_id)
+        LOG.info(f'ATTEMPTING TO LOAD SKILL: {self.skill_id}')
         return self._load()
 
     def _unload(self):
@@ -355,13 +410,11 @@ class SkillLoader:
         self._execute_instance_shutdown()
         if self.config.get("debug", False):
             self._garbage_collect()
-        self.loaded = False
         self._emit_skill_shutdown_event()
 
     def unload(self):
         if self.instance:
             self._execute_instance_shutdown()
-        self.loaded = False
 
     def activate(self):
         self.active = True
@@ -379,6 +432,8 @@ class SkillLoader:
             LOG.exception(f'An error occurred while shutting down {self.skill_id}')
         else:
             LOG.info(f'Skill {self.skill_id} shut down successfully')
+        del self.instance
+        self.instance = None
 
     def _garbage_collect(self):
         """Invoke Python garbage collector to remove false references"""
@@ -401,9 +456,8 @@ class SkillLoader:
         if self.is_blacklisted:
             self._skip_load()
         else:
-            skill_module = self._load_skill_source()
-            if skill_module and self._create_skill_instance(skill_module):
-                self.loaded = True
+            self.skill_module = self._load_skill_source()
+            self.loaded = self._create_skill_instance()
 
         self.last_loaded = time()
         self._communicate_load_status()
@@ -441,7 +495,6 @@ class SkillLoader:
 
     def _prepare_for_load(self):
         self.load_attempted = True
-        self.loaded = False
         self.instance = None
 
     def _skip_load(self):
@@ -460,7 +513,7 @@ class SkillLoader:
                 LOG.exception(f'Failed to load skill: {self.skill_id} ({e})')
         return skill_module
 
-    def _create_skill_instance(self, skill_module):
+    def _create_skill_instance(self, skill_module=None):
         """create the skill object.
 
         Arguments:
@@ -469,9 +522,10 @@ class SkillLoader:
         Returns:
             (bool): True if skill was loaded successfully.
         """
+        skill_module = skill_module or self.skill_module
         try:
             skill_creator = get_create_skill_function(skill_module) or \
-                            get_skill_class(skill_module)
+                            self.skill_class
 
             # create the skill
             self.instance = skill_creator()
@@ -512,26 +566,20 @@ class SkillLoader:
 
 class PluginSkillLoader(SkillLoader):
     def __init__(self, bus, skill_id):
-        super().__init__(bus, skill_id)
-        self.skill_directory = skill_id
-        self.skill_id = skill_id
+        super().__init__(bus)
+        self._skill_id = skill_id
 
     def reload_needed(self):
         return False
 
-    def _create_skill_instance(self, skill_module):
-        if super()._create_skill_instance(skill_module):
-            self.skill_directory = self.instance.root_dir
-            return True
-        return False
-
-    def load(self, skill_module):
+    def load(self, skill_class):
         LOG.info('ATTEMPTING TO LOAD PLUGIN SKILL: ' + self.skill_id)
+        self._skill_class = skill_class
         self._prepare_for_load()
         if self.is_blacklisted:
             self._skip_load()
         else:
-            self.loaded = self._create_skill_instance(skill_module)
+            self.loaded = self._create_skill_instance()
 
         self.last_loaded = time()
         self._communicate_load_status()

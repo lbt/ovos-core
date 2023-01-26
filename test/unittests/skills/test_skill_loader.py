@@ -13,13 +13,64 @@
 # limitations under the License.
 #
 """Unit tests for the SkillLoader class."""
+import unittest
 from time import time
-from unittest.mock import call, MagicMock, Mock, patch
+from unittest.mock import call, Mock, patch
 
+from mycroft.skills.mycroft_skill.mycroft_skill import MycroftSkill
 from mycroft.skills.skill_loader import _get_last_modified_time, SkillLoader
+from ovos_workshop.decorators import classproperty
+from ovos_workshop.skills.base import SkillNetworkRequirements
 from ..base import MycroftUnitTestBase
 
 ONE_MINUTE = 60
+
+
+class OfflineSkill(MycroftSkill):
+    @classproperty
+    def network_requirements(self):
+        return SkillNetworkRequirements(internet_before_load=False,
+                                        network_before_load=False,
+                                        requires_internet=False,
+                                        requires_network=False,
+                                        no_internet_fallback=True,
+                                        no_network_fallback=True)
+
+
+class LANSkill(MycroftSkill):
+    @classproperty
+    def network_requirements(self):
+        scans_on_init = True
+        return SkillNetworkRequirements(internet_before_load=False,
+                                        network_before_load=scans_on_init,
+                                        requires_internet=False,
+                                        requires_network=True,
+                                        no_internet_fallback=True,
+                                        no_network_fallback=False)
+
+
+class TestSkillNetwork(unittest.TestCase):
+
+    def test_class_property(self):
+        self.assertEqual(OfflineSkill.network_requirements,
+                         SkillNetworkRequirements(internet_before_load=False,
+                                                  network_before_load=False,
+                                                  requires_internet=False,
+                                                  requires_network=False,
+                                                  no_internet_fallback=True,
+                                                  no_network_fallback=True)
+                         )
+        self.assertEqual(LANSkill.network_requirements,
+                         SkillNetworkRequirements(internet_before_load=False,
+                                                  network_before_load=True,
+                                                  requires_internet=False,
+                                                  requires_network=True,
+                                                  no_internet_fallback=True,
+                                                  no_network_fallback=False)
+                         )
+        self.assertEqual(MycroftSkill.network_requirements,
+                         SkillNetworkRequirements()
+                         )
 
 
 class TestSkillLoader(MycroftUnitTestBase):
@@ -52,6 +103,7 @@ class TestSkillLoader(MycroftUnitTestBase):
         """Mock the skill instance, we are not testing skill functionality."""
         skill_instance = Mock()
         skill_instance.name = 'test_skill'
+        skill_instance.skill_id = None
         skill_instance.reload_skill = True
         skill_instance.default_shutdown = Mock()
         self.skill_instance_mock = skill_instance
@@ -94,6 +146,7 @@ class TestSkillLoader(MycroftUnitTestBase):
         self.loader.instance = Mock()
         self.loader.loaded = True
         self.loader.last_loaded = 0
+        self.loader.skill_id = 'test_skill'
 
         with patch(self.mock_package + 'time') as time_mock:
             time_mock.return_value = 100
@@ -116,10 +169,19 @@ class TestSkillLoader(MycroftUnitTestBase):
                              for log in log_messages)))
 
     def test_skill_load(self):
-        with patch(self.mock_package + 'time') as time_mock:
+        # Mock to return a known (Mock) skill instance
+        real_create_skill_instance = self.loader._create_skill_instance
+
+        def _update_skill_instance(*args, **kwargs):
+            self.loader.instance = self.skill_instance_mock
+            return True
+
+        self.loader._create_skill_instance = _update_skill_instance
+
+        with patch(self.mock_package + 'time') as time_mock:  # mycroft.skills.skill_loader.
             time_mock.return_value = 100
             with patch(self.mock_package + 'SettingsMetaUploader'):
-                self.loader.load()
+                self.loader.load()  # Correct skill ID
 
         self.assertTrue(self.loader.load_attempted)
         self.assertTrue(self.loader.loaded)
@@ -135,6 +197,8 @@ class TestSkillLoader(MycroftUnitTestBase):
         self.assertTrue(all((log in self.log_mock.method_calls
                              for log in log_messages)))
 
+        self.loader._create_skill_instance = real_create_skill_instance
+
     def test_reload_modified(self):
         self.loader.last_modified = 0
         self.loader.reload = Mock()
@@ -145,7 +209,12 @@ class TestSkillLoader(MycroftUnitTestBase):
 
     def test_skill_load_blacklisted(self):
         """Skill should not be loaded if it is blacklisted"""
-        self.loader.config['skills']['blacklisted_skills'] = ['test_skill']
+        config = dict(self.loader.config)
+        config['skills']['blacklisted_skills'] = ['test_skill']
+        self.loader.config = config
+        self.assertEqual(self.loader.config['skills']['blacklisted_skills'],
+                         ['test_skill'])
+        self.loader.skill_id = 'test_skill'
         with patch(self.mock_package + 'SettingsMetaUploader'):
             self.loader.load()
 

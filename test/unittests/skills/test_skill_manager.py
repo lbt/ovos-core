@@ -97,23 +97,21 @@ class TestSkillManager(MycroftUnitTestBase):
 
     def test_instantiate(self):
         expected_result = [
-            'mycroft.internet.connected',
             'skillmanager.list',
             'skillmanager.deactivate',
             'skillmanager.keep',
             'skillmanager.activate',
-           # 'mycroft.paired',
-           # 'mycroft.skills.settings.update',
             'mycroft.skills.initialized',
             'mycroft.skills.trained',
+            'mycroft.network.connected',
+            'mycroft.internet.connected',
             'mycroft.skills.is_alive',
             'mycroft.skills.is_ready',
             'mycroft.skills.all_loaded'
         ]
-        self.assertListEqual(
-            expected_result,
-            self.message_bus_mock.event_handlers
-        )
+
+        self.assertListEqual(expected_result,
+                             self.message_bus_mock.event_handlers)
 
     def test_unload_removed_skills(self):
         self.skill_manager._unload_removed_skills()
@@ -127,10 +125,11 @@ class TestSkillManager(MycroftUnitTestBase):
         self.skill_manager.send_skill_list(None)
 
         self.assertListEqual(
-            ['mycroft.skills.list'],
+            ['ovos.PHAL.internet_check',
+             'mycroft.skills.list'],
             self.message_bus_mock.message_types
         )
-        message_data = self.message_bus_mock.message_data[0]
+        message_data = self.message_bus_mock.message_data[-1]
         self.assertIn('test_skill', message_data.keys())
         skill_data = message_data['test_skill']
         self.assertDictEqual(dict(active=True, id='test_skill'), skill_data)
