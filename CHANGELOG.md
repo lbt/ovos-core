@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a20...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a21...HEAD)
+
+**Merged pull requests:**
+
+- Update dependencies to stable versions [\#268](https://github.com/OpenVoiceOS/ovos-core/pull/268) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.6a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a21) (2023-01-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a20...V0.0.6a21)
 
 **Implemented enhancements:**
 
@@ -679,10 +687,6 @@
 ## [V0.0.4a25](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a25) (2022-06-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a24...V0.0.4a25)
-
-**Fixed bugs:**
-
-- Fix typo in resource resolver [\#158](https://github.com/OpenVoiceOS/ovos-core/pull/158) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a24](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a24) (2022-06-10)
 
