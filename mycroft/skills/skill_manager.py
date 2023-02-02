@@ -26,6 +26,7 @@ from ovos_config.config import Configuration
 from mycroft.messagebus.message import Message
 from mycroft.util.log import LOG
 from mycroft.util import connected
+from ovos_utils.network_utils import is_connected
 from mycroft.skills.skill_loader import get_skill_directories, SkillLoader, PluginSkillLoader, find_skill_plugins
 from mycroft.skills.skill_updater import SeleneSkillManifestUploader
 from mycroft.messagebus import MessageBusClient
@@ -123,13 +124,23 @@ class SkillManager(Thread):
 
         self.status.bind(self.bus)
 
-        # If PHAL loaded first, make sure we get network state
+    def _sync_network_status(self):
         resp = self.bus.wait_for_response(Message("ovos.PHAL.internet_check"))
+        network = False
+        internet = False
         if resp:
             if resp.data.get('internet_connected'):
-                self.handle_internet_connected(resp)
+                network = internet = True
             elif resp.data.get('network_connected'):
-                self.handle_network_connected(resp)
+                network = True
+        else:
+            LOG.info("ovos-phal-plugin-connectivity-events not detected, performing direct network checks")
+            network = internet = is_connected()
+
+        if internet and not self._connected_event.is_set():
+            self.bus.emit(Message("mycroft.internet.connected"))
+        elif network and not self._network_event.is_set():
+            self.bus.emit(Message("mycroft.network.connected"))
 
     def _define_message_bus_events(self):
         """Define message bus events with handlers defined in this class."""
@@ -143,8 +154,8 @@ class SkillManager(Thread):
         self.bus.once('mycroft.skills.trained', self.handle_initial_training)
 
         # load skills waiting for connectivity
-        self.bus.on("mycroft.network.connected", self.handle_network_connected)
-        self.bus.on("mycroft.internet.connected", self.handle_internet_connected)
+        self.bus.once("mycroft.network.connected", self.handle_network_connected)
+        self.bus.once("mycroft.internet.connected", self.handle_internet_connected)
 
     def is_device_ready(self):
         is_ready = False
@@ -224,9 +235,14 @@ class SkillManager(Thread):
                 # not implemented
                 services[ser] = True
                 continue
-            elif ser in ["network_skills", "internet_skills"]:
-                # Implemented in skill manager
-                services[ser] = True
+            elif ser in ["skills"]:
+                services[ser] = self.status.check_ready()
+                continue
+            elif ser in ["network_skills"]:
+                services[ser] = self._network_loaded.is_set()
+                continue
+            elif ser in ["internet_skills"]:
+                services[ser] = self._internet_loaded.is_set()
                 continue
             response = self.bus.wait_for_response(
                 Message(f'mycroft.{ser}.is_ready',
@@ -346,7 +362,23 @@ class SkillManager(Thread):
         skill_ids = {os.path.basename(skill_path): skill_path
                      for skill_path in self._get_skill_directories()}
         priority_skills = self.skills_config.get("priority_skills") or []
+        if priority_skills:
+            update_code = """priority skills have been deprecated and support will be removed in a future release
+            Update skills with the following:
+            
+            from ovos_workshop.skills.base import SkillNetworkRequirements, classproperty
+
+            class MyPrioritySkill(OVOSSkill):
+                @classproperty
+                def network_requirements(self):
+                    return SkillNetworkRequirements(internet_before_load=False,
+                                                 network_before_load=False,
+                                                 requires_internet=False,
+                                                 requires_network=False)
+            """
+            LOG.warning(update_code)
         for skill_id in priority_skills:
+            LOG.info(f"Please refactor {skill_id} to specify offline network requirements")
             skill_path = skill_ids.get(skill_id)
             if skill_path is not None:
                 self._load_skill(skill_path)
@@ -368,15 +400,21 @@ class SkillManager(Thread):
 
         if self.skills_config.get("wait_for_internet", False):
             LOG.warning("`wait_for_internet` is a deprecated option, update to "
-                        "specify `network_skills` and `internet_skills` in "
+                        "specify `network_skills`or `internet_skills` in "
                         "`ready_settings`")
             # NOTE - self._connected_event will never be set
             # if PHAL plugin is not running to emit the connected events
             while not self._connected_event.is_set():
+                # ensure we dont block here forever if plugin not installed
+                self._sync_network_status()
                 sleep(1)
             LOG.debug("Internet Connected")
+        else:
+            # trigger a sync so we dont need to wait for the plugin to volunteer info
+            self._sync_network_status()
+
         if "network_skills" in self.config.get("ready_settings"):
-            self._connected_event.wait()  # Wait for user to connect to network
+            self._network_event.wait()  # Wait for user to connect to network
             if self._network_loaded.wait(self._network_skill_timeout):
                 LOG.debug("Network skills loaded")
             else:
