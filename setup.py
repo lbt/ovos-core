@@ -77,6 +77,11 @@ setup(
     },
     packages=find_packages(include=['mycroft*']),
     include_package_data=True,
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: Apache-2.0",
+    ],
     entry_points={
         'console_scripts': [
             'mycroft-speech-client=mycroft.listener.__main__:main',
