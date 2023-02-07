@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a1...HEAD)
+
+**Fixed bugs:**
+
+- cleanup requirements.txt [\#271](https://github.com/OpenVoiceOS/ovos-core/pull/271) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.7a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a1) (2023-02-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6...V0.0.7a1)
 
 **Fixed bugs:**
 
@@ -675,10 +683,6 @@
 ## [V0.0.4a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a29) (2022-06-21)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a28...V0.0.4a29)
-
-**Implemented enhancements:**
-
-- feat/yaml\_support [\#162](https://github.com/OpenVoiceOS/ovos-core/pull/162) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a28) (2022-06-17)
 
