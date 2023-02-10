@@ -27,6 +27,7 @@ from mycroft.messagebus.message import Message
 from mycroft.util.log import LOG
 from mycroft.util import connected
 from ovos_utils.network_utils import is_connected
+from ovos_utils.gui import is_gui_connected
 from mycroft.skills.skill_loader import get_skill_directories, SkillLoader, PluginSkillLoader, find_skill_plugins
 from mycroft.skills.skill_updater import SeleneSkillManifestUploader
 from mycroft.messagebus import MessageBusClient
@@ -101,13 +102,17 @@ class SkillManager(Thread):
         self.status = ProcessStatus('skills', callback_map=callbacks)
         self.status.set_started()
 
+        self._lock = Lock()
         self._setup_event = Event()
         self._stop_event = Event()
         self._connected_event = Event()
         self._network_event = Event()
+        self._gui_event = Event()
         self._network_loaded = Event()
         self._internet_loaded = Event()
         self._network_skill_timeout = 300
+        self._allow_state_reloads = True
+
         self.config = Configuration()
         self.manifest_uploader = SeleneSkillManifestUploader()
         self.upload_queue = UploadQueue()  # DEPRECATED
@@ -124,17 +129,20 @@ class SkillManager(Thread):
 
         self.status.bind(self.bus)
 
-    def _sync_network_status(self):
+    def _sync_skill_loading_state(self):
         resp = self.bus.wait_for_response(Message("ovos.PHAL.internet_check"))
         network = False
         internet = False
+        if not self._gui_event.is_set() and is_gui_connected(self.bus):
+            self._gui_event.set()
+
         if resp:
             if resp.data.get('internet_connected'):
                 network = internet = True
             elif resp.data.get('network_connected'):
                 network = True
         else:
-            LOG.info("ovos-phal-plugin-connectivity-events not detected, performing direct network checks")
+            LOG.debug("ovos-phal-plugin-connectivity-events not detected, performing direct network checks")
             network = internet = is_connected()
 
         if internet and not self._connected_event.is_set():
@@ -154,8 +162,12 @@ class SkillManager(Thread):
         self.bus.once('mycroft.skills.trained', self.handle_initial_training)
 
         # load skills waiting for connectivity
-        self.bus.once("mycroft.network.connected", self.handle_network_connected)
-        self.bus.once("mycroft.internet.connected", self.handle_internet_connected)
+        self.bus.on("mycroft.network.connected", self.handle_network_connected)
+        self.bus.on("mycroft.internet.connected", self.handle_internet_connected)
+        self.bus.on("mycroft.gui.available", self.handle_gui_connected)
+        self.bus.on("mycroft.network.disconnected", self.handle_network_disconnected)
+        self.bus.on("mycroft.internet.disconnected", self.handle_internet_disconnected)
+        self.bus.on("mycroft.gui.unavailable", self.handle_gui_disconnected)
 
     def is_device_ready(self):
         is_ready = False
@@ -294,11 +306,35 @@ class SkillManager(Thread):
         upload of settings is done at individual skill level in ovos-core """
         pass
 
+    def handle_gui_connected(self, message):
+        # some gui extensions such as mobile may request that skills never unload
+        self._allow_state_reloads = not message.data.get("permanent", False)
+        if not self._gui_event.is_set():
+            LOG.debug("GUI Connected")
+            self._gui_event.set()
+            self._load_new_skills()
+
+    def handle_gui_disconnected(self, message):
+        if self._allow_state_reloads:
+            self._gui_event.clear()
+            self._unload_on_gui_disconnect()
+
+    def handle_internet_disconnected(self, message):
+        if self._allow_state_reloads:
+            self._connected_event.clear()
+            self._unload_on_internet_disconnect()
+
+    def handle_network_disconnected(self, message):
+        if self._allow_state_reloads:
+            self._network_event.clear()
+            self._unload_on_network_disconnect()
+
     def handle_internet_connected(self, message):
-        LOG.debug("Internet Connected")
-        self._network_event.set()
-        self._connected_event.set()
-        self._load_on_internet()
+        if not self._connected_event.is_set():
+            LOG.debug("Internet Connected")
+            self._network_event.set()
+            self._connected_event.set()
+            self._load_on_internet()
 
         # Sync backend and skills.
         # why does selene need to know about skills without settings?
@@ -306,9 +342,10 @@ class SkillManager(Thread):
             self.manifest_uploader.post_manifest()
 
     def handle_network_connected(self, message):
-        LOG.debug("Network Connected")
-        self._network_event.set()
-        self._load_on_network()
+        if not self._network_event.is_set():
+            LOG.debug("Network Connected")
+            self._network_event.set()
+            self._load_on_network()
 
     def load_plugin_skills(self, network=None, internet=None):
         if network is None:
@@ -320,7 +357,7 @@ class SkillManager(Thread):
         for skill_id, plug in plugins.items():
             if skill_id not in self.plugin_skills and skill_id not in loaded_skill_ids:
                 skill_loader = self._get_plugin_skill_loader(skill_id, init_bus=False)
-                requirements = skill_loader.network_requirements
+                requirements = skill_loader.runtime_requirements
                 if not network and requirements.network_before_load:
                     continue
                 if not internet and requirements.internet_before_load:
@@ -366,12 +403,13 @@ class SkillManager(Thread):
             update_code = """priority skills have been deprecated and support will be removed in a future release
             Update skills with the following:
             
-            from ovos_workshop.skills.base import SkillNetworkRequirements, classproperty
+            from ovos_utils.process_utils import RuntimeRequirements
+            from ovos_utils import classproperty
 
             class MyPrioritySkill(OVOSSkill):
                 @classproperty
                 def network_requirements(self):
-                    return SkillNetworkRequirements(internet_before_load=False,
+                    return RuntimeRequirements(internet_before_load=False,
                                                  network_before_load=False,
                                                  requires_internet=False,
                                                  requires_network=False)
@@ -406,12 +444,12 @@ class SkillManager(Thread):
             # if PHAL plugin is not running to emit the connected events
             while not self._connected_event.is_set():
                 # ensure we dont block here forever if plugin not installed
-                self._sync_network_status()
+                self._sync_skill_loading_state()
                 sleep(1)
             LOG.debug("Internet Connected")
         else:
             # trigger a sync so we dont need to wait for the plugin to volunteer info
-            self._sync_network_status()
+            self._sync_skill_loading_state()
 
         if "network_skills" in self.config.get("ready_settings"):
             self._network_event.wait()  # Wait for user to connect to network
@@ -439,7 +477,12 @@ class SkillManager(Thread):
             sleep(0.5)
         self.status.set_ready()
 
-        LOG.info("Skills all loaded!")
+        if self._gui_event.is_set() and self._connected_event.is_set():
+            LOG.info("Skills all loaded!")
+        elif not self._connected_event.is_set():
+            LOG.info("Offline Skills loaded, waiting for Internet to load more!")
+        elif not self._gui_event.is_set():
+            LOG.info("Skills loaded, waiting for GUI to load more!")
 
         # Scan the file folder that contains Skills.  If a Skill is updated,
         # unload the existing version from memory and reload from the disk.
@@ -450,7 +493,7 @@ class SkillManager(Thread):
                 self._watchdog()
                 sleep(2)  # Pause briefly before beginning next scan
             except Exception:
-                LOG.exception('Something really unexpected has occured '
+                LOG.exception('Something really unexpected has occurred '
                               'and the skill manager loop safety harness was '
                               'hit.')
                 sleep(30)
@@ -464,57 +507,105 @@ class SkillManager(Thread):
                 os.remove(i)
 
     def _load_on_network(self):
-        LOG.info('Loading network skills...')
+        LOG.info('Loading skills that require network...')
         self._load_new_skills(network=True, internet=False)
         self._network_loaded.set()
 
     def _load_on_internet(self):
-        LOG.info('Loading internet skills...')
+        LOG.info('Loading skills that require internet...')
         self._load_new_skills(network=True, internet=True)
         self._internet_loaded.set()
+
+    def _unload_on_network_disconnect(self):
+        """ unload skills that require network to work """
+        with self._lock:
+            for skill_dir in self._get_skill_directories():
+                # by definition skill_id == folder name
+                skill_id = os.path.basename(skill_dir)
+                skill_loader = self._get_skill_loader(skill_dir, init_bus=False)
+                requirements = skill_loader.runtime_requirements
+                if requirements.requires_network and \
+                        not requirements.no_network_fallback:
+                    # unload until network is back
+                    self._unload_skill(skill_dir)
+
+    def _unload_on_internet_disconnect(self):
+        """ unload skills that require internet to work """
+        with self._lock:
+            for skill_dir in self._get_skill_directories():
+                # by definition skill_id == folder name
+                skill_id = os.path.basename(skill_dir)
+                skill_loader = self._get_skill_loader(skill_dir, init_bus=False)
+                requirements = skill_loader.runtime_requirements
+                if requirements.requires_internet and \
+                        not requirements.no_internet_fallback:
+                    # unload until internet is back
+                    self._unload_skill(skill_dir)
+
+    def _unload_on_gui_disconnect(self):
+        """ unload skills that require gui to work """
+        with self._lock:
+            for skill_dir in self._get_skill_directories():
+                # by definition skill_id == folder name
+                skill_id = os.path.basename(skill_dir)
+                skill_loader = self._get_skill_loader(skill_dir, init_bus=False)
+                requirements = skill_loader.runtime_requirements
+                if requirements.requires_gui and \
+                        not requirements.no_gui_fallback:
+                    # unload until gui is back
+                    self._unload_skill(skill_dir)
 
     def _load_on_startup(self):
         """Handle initial skill load."""
         LOG.info('Loading offline skills...')
         self._load_new_skills(network=False, internet=False)
 
-    def _load_new_skills(self, network=None, internet=None):
+    def _load_new_skills(self, network=None, internet=None, gui=None):
         """Handle load of skills installed since startup."""
         if network is None:
             network = self._network_event.is_set()
         if internet is None:
             internet = self._connected_event.is_set()
+        if gui is None:
+            gui = self._gui_event.is_set() or is_gui_connected(self.bus)
 
-        self.load_plugin_skills(network=network, internet=internet)
+        # a lock is used because this can be called via state events or as part of the main loop
+        # there is a possible race condition where this handler would be executing several times otherwise
+        with self._lock:
 
-        for skill_dir in self._get_skill_directories():
-            replaced_skills = []
-            # by definition skill_id == folder name
-            skill_id = os.path.basename(skill_dir)
-            skill_loader = self._get_skill_loader(skill_dir, init_bus=False)
-            requirements = skill_loader.network_requirements
-            if not network and requirements.network_before_load:
-                continue
-            if not internet and requirements.internet_before_load:
-                continue
+            self.load_plugin_skills(network=network, internet=internet)
 
-            # a local source install is replacing this plugin, unload it!
-            if skill_id in self.plugin_skills:
-                LOG.info(f"{skill_id} plugin will be replaced by a local version: {skill_dir}")
-                self._unload_plugin_skill(skill_id)
+            for skill_dir in self._get_skill_directories():
+                replaced_skills = []
+                # by definition skill_id == folder name
+                skill_id = os.path.basename(skill_dir)
+                skill_loader = self._get_skill_loader(skill_dir, init_bus=False)
+                requirements = skill_loader.runtime_requirements
+                if not network and requirements.network_before_load:
+                    continue
+                if not internet and requirements.internet_before_load:
+                    continue
+                if not gui and requirements.gui_before_load:
+                    # TODO - companion PR adding this one
+                    continue
 
-            for old_skill_dir, skill_loader in self.skill_loaders.items():
-                if old_skill_dir != skill_dir and \
-                        skill_loader.skill_id == skill_id:
-                    # a higher priority equivalent has been detected!
-                    replaced_skills.append(old_skill_dir)
+                # a local source install is replacing this plugin, unload it!
+                if skill_id in self.plugin_skills:
+                    LOG.info(f"{skill_id} plugin will be replaced by a local version: {skill_dir}")
+                    self._unload_plugin_skill(skill_id)
 
-            for old_skill_dir in replaced_skills:
-                # unload the old skill
-                self._unload_skill(old_skill_dir)
+                for old_skill_dir, skill_loader in self.skill_loaders.items():
+                    if old_skill_dir != skill_dir and \
+                            skill_loader.skill_id == skill_id:
+                        # a higher priority equivalent has been detected!
+                        replaced_skills.append(old_skill_dir)
 
-            if skill_dir not in self.skill_loaders:
-                self._load_skill(skill_dir)
+                for old_skill_dir in replaced_skills:
+                    # unload the old skill
+                    self._unload_skill(old_skill_dir)
+
+                if skill_dir not in self.skill_loaders:
+                    self._load_skill(skill_dir)
 
     def _get_skill_loader(self, skill_directory, init_bus=True):
         bus = None
@@ -583,7 +674,7 @@ class SkillManager(Thread):
 
         # If skills were removed make sure to update the manifest on the
         # mycroft backend.
-        if removed_skills:
+        if removed_skills and self._connected_event.is_set():
             self.manifest_uploader.post_manifest(reload_skills_manifest=True)
 
     def _unload_plugin_skill(self, skill_id):
