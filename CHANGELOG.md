@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a2...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a3...HEAD)
+
+**Merged pull requests:**
+
+- fix color scheme selection popups on vertical displays [\#275](https://github.com/OpenVoiceOS/ovos-core/pull/275) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.7a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a3) (2023-02-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a2...V0.0.7a3)
 
 **Fixed bugs:**
 
@@ -659,10 +667,6 @@
 ## [V0.0.4a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a34) (2022-07-05)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a33...V0.0.4a34)
-
-**Merged pull requests:**
-
-- refactor/ovos\_config\_pkg [\#167](https://github.com/OpenVoiceOS/ovos-core/pull/167) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a33) (2022-06-25)
 
