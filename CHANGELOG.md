@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a4...HEAD)
+
+**Implemented enhancements:**
+
+- skill loading requirements continued [\#272](https://github.com/OpenVoiceOS/ovos-core/pull/272) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.7a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a4) (2023-02-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a3...V0.0.7a4)
 
 **Merged pull requests:**
 
@@ -421,10 +429,6 @@
 **Implemented enhancements:**
 
 - refactor/selene\_api -\> ovos-backend-client [\#201](https://github.com/OpenVoiceOS/ovos-core/pull/201) ([JarbasAl](https://github.com/JarbasAl))
-
-**Merged pull requests:**
-
-- Allow specifying no retries in MutableMicrophone class [\#168](https://github.com/OpenVoiceOS/ovos-core/pull/168) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a15) (2022-10-04)
 
