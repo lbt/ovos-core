@@ -2,11 +2,23 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a2...HEAD)
 
 **Fixed bugs:**
 
-- cleanup requirements.txt [\#271](https://github.com/OpenVoiceOS/ovos-core/pull/271) ([JarbasAl](https://github.com/JarbasAl))
+- rm setup skill [\#278](https://github.com/OpenVoiceOS/ovos-core/pull/278) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- planned 0.0.7 breaks platforms and distribution packaging. [\#276](https://github.com/OpenVoiceOS/ovos-core/issues/276)
+
+## [V0.0.7a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a2) (2023-02-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a1...V0.0.7a2)
+
+**Fixed bugs:**
+
+- default VAD to "ovos-vad-plugin-webrtcvad" + setup/requirements cleanup [\#271](https://github.com/OpenVoiceOS/ovos-core/pull/271) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.7a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a1) (2023-02-02)
 
@@ -656,25 +668,13 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a32...V0.0.4a33)
 
-**Fixed bugs:**
-
-- Move ovos\_workshop import out of top-level to allow load without skills extra [\#166](https://github.com/OpenVoiceOS/ovos-core/pull/166) ([NeonDaniel](https://github.com/NeonDaniel))
-
 ## [V0.0.4a32](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a32) (2022-06-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a31...V0.0.4a32)
 
-**Fixed bugs:**
-
-- Patch typo in warning log [\#165](https://github.com/OpenVoiceOS/ovos-core/pull/165) ([NeonDaniel](https://github.com/NeonDaniel))
-
 ## [V0.0.4a31](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a31) (2022-06-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a30...V0.0.4a31)
-
-**Implemented enhancements:**
-
-- Add display configuration for smartspeakers [\#164](https://github.com/OpenVoiceOS/ovos-core/pull/164) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.4a30](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a30) (2022-06-22)
 
