@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a6...HEAD)
+
+**Merged pull requests:**
+
+- Debug and fix skill load errors [\#280](https://github.com/OpenVoiceOS/ovos-core/pull/280) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.7a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a6) (2023-02-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a5...V0.0.7a6)
 
 **Merged pull requests:**
 
@@ -663,10 +671,6 @@
 ## [V0.0.4a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a36) (2022-07-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a35...V0.0.4a36)
-
-**Fixed bugs:**
-
-- Handle recursive inspection of resource directories [\#170](https://github.com/OpenVoiceOS/ovos-core/pull/170) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a35) (2022-07-13)
 
