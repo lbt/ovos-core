@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a6...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a7...HEAD)
+
+**Merged pull requests:**
+
+- add wallpaper settings and switch all to new wallpaper manager [\#286](https://github.com/OpenVoiceOS/ovos-core/pull/286) ([AIIX](https://github.com/AIIX))
+
+## [V0.0.7a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a7) (2023-02-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a6...V0.0.7a7)
 
 **Merged pull requests:**
 
@@ -656,17 +664,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a37...V0.0.4a38)
 
-**Fixed bugs:**
-
-- Handle 'None' configuration values for deprecated directory params [\#172](https://github.com/OpenVoiceOS/ovos-core/pull/172) ([NeonDaniel](https://github.com/NeonDaniel))
-
 ## [V0.0.4a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a37) (2022-07-14)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a36...V0.0.4a37)
-
-**Fixed bugs:**
-
-- Add config reference for backwards-compat [\#171](https://github.com/OpenVoiceOS/ovos-core/pull/171) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a36) (2022-07-13)
 
