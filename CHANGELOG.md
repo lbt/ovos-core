@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a7...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a8...HEAD)
+
+**Merged pull requests:**
+
+- Fix AudioProducer shutdown [\#288](https://github.com/OpenVoiceOS/ovos-core/pull/288) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.7a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a8) (2023-02-23)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a7...V0.0.7a8)
 
 **Merged pull requests:**
 
@@ -648,17 +656,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a39...V0.0.4a40)
 
-**Merged pull requests:**
-
-- Adds advanced configuration GUI interface for drop down menu [\#174](https://github.com/OpenVoiceOS/ovos-core/pull/174) ([AIIX](https://github.com/AIIX))
-
 ## [V0.0.4a39](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a39) (2022-07-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a38...V0.0.4a39)
-
-**Fixed bugs:**
-
-- Prevent duplicate language intent registration [\#173](https://github.com/OpenVoiceOS/ovos-core/pull/173) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a38](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a38) (2022-07-15)
 
