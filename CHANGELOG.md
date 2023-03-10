@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a10...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a11...HEAD)
+
+**Merged pull requests:**
+
+- Update dependencies to stable versions [\#294](https://github.com/OpenVoiceOS/ovos-core/pull/294) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.7a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a11) (2023-03-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7a10...V0.0.7a11)
 
 **Merged pull requests:**
 
@@ -658,10 +666,6 @@
 ## [V0.0.4a41](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a41) (2022-07-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a40...V0.0.4a41)
-
-**Merged pull requests:**
-
-- Add Translations and Language support for de es pt it fr nl [\#177](https://github.com/OpenVoiceOS/ovos-core/pull/177) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.4a40](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a40) (2022-07-19)
 
