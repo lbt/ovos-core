@@ -14,7 +14,7 @@ RUN mkdir -p /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/my
 RUN chown mycroft:mycroft -R /home/mycroft/.config/mycroft /home/mycroft/.cache/mycroft /home/mycroft/.local/share/mycroft
 
 # workaround dependency resolution bug due to toml parsing error
-RUN pip3 install git+https://github.com/maxbachmann/RapidFuzz
+RUN pip3 install rapidfuzz==2.11.1
 
 COPY . /tmp/ovos-core
 RUN pip3 install /tmp/ovos-core
