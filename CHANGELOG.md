@@ -2,7 +2,23 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a1...HEAD)
+
+**Implemented enhancements:**
+
+- TODO - metapackage automation [\#264](https://github.com/OpenVoiceOS/ovos-core/issues/264)
+
+**Closed issues:**
+
+- Add padatious to extra-skills.txt [\#299](https://github.com/OpenVoiceOS/ovos-core/issues/299)
+
+**Merged pull requests:**
+
+- mycroft-bus-client -\> ovos-bus-client [\#300](https://github.com/OpenVoiceOS/ovos-core/pull/300) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a1) (2023-03-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.7...V0.0.8a1)
 
 **Implemented enhancements:**
 
@@ -606,10 +622,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a4...V0.0.5a5)
 
-**Merged pull requests:**
-
-- Update data structure passed to GUI about page [\#185](https://github.com/OpenVoiceOS/ovos-core/pull/185) ([NeonDaniel](https://github.com/NeonDaniel))
-
 ## [V0.0.5a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a4) (2022-08-31)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a3...V0.0.5a4)
@@ -653,15 +665,10 @@
 **Merged pull requests:**
 
 - add Workshop integration tests [\#187](https://github.com/OpenVoiceOS/ovos-core/pull/187) ([NeonDaniel](https://github.com/NeonDaniel))
-- feat/integration\_tests [\#184](https://github.com/OpenVoiceOS/ovos-core/pull/184) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a47](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a47) (2022-08-06)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a46...V0.0.4a47)
-
-**Implemented enhancements:**
-
-- refactor/padacioso [\#183](https://github.com/OpenVoiceOS/ovos-core/pull/183) ([NeonJarbas](https://github.com/NeonJarbas))
 
 ## [V0.0.4a46](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a46) (2022-08-06)
 
