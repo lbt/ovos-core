@@ -14,8 +14,8 @@
 #
 from unittest import TestCase
 from unittest.mock import patch, Mock
-from mycroft.configuration import Configuration
-from mycroft.messagebus.client import MessageBusClient, MessageWaiter
+from ovos_config import Configuration
+from ovos_bus_client.client import MessageBusClient, MessageWaiter
 
 WS_CONF = {
     'websocket': {
