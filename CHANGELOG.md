@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a1...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a2...HEAD)
+
+**Merged pull requests:**
+
+- add common\_play.voc translations [\#284](https://github.com/OpenVoiceOS/ovos-core/pull/284) ([emphasize](https://github.com/emphasize))
+
+## [V0.0.8a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a2) (2023-04-11)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a1...V0.0.8a2)
 
 **Implemented enhancements:**
 
@@ -661,10 +669,6 @@
 ## [V0.0.4a48](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a48) (2022-08-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.4a47...V0.0.4a48)
-
-**Merged pull requests:**
-
-- add Workshop integration tests [\#187](https://github.com/OpenVoiceOS/ovos-core/pull/187) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.4a47](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.4a47) (2022-08-06)
 
