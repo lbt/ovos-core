@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a4...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a5...HEAD)
+
+**Merged pull requests:**
+
+- refactor/skill\_loader\_from\_workshop [\#306](https://github.com/OpenVoiceOS/ovos-core/pull/306) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a5) (2023-04-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a4...V0.0.8a5)
 
 **Merged pull requests:**
 
@@ -649,10 +657,6 @@
 ## [V0.0.5a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a3) (2022-08-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a2...V0.0.5a3)
-
-**Merged pull requests:**
-
-- Fix Neon leftovers from ported language API [\#191](https://github.com/OpenVoiceOS/ovos-core/pull/191) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a2) (2022-08-26)
 
