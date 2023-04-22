@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a3...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a4...HEAD)
+
+**Merged pull requests:**
+
+- refactor/common\_qa\_speak [\#305](https://github.com/OpenVoiceOS/ovos-core/pull/305) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a4) (2023-04-14)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a3...V0.0.8a4)
 
 **Fixed bugs:**
 
@@ -582,10 +590,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a11...V0.0.5a12)
 
-**Implemented enhancements:**
-
-- refactor/selene\_api [\#189](https://github.com/OpenVoiceOS/ovos-core/pull/189) ([NeonJarbas](https://github.com/NeonJarbas))
-
 ## [V0.0.5a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a11) (2022-09-21)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a10...V0.0.5a11)
@@ -653,10 +657,6 @@
 ## [V0.0.5a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a2) (2022-08-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a1...V0.0.5a2)
-
-**Implemented enhancements:**
-
-- Port supported languages API from Neon speech/audio modules [\#190](https://github.com/OpenVoiceOS/ovos-core/pull/190) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a1) (2022-08-19)
 
