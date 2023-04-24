@@ -206,7 +206,8 @@ class PadatiousService:
         Args:
             intent_name (str): intent identifier
         """
-        self.detached_intents.append(intent_name)
+        if intent_name not in self.detached_intents:
+            self.detached_intents.append(intent_name)
         if intent_name in self.registered_intents:
             self.registered_intents.remove(intent_name)
             for lang in self.containers:
