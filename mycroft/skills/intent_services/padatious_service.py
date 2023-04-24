@@ -156,19 +156,6 @@ class PadatiousService:
         if lang not in self.containers:
             self.containers[lang] = jurebes.JurebesIntentContainer(fuzzy=self.padatious_config.get("fuzz", False))
 
-    def _ensure_min_intents(self):
-        for lang in self.containers:
-            # we need at least 2 classes without capture groups to train the classifier
-            # add fake intents if needed
-            # TODO - maybe handle this better directly in jurebes
-            n_ints = [i for i, s in self.containers[lang].intent_samples.items()
-                      if not any("{" in _ for _ in s)]
-            if len(n_ints) == 0:
-                self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER", ["_", "-"])
-            elif len(n_ints) == 1:
-                self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER", ["?", "!", "."])
-                self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER2", ["_", "-"])
-
     def train(self, message=None):
         """Perform Jurebes training.
 
@@ -176,8 +163,6 @@ class PadatiousService:
             message (Message): optional triggering message
         """
         self.finished_training_event.clear()
-
-        self._ensure_min_intents()
 
         for lang in self.containers:
             self.containers[lang].train()
@@ -303,18 +288,10 @@ class PadatiousService:
             return
         lang = lang or self.lang
         lang = lang.lower()
-        bad_intents = [":UNKNOWN_PLACEHOLDER", ":UNKNOWN_PLACEHOLDER2"]
         if lang in self.containers:
             intent = self.containers[lang].calc_intent(utt)
-            if intent and intent.intent_name not in bad_intents:
-                # filter entity matches that dont belong to this skill
-                skill_id = intent.intent_name.split(":")[0]
-                if skill_id not in self._skill_entities:
-                    intent.entities = {}
-                else:
-                    intent.entities = {k: v for k, v in intent.entities.items()
-                                       if k in self._skill_entities[skill_id]}
-                LOG.info(str(intent))
+            if intent:
+                LOG.info(utt + str(intent))
                 assert isinstance(intent, jurebes.IntentMatch)
                 return PadatiousIntent(name=intent.intent_name, sent=utt,
                                        matches=intent.entities,
