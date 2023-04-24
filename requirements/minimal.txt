@@ -3,10 +3,7 @@ python-dateutil~=2.6
 watchdog~=2.1
 
 combo-lock~=0.2
-padacioso~=0.1.2
-jurebes>=0.0.1a1
-ovos-classifiers[sklearn]>=0.0.0a2
-
+jurebes>=0.1.0a2
 
 ovos_bus_client<0.1.0, >=0.0.4a3
 ovos-utils<0.1.0, >=0.0.33a1
