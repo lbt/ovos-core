@@ -149,7 +149,6 @@ class PadatiousService:
 
         self.registered_intents = []
         self.registered_entities = []
-        self.detached_intents = []
 
     def _init_lang(self, lang):
         lang = lang.lower()
@@ -206,8 +205,6 @@ class PadatiousService:
         Args:
             intent_name (str): intent identifier
         """
-        if intent_name not in self.detached_intents:
-            self.detached_intents.append(intent_name)
         if intent_name in self.registered_intents:
             self.registered_intents.remove(intent_name)
             for lang in self.containers:
@@ -258,9 +255,8 @@ class PadatiousService:
             samples = [l.strip() for l in f.readlines()]
 
         if object_name == "intent":
-            if name in self.detached_intents:
-                self.detached_intents.remove(name)
             self.containers[lang].add_intent(name, samples)
+            self.containers[lang].reatach_intent(name)  # if it was a reload
         else:
             self.containers[lang].add_entity(name, samples)
 
@@ -296,7 +292,7 @@ class PadatiousService:
         """
         lang = lang or self.lang
         lang = lang.lower()
-        bad_intents = self.detached_intents + [":UNKNOWN_PLACEHOLDER", ":UNKNOWN_PLACEHOLDER2"]
+        bad_intents = [":UNKNOWN_PLACEHOLDER", ":UNKNOWN_PLACEHOLDER2"]
         if lang in self.containers:
             intent = self.containers[lang].calc_intent(utt)
             if intent and intent.intent_name not in bad_intents:
