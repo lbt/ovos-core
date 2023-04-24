@@ -149,6 +149,7 @@ class PadatiousService:
 
         self.registered_intents = []
         self.registered_entities = []
+        self._skill_entities = {}
 
     def _init_lang(self, lang):
         lang = lang.lower()
@@ -260,6 +261,12 @@ class PadatiousService:
             self.containers[lang].add_intent(name, samples)
             self.containers[lang].reatach_intent(name)  # if it was a reload
         else:
+            skill_id = message.data.get("skill_id") or message.context.get("skill_id")
+            if skill_id:
+                if skill_id not in self._skill_entities:
+                    self._skill_entities[skill_id] = [name]
+                else:
+                    self._skill_entities[skill_id].append(name)
             self.containers[lang].add_entity(name, samples)
 
         self.train_time = get_time() + self.train_delay
@@ -292,12 +299,22 @@ class PadatiousService:
         Args:
             utt (str): utterance to calculate best intent for
         """
+        if not self.finished_initial_train:
+            return
         lang = lang or self.lang
         lang = lang.lower()
         bad_intents = [":UNKNOWN_PLACEHOLDER", ":UNKNOWN_PLACEHOLDER2"]
         if lang in self.containers:
             intent = self.containers[lang].calc_intent(utt)
             if intent and intent.intent_name not in bad_intents:
+                # filter entity matches that dont belong to this skill
+                skill_id = intent.intent_name.split(":")[0]
+                if skill_id not in self._skill_entities:
+                    intent.entities = {}
+                else:
+                    intent.entities = {k: v for k, v in intent.entities.items()
+                                       if k in self._skill_entities[skill_id]}
+                LOG.info(str(intent))
                 assert isinstance(intent, jurebes.IntentMatch)
                 return PadatiousIntent(name=intent.intent_name, sent=utt,
                                        matches=intent.entities,
