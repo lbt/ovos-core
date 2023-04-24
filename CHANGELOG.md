@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a5...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a6...HEAD)
+
+**Fixed bugs:**
+
+- bump dependencies [\#311](https://github.com/OpenVoiceOS/ovos-core/pull/311) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a6) (2023-04-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a5...V0.0.8a6)
 
 **Merged pull requests:**
 
@@ -641,10 +649,6 @@
 ## [V0.0.5a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a6) (2022-09-06)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a5...V0.0.5a6)
-
-**Merged pull requests:**
-
-- Cast available langauges set to list for JSON compat. [\#192](https://github.com/OpenVoiceOS/ovos-core/pull/192) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a5) (2022-09-03)
 
