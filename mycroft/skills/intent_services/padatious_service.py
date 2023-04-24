@@ -161,7 +161,7 @@ class PadatiousService:
             # we need at least 2 classes without capture groups to train the classifier
             # add fake intents if needed
             # TODO - maybe handle this better directly in jurebes
-            n_ints = [i for i, s in self.containers[lang].intent_lines.items()
+            n_ints = [i for i, s in self.containers[lang].intent_samples.items()
                       if not any("{" in _ for _ in s)]
             if len(n_ints) == 0:
                 self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER", ["_", "-"])
@@ -211,7 +211,7 @@ class PadatiousService:
         if intent_name in self.registered_intents:
             self.registered_intents.remove(intent_name)
             for lang in self.containers:
-                self.containers[lang].remove_intent(intent_name)
+                self.containers[lang].detach_intent(intent_name)
 
     def handle_detach_intent(self, message):
         """Messagebus handler for detaching Jurebes intent.
