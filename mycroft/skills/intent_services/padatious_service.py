@@ -12,60 +12,52 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Intent service wrapping padatious."""
-from subprocess import call
+"""Intent service wrapping Jurebes."""
+from os.path import isfile
 from threading import Event
 from time import time as get_time, sleep
 
-from os import path
-from os.path import expanduser, isfile
-
 from ovos_config.config import Configuration
+
+import jurebes
+from mycroft.skills.intent_services.base import IntentMatch
 from ovos_bus_client.message import Message
 from ovos_utils.log import LOG
-from mycroft.skills.intent_services.base import IntentMatch
 
-from padacioso import IntentContainer as FallbackIntentContainer
 
-try:
-    import padatious as _pd
-    from padatious.match_data import MatchData as PadatiousIntent
-except ImportError:
-    _pd = None
+# this class is just for compat
+class PadatiousIntent:
+    """
+    A set of data describing how a query fits into an intent
+    Attributes:
+        name (str): Name of matched intent
+        sent (str): The query after entity extraction
+        conf (float): Confidence (from 0.0 to 1.0)
+        matches (dict of str -> str): Key is the name of the entity and
+            value is the extracted part of the sentence
+    """
 
-    # padatious is optional, this class is just for compat
-    class PadatiousIntent:
-        """
-        A set of data describing how a query fits into an intent
-        Attributes:
-            name (str): Name of matched intent
-            sent (str): The query after entity extraction
-            conf (float): Confidence (from 0.0 to 1.0)
-            matches (dict of str -> str): Key is the name of the entity and
-                value is the extracted part of the sentence
-        """
+    def __init__(self, name, sent, matches=None, conf=0.0):
+        self.name = name
+        self.sent = sent
+        self.matches = matches or {}
+        self.conf = conf
 
-        def __init__(self, name, sent, matches=None, conf=0.0):
-            self.name = name
-            self.sent = sent
-            self.matches = matches or {}
-            self.conf = conf
+    def __getitem__(self, item):
+        return self.matches.__getitem__(item)
 
-        def __getitem__(self, item):
-            return self.matches.__getitem__(item)
+    def __contains__(self, item):
+        return self.matches.__contains__(item)
 
-        def __contains__(self, item):
-            return self.matches.__contains__(item)
+    def get(self, key, default=None):
+        return self.matches.get(key, default)
 
-        def get(self, key, default=None):
-            return self.matches.get(key, default)
-
-        def __repr__(self):
-            return repr(self.__dict__)
+    def __repr__(self):
+        return repr(self.__dict__)
 
 
 class PadatiousMatcher:
-    """Matcher class to avoid redundancy in padatious intent matching."""
+    """Matcher class to avoid redundancy in Jurebes intent matching."""
 
     def __init__(self, service):
         self.service = service
@@ -84,7 +76,7 @@ class PadatiousMatcher:
         if not self.has_result:
             lang = lang or self.service.lang
             padatious_intent = None
-            LOG.debug(f'Padatious Matching confidence > {limit}')
+            LOG.debug(f'Jurebes Matching confidence > {limit}')
             for utt in utterances:
                 for variant in utt:
                     intent = self.service.calc_intent(variant, lang)
@@ -132,35 +124,16 @@ class PadatiousMatcher:
 
 
 class PadatiousService:
-    """Service class for padatious intent matching."""
+    """Service class for Jurebes intent matching."""
 
     def __init__(self, bus, config):
         self.padatious_config = config
         self.bus = bus
-        intent_cache = expanduser(self.padatious_config['intent_cache'])
 
         core_config = Configuration()
         self.lang = core_config.get("lang", "en-us")
-        langs = core_config.get('secondary_langs') or []
-        if self.lang not in langs:
-            langs.append(self.lang)
 
-        if self.is_regex_only:
-            if not _pd:
-                LOG.error('Padatious not installed. Falling back to pure regex alternative')
-                try:
-                    call(['notify-send', 'Padatious not installed',
-                          'Falling back to pure regex alternative'])
-                except OSError:
-                    pass
-            LOG.warning('using pure regex intent parser. '
-                        'Some intents may be hard to trigger')
-            self.containers = {lang: FallbackIntentContainer(self.padatious_config.get("fuzz"))
-                               for lang in langs}
-        else:
-            self.containers = {
-                lang: _pd.IntentContainer(path.join(intent_cache, lang))
-                for lang in langs}
+        self.containers = {}
 
         self.bus.on('padatious:register_intent', self.register_intent)
         self.bus.on('padatious:register_entity', self.register_entity)
@@ -176,29 +149,38 @@ class PadatiousService:
 
         self.registered_intents = []
         self.registered_entities = []
+        self.detached_intents = []
 
-    @property
-    def is_regex_only(self):
-        if not _pd:
-            return True
-        return self.padatious_config.get("regex_only") or False
+    def _init_lang(self, lang):
+        lang = lang.lower()
+        if lang not in self.containers:
+            self.containers[lang] = jurebes.JurebesIntentContainer(fuzzy=self.padatious_config.get("fuzz", False))
+
+    def _ensure_min_intents(self):
+        for lang in self.containers:
+            # we need at least 2 classes without capture groups to train the classifier
+            # add fake intents if needed
+            # TODO - maybe handle this better directly in jurebes
+            n_ints = [i for i, s in self.containers[lang].intent_lines.items()
+                      if not any("{" in _ for _ in s)]
+            if len(n_ints) == 0:
+                self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER", ["_", "-"])
+            elif len(n_ints) == 1:
+                self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER", ["?", "!", "."])
+                self.containers[lang].add_intent(":UNKNOWN_PLACEHOLDER2", ["_", "-"])
 
     def train(self, message=None):
-        """Perform padatious training.
+        """Perform Jurebes training.
 
         Args:
             message (Message): optional triggering message
         """
         self.finished_training_event.clear()
-        if not self.is_regex_only:
-            padatious_single_thread = self.padatious_config['single_thread']
-            if message is None:
-                single_thread = padatious_single_thread
-            else:
-                single_thread = message.data.get('single_thread',
-                                                 padatious_single_thread)
-            for lang in self.containers:
-                self.containers[lang].train(single_thread=single_thread)
+
+        self._ensure_min_intents()
+
+        for lang in self.containers:
+            self.containers[lang].train()
 
         LOG.info('Training complete.')
         self.finished_training_event.set()
@@ -224,18 +206,21 @@ class PadatiousService:
         Args:
             intent_name (str): intent identifier
         """
+        self.detached_intents.append(intent_name)
         if intent_name in self.registered_intents:
             self.registered_intents.remove(intent_name)
             for lang in self.containers:
                 self.containers[lang].remove_intent(intent_name)
 
     def handle_detach_intent(self, message):
-        """Messagebus handler for detaching padatious intent.
+        """Messagebus handler for detaching Jurebes intent.
 
         Args:
             message (Message): message triggering action
         """
-        self.__detach_intent(message.data.get('intent_name'))
+        intent_name = message.data.get('intent_name')
+        if intent_name in self.registered_intents:
+            self.__detach_intent(intent_name)
 
     def handle_detach_skill(self, message):
         """Messagebus handler for detaching all intents for skill.
@@ -245,35 +230,41 @@ class PadatiousService:
         """
         skill_id = message.data['skill_id']
         remove_list = [i for i in self.registered_intents if skill_id in i]
-        for i in remove_list:
-            self.__detach_intent(i)
+        if len(remove_list):
+            for i in remove_list:
+                self.__detach_intent(i)
 
-    def _register_object(self, message, object_name, register_func):
-        """Generic method for registering a padatious object.
+    def _register_object(self, message, object_name):
+        """Generic method for registering a Jurebes object.
 
         Args:
             message (Message): trigger for action
             object_name (str): type of entry to register
-            register_func (callable): function to call for registration
         """
         file_name = message.data['file_name']
         name = message.data['name']
+        lang = message.data.get('lang', self.lang).lower()
 
-        LOG.debug('Registering Padatious ' + object_name + ': ' + name)
+        self._init_lang(lang)  # if needed create a new intent engine for this lang
+
+        LOG.debug('Registering Jurebes ' + object_name + ': ' + name)
 
         if not isfile(file_name):
             LOG.warning('Could not find file ' + file_name)
             return
 
-        if self.is_regex_only:
-            # padaos does not accept a file path like padatious
-            with open(file_name) as f:
-                samples = [l.strip() for l in f.readlines()]
-            register_func(name, samples)
+        with open(file_name) as f:
+            samples = [l.strip() for l in f.readlines()]
+
+        if object_name == "intent":
+            if name in self.detached_intents:
+                self.detached_intents.remove(name)
+            self.containers[lang].add_intent(name, samples)
         else:
-            register_func(name, file_name)
-            self.train_time = get_time() + self.train_delay
-            self.wait_and_train()
+            self.containers[lang].add_entity(name, samples)
+
+        self.train_time = get_time() + self.train_delay
+        self.wait_and_train()
 
     def register_intent(self, message):
         """Messagebus handler for registering intents.
@@ -281,16 +272,8 @@ class PadatiousService:
         Args:
             message (Message): message triggering action
         """
-        lang = message.data.get('lang', self.lang)
-        lang = lang.lower()
-        if lang in self.containers:
-            self.registered_intents.append(message.data['name'])
-            if self.is_regex_only:
-                self._register_object(
-                    message, 'intent', self.containers[lang].add_intent)
-            else:
-                self._register_object(
-                    message, 'intent', self.containers[lang].load_intent)
+        self.registered_intents.append(message.data['name'])
+        self._register_object(message, 'intent')
 
     def register_entity(self, message):
         """Messagebus handler for registering entities.
@@ -298,16 +281,8 @@ class PadatiousService:
         Args:
             message (Message): message triggering action
         """
-        lang = message.data.get('lang', self.lang)
-        lang = lang.lower()
-        if lang in self.containers:
-            self.registered_entities.append(message.data)
-            if self.is_regex_only:
-                self._register_object(
-                    message, 'intent', self.containers[lang].add_entity)
-            else:
-                self._register_object(
-                    message, 'entity', self.containers[lang].load_entity)
+        self.registered_entities.append(message.data)
+        self._register_object(message, 'entity')
 
     def calc_intent(self, utt, lang=None):
         """Cached version of container calc_intent.
@@ -320,11 +295,11 @@ class PadatiousService:
         """
         lang = lang or self.lang
         lang = lang.lower()
+        bad_intents = self.detached_intents + [":UNKNOWN_PLACEHOLDER", ":UNKNOWN_PLACEHOLDER2"]
         if lang in self.containers:
             intent = self.containers[lang].calc_intent(utt)
-            if isinstance(intent, dict):
-                if "entities" in intent:
-                    intent["matches"] = intent.pop("entities")
-                intent["sent"] = utt
-                intent = PadatiousIntent(**intent)
-            return intent
+            if intent and intent.intent_name not in bad_intents:
+                assert isinstance(intent, jurebes.IntentMatch)
+                return PadatiousIntent(name=intent.intent_name, sent=utt,
+                                       matches=intent.entities,
+                                       conf=intent.confidence)

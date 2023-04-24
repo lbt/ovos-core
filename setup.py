@@ -67,7 +67,6 @@ setup(
         'PHAL': required('requirements/extra-PHAL.txt'),
         'stt': required('requirements/extra-stt.txt'),
         'tts': required('requirements/extra-tts.txt'),
-        "skills_lgpl": required('requirements/extra-skills-lgpl.txt'),
         'skills': required('requirements/extra-skills.txt'),
         'gui': required('requirements/extra-gui.txt'),
         'bus': required('requirements/extra-bus.txt'),

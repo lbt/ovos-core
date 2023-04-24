@@ -9,10 +9,7 @@ PyYAML~=5.4
 watchdog~=2.1
 
 adapt-parser~=0.5
-padatious~=0.4.8
-padacioso~=0.1.2
-fann2==1.0.7
-padaos~=0.1
+jurebes>=0.0.1a1
 
 ovos_bus_client<0.1.0, >=0.0.4a3
 ovos_backend_client<0.1.0, >=0.0.6
