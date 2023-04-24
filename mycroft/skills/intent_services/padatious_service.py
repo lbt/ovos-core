@@ -239,7 +239,8 @@ class PadatiousService:
             message (Message): trigger for action
             object_name (str): type of entry to register
         """
-        file_name = message.data['file_name']
+        file_name = message.data.get('file_name')
+        samples = message.data.get("samples")
         name = message.data['name']
         lang = message.data.get('lang', self.lang).lower()
 
@@ -247,12 +248,13 @@ class PadatiousService:
 
         LOG.debug('Registering Jurebes ' + object_name + ': ' + name)
 
-        if not isfile(file_name):
-            LOG.warning('Could not find file ' + file_name)
+        if (not file_name or not isfile(file_name)) and not samples:
+            LOG.error('Could not find file ' + file_name)
             return
 
-        with open(file_name) as f:
-            samples = [l.strip() for l in f.readlines()]
+        if not samples and isfile(file_name):
+            with open(file_name) as f:
+                samples = [l.strip() for l in f.readlines()]
 
         if object_name == "intent":
             self.containers[lang].add_intent(name, samples)
