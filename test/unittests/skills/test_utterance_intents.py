@@ -79,7 +79,6 @@ class UtteranceIntentMatchingTest(unittest.TestCase):
 
         # not in training set - fuzzy regex match (padacioso gets it now)
         intent = intent_service.calc_intent("tell me everything about Mycroft", "en-US")
-        print(intent)
         self.assertEqual(intent.name, "test2")
         self.assertEqual(intent.matches, {'thing': 'mycroft'})
         self.assertTrue(intent.conf <= 0.9)
