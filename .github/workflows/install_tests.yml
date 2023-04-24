@@ -37,26 +37,6 @@ jobs:
       - name: Install package
         run: |
           pip install .[skills]
-
-  install_skills_lgpl:
-    strategy:
-      max-parallel: 2
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9, "3.10" ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install System Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt install swig
-      - name: Install package
-        run: |
-          pip install .[skills_lgpl]
   install_audio:
     strategy:
       max-parallel: 2
