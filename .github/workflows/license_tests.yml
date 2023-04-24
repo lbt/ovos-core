@@ -23,7 +23,7 @@ jobs:
       - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt install python3-dev swig libssl-dev portaudio19-dev libpulse-dev
+          sudo apt install python3-dev libssl-dev portaudio19-dev libpulse-dev
       - name: Install core repo
         run: |
           pip install .[audio-backend,mark1,stt,tts,skills,gui,bus,PHAL,all]
