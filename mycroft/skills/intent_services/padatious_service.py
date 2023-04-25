@@ -290,10 +290,6 @@ class PadatiousService:
         lang = lang or self.lang
         lang = lang.lower()
         if lang in self.containers:
-
-            for intent in self.containers[lang].calc_intents(utt):
-                LOG.info(utt + " " + str(intent))
-
             intent = self.containers[lang].calc_intent(utt)
             if intent:
                 LOG.info(utt + " " + str(intent))
