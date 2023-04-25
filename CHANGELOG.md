@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a6...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a7...HEAD)
+
+**Implemented enhancements:**
+
+- refactor/fallback\_skills\_v2 [\#307](https://github.com/OpenVoiceOS/ovos-core/pull/307) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a7) (2023-04-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a6...V0.0.8a7)
 
 **Fixed bugs:**
 
@@ -634,17 +642,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a7...V0.0.5a8)
 
-**Merged pull requests:**
-
-- Implement namespace global back button management for mobile [\#194](https://github.com/OpenVoiceOS/ovos-core/pull/194) ([AIIX](https://github.com/AIIX))
-
 ## [V0.0.5a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a7) (2022-09-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a6...V0.0.5a7)
-
-**Implemented enhancements:**
-
-- Add mobile extension to gui interface for mobile gui app [\#193](https://github.com/OpenVoiceOS/ovos-core/pull/193) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.5a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a6) (2022-09-06)
 
