@@ -132,6 +132,7 @@ class PadatiousService:
 
         core_config = Configuration()
         self.lang = core_config.get("lang", "en-us")
+        self.threshold = self.padatious_config.get("threshold", 0.5)
 
         self.containers = {}
 
@@ -289,10 +290,16 @@ class PadatiousService:
         lang = lang or self.lang
         lang = lang.lower()
         if lang in self.containers:
+
+            for intent in self.containers[lang].calc_intents(utt):
+                LOG.info(utt + " " + str(intent))
+
             intent = self.containers[lang].calc_intent(utt)
             if intent:
-                LOG.info(utt + str(intent))
-                assert isinstance(intent, jurebes.IntentMatch)
-                return PadatiousIntent(name=intent.intent_name, sent=utt,
+                LOG.info(utt + " " + str(intent))
+                if intent.confidence < self.threshold:
+                    LOG.info("low confidence match, discarding result!")
+                return PadatiousIntent(name=intent.intent_name,
+                                       sent=utt,
                                        matches=intent.entities,
                                        conf=intent.confidence)
