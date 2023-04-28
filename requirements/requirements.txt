@@ -21,19 +21,8 @@ ovos_workshop<0.1.0, >=0.0.12a20
 ovos_PHAL<0.1.0, >=0.0.2
 ovos-lingua-franca>=0.4.7
 
+ovos-audio~=0.0, >=0.0.2a10
 ovos-listener~=0.0, >=0.0.2a9
-
-ovos-tts-plugin-mimic>=0.2.8, <0.3.0
-ovos-tts-plugin-mimic3-server<0.1.0
-
-ovos_plugin_common_play>=0.0.5a5, <0.1.0
-
-# ovos-ocp-youtube-plugin~=0.0, >=0.0.1
-ovos-ocp-m3u-plugin>=0.0.1,<0.1.0
-ovos-ocp-rss-plugin>=0.0.2,<0.1.0
-ovos-ocp-files-plugin~=0.13
-ovos-ocp-news-plugin>=0.0.3,<0.1.0
-
 
 ovos-skill-volume>=0.0.1,<0.1.0
 ovos-skill-fallback-unknown>=0.0.2,<0.1.0
