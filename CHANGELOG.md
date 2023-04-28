@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a9...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a10...HEAD)
+
+**Merged pull requests:**
+
+- refactor/ovos\_audio [\#304](https://github.com/OpenVoiceOS/ovos-core/pull/304) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a10) (2023-04-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a9...V0.0.8a10)
 
 **Merged pull requests:**
 
