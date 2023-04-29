@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a10...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a11...HEAD)
+
+**Merged pull requests:**
+
+- Refactor/ovos-gui+ovos-messagebus packages [\#292](https://github.com/OpenVoiceOS/ovos-core/pull/292) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a11) (2023-04-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a10...V0.0.8a11)
 
 **Merged pull requests:**
 
@@ -645,10 +653,6 @@
 ## [V0.0.5a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a10) (2022-09-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a9...V0.0.5a10)
-
-**Fixed bugs:**
-
-- Hotwords init bug fixes [\#198](https://github.com/OpenVoiceOS/ovos-core/pull/198) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a9) (2022-09-19)
 
