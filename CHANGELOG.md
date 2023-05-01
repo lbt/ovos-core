@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a11...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a12...HEAD)
+
+**Fixed bugs:**
+
+- fix/fallbackV1 [\#316](https://github.com/OpenVoiceOS/ovos-core/pull/316) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- When I ran the ovos-cli-client I got a trace in core [\#315](https://github.com/OpenVoiceOS/ovos-core/issues/315)
+
+## [V0.0.8a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a12) (2023-04-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a11...V0.0.8a12)
 
 **Merged pull requests:**
 
@@ -278,7 +290,6 @@
 
 **Implemented enhancements:**
 
-- sync lang resouces with mycroft-core [\#199](https://github.com/OpenVoiceOS/ovos-core/issues/199)
 - Lng: Add cs-cz noise words [\#260](https://github.com/OpenVoiceOS/ovos-core/pull/260) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a17) (2023-01-20)
@@ -637,10 +648,6 @@
 ## [V0.0.5a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a13) (2022-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a12...V0.0.5a13)
-
-**Fixed bugs:**
-
-- fix the message sent to the protocol for send\_event [\#200](https://github.com/OpenVoiceOS/ovos-core/pull/200) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.5a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a12) (2022-09-22)
 
