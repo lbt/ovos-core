@@ -6,6 +6,7 @@
 
 **Fixed bugs:**
 
+- fix version [\#317](https://github.com/OpenVoiceOS/ovos-core/pull/317) ([JarbasAl](https://github.com/JarbasAl))
 - refactor/padatious\_samples [\#309](https://github.com/OpenVoiceOS/ovos-core/pull/309) ([JarbasAl](https://github.com/JarbasAl))
 
 **Merged pull requests:**
@@ -628,10 +629,6 @@
 ## [V0.0.5a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a17) (2022-10-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a16...V0.0.5a17)
-
-**Implemented enhancements:**
-
-- feat/lf\_ask\_yeno [\#204](https://github.com/OpenVoiceOS/ovos-core/pull/204) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a16) (2022-10-04)
 
