@@ -641,10 +641,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a14...V0.0.5a15)
 
-**Fixed bugs:**
-
-- Fix UI buttons vertical screen issues in developer settings [\#203](https://github.com/OpenVoiceOS/ovos-core/pull/203) ([AIIX](https://github.com/AIIX))
-
 ## [V0.0.5a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a14) (2022-10-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a13...V0.0.5a14)
