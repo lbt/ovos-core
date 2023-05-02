@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a13...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a14...HEAD)
+
+**Fixed bugs:**
+
+- fix:  import missed in refactor [\#318](https://github.com/OpenVoiceOS/ovos-core/pull/318) ([ChanceNCounter](https://github.com/ChanceNCounter))
+
+## [V0.0.8a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a14) (2023-05-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a13...V0.0.8a14)
 
 **Fixed bugs:**
 
@@ -600,10 +608,6 @@
 ## [V0.0.5a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a21) (2022-10-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a20...V0.0.5a21)
-
-**Fixed bugs:**
-
-- fix/pairing\_check\_again [\#205](https://github.com/OpenVoiceOS/ovos-core/pull/205) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a20) (2022-10-07)
 
