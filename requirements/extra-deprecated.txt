@@ -1,5 +1,3 @@
-# only required if importing from mycroft.deprecated module
-# not used internally
 msm
 mock_msm>=0.9
 ovos_cli_client

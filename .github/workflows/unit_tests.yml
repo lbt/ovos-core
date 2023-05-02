@@ -50,20 +50,20 @@ jobs:
           python -m pip install build wheel
       - name: Install core repo
         run: |
-          pip install .[audio,mark1,stt,tts,skills,gui,bus,PHAL,all,deprecated]
+          pip install .[mycroft,lgpl,deprecated]
       - name: Install test dependencies
         run: |
           pip install -r requirements/tests.txt
           pip install ./test/unittests/common_query/ovos_tskill_fakewiki
       - name: Run unittests
         run: |
-          pytest --cov=mycroft --cov-report xml test/unittests
+          pytest --cov=ovos_core --cov-report xml test/unittests
           # NOTE: additional pytest invocations should also add the --cov-append flag
           #       or they will overwrite previous invocations' coverage reports
           #       (for an example, see OVOS Skill Manager's workflow)
       - name: Run integration tests
         run: |
-          pytest --cov-append --cov=mycroft --cov-report xml test/integrationtests
+          pytest --cov-append --cov=ovos_core --cov-report xml test/integrationtests
           # NOTE: additional pytest invocations should also add the --cov-append flag
           #       or they will overwrite previous invocations' coverage reports
           #       (for an example, see OVOS Skill Manager's workflow)
