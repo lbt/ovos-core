@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a13...HEAD)
 
+**Fixed bugs:**
+
+- refactor/padatious\_samples [\#309](https://github.com/OpenVoiceOS/ovos-core/pull/309) ([JarbasAl](https://github.com/JarbasAl))
+
 **Merged pull requests:**
 
 - refactor/ovos-core!! [\#313](https://github.com/OpenVoiceOS/ovos-core/pull/313) ([JarbasAl](https://github.com/JarbasAl))
@@ -644,10 +648,6 @@
 ## [V0.0.5a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a14) (2022-10-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a13...V0.0.5a14)
-
-**Merged pull requests:**
-
-- \[requirements\] Add ovos-stt-plugin-vosk to extra-stt.txt [\#202](https://github.com/OpenVoiceOS/ovos-core/pull/202) ([goldyfruit](https://github.com/goldyfruit))
 
 ## [V0.0.5a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a13) (2022-09-28)
 
