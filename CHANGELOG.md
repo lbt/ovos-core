@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a12...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a13...HEAD)
+
+**Merged pull requests:**
+
+- refactor/ovos-core!! [\#313](https://github.com/OpenVoiceOS/ovos-core/pull/313) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a13) (2023-05-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a12...V0.0.8a13)
 
 **Fixed bugs:**
 
@@ -624,10 +632,6 @@
 ## [V0.0.5a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a16) (2022-10-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a15...V0.0.5a16)
-
-**Implemented enhancements:**
-
-- refactor/selene\_api -\> ovos-backend-client [\#201](https://github.com/OpenVoiceOS/ovos-core/pull/201) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a15) (2022-10-04)
 
