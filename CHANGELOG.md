@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a16...HEAD)
+
+**Fixed bugs:**
+
+- fix/padatious\_utt [\#320](https://github.com/OpenVoiceOS/ovos-core/pull/320) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a16) (2023-05-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a15...V0.0.8a16)
+
 ## [V0.0.8a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a15) (2023-05-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a14...V0.0.8a15)
@@ -625,10 +637,6 @@
 ## [V0.0.5a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a18) (2022-10-05)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a17...V0.0.5a18)
-
-**Merged pull requests:**
-
-- Update ovos\_utils.config imports to ovos\_config [\#206](https://github.com/OpenVoiceOS/ovos-core/pull/206) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a17) (2022-10-04)
 
