@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a16...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a17...HEAD)
+
+**Merged pull requests:**
+
+- Fix `mycroft` backwards-compat. [\#322](https://github.com/OpenVoiceOS/ovos-core/pull/322) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.8a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a17) (2023-05-05)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a16...V0.0.8a17)
 
 **Fixed bugs:**
 
@@ -632,7 +640,6 @@
 **Fixed bugs:**
 
 - Remove priority skills from default config \(inherited from Mycroft\) [\#208](https://github.com/OpenVoiceOS/ovos-core/pull/208) ([NeonDaniel](https://github.com/NeonDaniel))
-- fix/ww\_cfg [\#207](https://github.com/OpenVoiceOS/ovos-core/pull/207) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a18) (2022-10-05)
 
