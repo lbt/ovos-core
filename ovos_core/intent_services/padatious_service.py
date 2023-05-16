@@ -13,10 +13,12 @@
 # limitations under the License.
 #
 """Intent service wrapping padatious."""
+from multiprocessing import Pool
 from os import path
 from os.path import expanduser, isfile
 from subprocess import call
 from threading import Event
+from typing import List, Optional, Tuple
 
 from ovos_bus_client.message import Message
 from ovos_config.config import Configuration
@@ -32,15 +34,14 @@ try:
     from padatious.match_data import MatchData as PadatiousIntent
 except ImportError:
     _pd = None
-
-
     # padatious is optional, this class is just for compat
+
     class PadatiousIntent:
         """
         A set of data describing how a query fits into an intent
         Attributes:
             name (str): Name of matched intent
-            sent (str): The query after entity extraction
+            sent (str): The input utterance associated with the intent
             conf (float): Confidence (from 0.0 to 1.0)
             matches (dict of str -> str): Key is the name of the entity and
                 value is the extracted part of the sentence
@@ -82,19 +83,18 @@ class PadatiousMatcher:
                                          with optional normalized version.
             limit (float): required confidence level.
         """
-        # we call flatten in case someone is sending the old style list of tuples
+        # call flatten in case someone is sending the old style list of tuples
         utterances = flatten_list(utterances)
         if not self.has_result:
             lang = lang or self.service.lang
-            padatious_intent = None
             LOG.debug(f'Padatious Matching confidence > {limit}')
-            for utt in utterances:
-                intent = self.service.calc_intent(utt, lang)
-                if intent:
-                    best = padatious_intent.conf if padatious_intent else 0.0
-                    if best < intent.conf:
-                        padatious_intent = intent
-                        padatious_intent.matches['utterance'] = utt
+            if _pd:
+                LOG.info(f"Using legacy Padatious module")
+                padatious_intent = self._legacy_padatious_match(utterances,
+                                                                lang)
+            else:
+                padatious_intent = self.service.threaded_calc_intent(utterances,
+                                                                     lang)
             if padatious_intent:
                 skill_id = padatious_intent.name.split(':')[0]
                 self.ret = ovos_core.intent_services.IntentMatch(
@@ -132,6 +132,24 @@ class PadatiousMatcher:
         """
         return self._match_level(utterances, 0.5, lang)
 
+    def _legacy_padatious_match(self, utterances: List[str],
+                                lang: str) -> Optional[PadatiousIntent]:
+        """
+        Handle intent match with the Padatious intent parser.
+        @param utterances: List of string utterances to evaluate
+        @param lang: BCP-47 language of utterances
+        @return: PadatiousIntent if matched, else None
+        """
+        padatious_intent = None
+        for utt in utterances:
+            intent = self.service.calc_intent(utt, lang)
+            if intent:
+                best = padatious_intent.conf if padatious_intent else 0.0
+                if best < intent.conf:
+                    padatious_intent = intent
+                    padatious_intent.matches['utterance'] = utt
+        return padatious_intent
+
 
 class PadatiousService:
     """Service class for padatious intent matching."""
@@ -149,15 +167,16 @@ class PadatiousService:
 
         if self.is_regex_only:
             if not _pd:
-                LOG.error('Padatious not installed. Falling back to pure regex alternative')
+                LOG.info('Padatious not installed. '
+                         'Falling back to Padacioso')
                 try:
                     call(['notify-send', 'Padatious not installed',
-                          'Falling back to pure regex alternative'])
+                          'Falling back to Padacioso'])
                 except OSError:
                     pass
-            LOG.warning('using pure regex intent parser. '
-                        'Some intents may be hard to trigger')
-            self.containers = {lang: FallbackIntentContainer(self.padatious_config.get("fuzz"))
+            LOG.debug('Using Padacioso intent parser.')
+            self.containers = {lang: FallbackIntentContainer(
+                self.padatious_config.get("fuzz"))
                                for lang in langs}
         else:
             self.containers = {
@@ -184,6 +203,13 @@ class PadatiousService:
         if not _pd:
             return True
         return self.padatious_config.get("regex_only") or False
+
+    @property
+    def threaded_inference(self):
+        if not self.is_regex_only:
+            # Padatious isn't thread-safe, so don't even try
+            return False
+        return self.padatious_config.get("threaded_inference", False)
 
     def train(self, message=None):
         """Perform padatious training.
@@ -288,7 +314,8 @@ class PadatiousService:
         lang = lang.lower()
         if lang in self.containers:
             self.registered_intents.append(message.data['name'])
-            self._register_object(message, 'intent', self.containers[lang].add_intent)
+            self._register_object(message, 'intent',
+                                  self.containers[lang].add_intent)
 
     def register_entity(self, message):
         """Messagebus handler for registering entities.
@@ -300,7 +327,8 @@ class PadatiousService:
         lang = lang.lower()
         if lang in self.containers:
             self.registered_entities.append(message.data)
-            self._register_object(message, 'entity', self.containers[lang].add_entity)
+            self._register_object(message, 'entity',
+                                  self.containers[lang].add_entity)
 
     def calc_intent(self, utt, lang=None):
         """Cached version of container calc_intent.
@@ -314,10 +342,71 @@ class PadatiousService:
         lang = lang or self.lang
         lang = lang.lower()
         if lang in self.containers:
-            intent = self.containers[lang].calc_intent(utt)
-            if isinstance(intent, dict):
-                if "entities" in intent:
-                    intent["matches"] = intent.pop("entities")
-                intent["sent"] = utt
-                intent = PadatiousIntent(**intent)
-            return intent
+            return _calc_padatious_intent((utt, self.containers[lang]))
+
+    def threaded_calc_intent(self, utterances: List[str],
+                             lang: str = None) -> Optional[PadatiousIntent]:
+        """
+        Get the best intent match for the given list of utterances. Utilizes a
+        thread pool for overall faster execution. Note that this method is NOT
+        compatible with Padatious, but is compatible with Padacioso.
+        @param utterances: list of string utterances to get an intent for
+        @param lang: language of utterances
+        @return:
+        """
+        lang = lang or self.lang
+        lang = lang.lower()
+        if lang in self.containers:
+            intent_container = self.containers.get(lang)
+            if self.threaded_inference:
+                with Pool() as pool:
+                    intents = (intent for intent in
+                               pool.imap_unordered(_calc_padatious_intent,
+                                                   ((utt, intent_container)
+                                                    for utt in utterances)))
+                    pool.close()
+                    pool.join()
+            else:
+                intents = (self.calc_intent(utt, lang) for utt in utterances)
+            padatious_intent = None
+            for intent in intents:
+                if intent:
+                    best = \
+                        padatious_intent.conf if padatious_intent else 0.0
+                    if intent.conf > best:  # this intent is the best so far
+                        padatious_intent = intent
+                        # TODO: This is for backwards-compat. but means that an
+                        #   entity "utterance" will be overridden
+                        padatious_intent.matches['utterance'] = \
+                            padatious_intent.sent
+                        if intent.conf == 1.0:
+                            LOG.debug(f"Returning perfect match")
+                            return intent
+            return padatious_intent
+
+
+def _calc_padatious_intent(*args) -> \
+        Optional[PadatiousIntent]:
+    """
+    Try to match an utterance to an intent in an intent_container
+    @param args: tuple of (utterance, IntentContainer)
+    @return: matched PadatiousIntent
+    """
+    try:
+        LOG.info(args)
+        if len(args) == 1:
+            args = args[0]
+        utt = args[0]
+        intent_container = args[1]
+        intent = intent_container.calc_intent(utt)
+        if isinstance(intent, dict):
+            if "entities" in intent:
+                intent["matches"] = intent.pop("entities")
+            intent["sent"] = utt
+            intent = PadatiousIntent(**intent)
+        else:
+            LOG.info(f"Overriding `intent.sent` with matched utterance")
+            intent.sent = utt
+        return intent
+    except Exception as e:
+        LOG.error(e)
