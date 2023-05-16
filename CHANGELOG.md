@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a17...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a18...HEAD)
+
+**Implemented enhancements:**
+
+- Implement threaded Padatious intent calculation [\#321](https://github.com/OpenVoiceOS/ovos-core/pull/321) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.8a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a18) (2023-05-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a17...V0.0.8a18)
 
 **Merged pull requests:**
 
@@ -636,10 +644,6 @@
 ## [V0.0.5a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a19) (2022-10-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a18...V0.0.5a19)
-
-**Fixed bugs:**
-
-- Remove priority skills from default config \(inherited from Mycroft\) [\#208](https://github.com/OpenVoiceOS/ovos-core/pull/208) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a18) (2022-10-05)
 
