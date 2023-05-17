@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a18...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a19...HEAD)
+
+**Merged pull requests:**
+
+- Allow Padatious confidence level overrides from configuration [\#319](https://github.com/OpenVoiceOS/ovos-core/pull/319) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.8a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a19) (2023-05-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a18...V0.0.8a19)
 
 **Implemented enhancements:**
 
@@ -628,10 +636,6 @@
 ## [V0.0.5a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a22) (2022-10-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a21...V0.0.5a22)
-
-**Fixed bugs:**
-
-- fix backend tests [\#209](https://github.com/OpenVoiceOS/ovos-core/pull/209) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a21) (2022-10-07)
 
