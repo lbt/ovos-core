@@ -5,7 +5,7 @@ from threading import Event
 from typing import Dict
 from dataclasses import dataclass
 from ovos_bus_client.message import Message, dig_for_message
-
+from ovos_bus_client.session import SessionManager
 import ovos_core.intent_services
 from ovos_utils import flatten_list
 from ovos_bus_client.apis.enclosure import EnclosureAPI
@@ -40,13 +40,6 @@ class CommonQAService:
         self.bus.on('question:query.response', self.handle_query_response)
         self.bus.on('common_query.question', self.handle_question)
         # TODO: Register available CommonQuery skills
-
-    def get_sid(self, message: Message):
-        sid = message.context.get('session', {}).get('session_id')
-        if not sid:
-            LOG.warning(f"Session ID not found! falling back to utterance")
-            sid = message.data.get('utterance')
-        return sid
 
     def voc_match(self, utterance, voc_filename, lang, exact=False):
         """Determine if the given utterance contains the vocabulary provided.
@@ -126,7 +119,7 @@ class CommonQAService:
             the replies.
         """
         utt = message.data.get('utterance')
-        sid = self.get_sid(message)
+        sid = SessionManager.get(message).session_id
         query = Query(session_id=sid, query=utt, replies=[], extensions=[])
         self.active_queries[sid] = query
         self.enclosure.mouth_think()
@@ -163,7 +156,7 @@ class CommonQAService:
         searching = message.data.get('searching')
         answer = message.data.get('answer')
 
-        query = self.active_queries.get(self.get_sid(message))
+        query = self.active_queries.get(SessionManager.get(message).session_id)
         if not query:
             LOG.warning(f"No active query for: {search_phrase}")
         # Manage requests for time to complete searches
@@ -195,7 +188,7 @@ class CommonQAService:
                 query.responses_gathered.set()
 
     def _query_timeout(self, message):
-        query: Query = self.active_queries.get(self.get_sid(message))
+        query = self.active_queries.get(SessionManager.get(message).session_id)
         LOG.info(f'Check responses with {len(query.replies)} replies')
         search_phrase = message.data.get('phrase', "")
         if query.extensions:
