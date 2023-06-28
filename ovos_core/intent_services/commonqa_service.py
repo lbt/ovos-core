@@ -1,8 +1,9 @@
 import re
-from threading import Lock, Event
-
 import time
 from itertools import chain
+from threading import Event
+from typing import Dict
+from dataclasses import dataclass
 from ovos_bus_client.message import Message, dig_for_message
 
 import ovos_core.intent_services
@@ -13,27 +14,39 @@ from ovos_bus_client.util import get_message_lang
 from ovos_workshop.resource_files import CoreResources
 
 EXTENSION_TIME = 10
+MIN_RESPONSE_WAIT = 3
 
 
-class CommonQAService:
-    """Intent Service handling common query skills.
-    All common query skills answer and the best answer is selected
-    This is in contrast to triggering best intent directly.
-    """
+@dataclass
+class Query:
+    session_id: str
+    query: str
+    replies: list = None
+    extensions: list = None
+    query_time: float = time.time()
+    timeout_time: float = time.time() + 1
+    responses_gathered: Event = Event()
+    completed: Event = Event()
+    answered: bool = False
 
+
+class CommonQuery:
     def __init__(self, bus):
         self.bus = bus
-        self.skill_id = "common_query.openvoiceos"  # fake skill
-        self.query_replies = {}  # cache of received replies
-        self.query_extensions = {}  # maintains query timeout extensions
-        self.lock = Lock()
-        self.searching = Event()
-        self.waiting = True
-        self.answered = False
+        self.skill_id = "common_query.neongeckocom"  # fake skill
+        self.active_queries: Dict[str, Query] = dict()
         self.enclosure = EnclosureAPI(self.bus, self.skill_id)
         self._vocabs = {}
         self.bus.on('question:query.response', self.handle_query_response)
         self.bus.on('common_query.question', self.handle_question)
+        # TODO: Register available CommonQuery skills
+
+    def get_sid(self, message: Message):
+        sid = message.context.get('session', {}).get('session_id')
+        if not sid:
+            LOG.warning(f"Session ID not found! falling back to utterance")
+            sid = message.data.get('utterance')
+        return sid
 
     def voc_match(self, utterance, voc_filename, lang, exact=False):
         """Determine if the given utterance contains the vocabulary provided.
@@ -112,14 +125,12 @@ class CommonQAService:
         """ Send the phrase to the CommonQuerySkills and prepare for handling
             the replies.
         """
-        self.searching.set()
-        self.waiting = True
-        self.answered = False
         utt = message.data.get('utterance')
+        sid = self.get_sid(message)
+        query = Query(session_id=sid, query=utt, replies=[], extensions=[])
+        self.active_queries[sid] = query
         self.enclosure.mouth_think()
 
-        self.query_replies[utt] = []
-        self.query_extensions[utt] = []
         LOG.info(f'Searching for {utt}')
         # Send the query to anyone listening for them
         msg = message.reply('question:query', data={'phrase': utt})
@@ -127,94 +138,98 @@ class CommonQAService:
             msg.context["skill_id"] = self.skill_id
         self.bus.emit(msg)
 
-        self.timeout_time = time.time() + 1
-        while self.searching.is_set():
-            if not self.waiting or time.time() > self.timeout_time + 1:
+        query.timeout_time = time.time() + 1
+        timeout = False
+        while not query.responses_gathered.wait(EXTENSION_TIME):
+            if time.time() > query.timeout_time + 1:
+                LOG.debug(f"Timeout gathering responses ({query.session_id})")
+                timeout = True
                 break
-            time.sleep(0.2)
 
         # forcefully timeout if search is still going
+        if timeout:
+            LOG.warning(f"Timed out getting responses for: {query.query}")
         self._query_timeout(message)
-        return self.answered
+        if not query.completed.wait(10):
+            raise TimeoutError("Timed out processing responses")
+        answered = bool(query.answered)
+        self.active_queries.pop(sid)
+        LOG.debug(f"answered={answered}")
+        return answered
 
     def handle_query_response(self, message):
         search_phrase = message.data['phrase']
         skill_id = message.data['skill_id']
         searching = message.data.get('searching')
         answer = message.data.get('answer')
+
+        query = self.active_queries.get(self.get_sid(message))
+        if not query:
+            LOG.warning(f"No active query for: {search_phrase}")
         # Manage requests for time to complete searches
         if searching:
-            # extend the timeout by 5 seconds
-            self.timeout_time = time.time() + EXTENSION_TIME
+            LOG.debug(f"{skill_id} is searching")
+            # request extending the timeout by EXTENSION_TIME
+            query.timeout_time = time.time() + EXTENSION_TIME
             # TODO: Perhaps block multiple extensions?
-            if (search_phrase in self.query_extensions and
-                    skill_id not in self.query_extensions[search_phrase]):
-                self.query_extensions[search_phrase].append(skill_id)
-        elif search_phrase in self.query_extensions:
+            if skill_id not in query.extensions:
+                query.extensions.append(skill_id)
+        else:
             # Search complete, don't wait on this skill any longer
-            if answer and search_phrase in self.query_replies:
+            if answer:
                 LOG.info(f'Answer from {skill_id}')
-                self.query_replies[search_phrase].append(message.data)
+                query.replies.append(message.data)
 
             # Remove the skill from list of timeout extensions
-            if skill_id in self.query_extensions[search_phrase]:
-                self.query_extensions[search_phrase].remove(skill_id)
+            if skill_id in query.extensions:
+                LOG.debug(f"Done waiting for {skill_id}")
+                query.extensions.remove(skill_id)
 
+            time_to_wait = query.query_time + MIN_RESPONSE_WAIT - time.time()
+            if time_to_wait > 0:
+                LOG.debug(f"Waiting {time_to_wait}s before checking extensions")
+                query.responses_gathered.wait(time_to_wait)
             # not waiting for any more skills
-            if not self.query_extensions[search_phrase]:
-                self._query_timeout(message.reply('question:query.timeout',
-                                                  message.data))
-        else:
-            LOG.warning(f'{skill_id} Answered too slowly, will be ignored.')
+            if not query.extensions:
+                LOG.debug(f"No more skills to wait for ({query.session_id})")
+                query.responses_gathered.set()
 
     def _query_timeout(self, message):
-        if not self.searching.is_set():
-            LOG.warning("got a common query response outside search window")
-            return  # not searching, ignore timeout event
-        self.searching.clear()
+        query: Query = self.active_queries.get(self.get_sid(message))
+        LOG.info(f'Check responses with {len(query.replies)} replies')
+        search_phrase = message.data.get('phrase', "")
+        if query.extensions:
+            query.extensions = []
+        self.enclosure.mouth_reset()
 
-        # Prevent any late-comers from retriggering this query handler
-        with self.lock:
-            LOG.info('Timeout occurred check responses')
-            search_phrase = message.data.get('phrase', "")
-            if search_phrase in self.query_extensions:
-                self.query_extensions[search_phrase] = []
-            self.enclosure.mouth_reset()
+        # Look at any replies that arrived before the timeout
+        # Find response(s) with the highest confidence
+        best = None
+        ties = []
+        for response in query.replies:
+            if not best or response['conf'] > best['conf']:
+                best = response
+                ties = []
+            elif response['conf'] == best['conf']:
+                ties.append(response)
 
-            # Look at any replies that arrived before the timeout
-            # Find response(s) with the highest confidence
-            best = None
-            ties = []
-            if search_phrase in self.query_replies:
-                for handler in self.query_replies[search_phrase]:
-                    if not best or handler['conf'] > best['conf']:
-                        best = handler
-                        ties = []
-                    elif handler['conf'] == best['conf']:
-                        ties.append(handler)
+        if best:
+            if ties:
+                # TODO: Ask user to pick between ties or do it automagically
+                pass
 
-            if best:
-                if ties:
-                    # TODO: Ask user to pick between ties or do it automagically
-                    pass
-
-                # invoke best match
-                LOG.info('Handling with: ' + str(best['skill_id']))
-                if not message.data.get("handles_speech", False):
-                    self.speak(best['answer'])
-                cb = best.get('callback_data') or {}
-                self.bus.emit(message.forward('question:action',
-                                              data={'skill_id': best['skill_id'],
-                                                    'phrase': search_phrase,
-                                                    'callback_data': cb}))
-                self.answered = True
-            else:
-                self.answered = False
-            self.waiting = False
-            if search_phrase in self.query_replies:
-                del self.query_replies[search_phrase]
-            if search_phrase in self.query_extensions:
-                del self.query_extensions[search_phrase]
+            # invoke best match
+            self.speak(best['answer'], message)
+            LOG.info('Handling with: ' + str(best['skill_id']))
+            cb = best.get('callback_data') or {}
+            self.bus.emit(message.forward('question:action',
+                                          data={'skill_id': best['skill_id'],
+                                                'phrase': search_phrase,
+                                                'callback_data': cb}))
+            query.answered = True
+        else:
+            query.answered = False
+        query.completed.set()
 
     def speak(self, utterance, message=None):
         """Speak a sentence.
