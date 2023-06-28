@@ -30,10 +30,10 @@ class Query:
     answered: bool = False
 
 
-class CommonQuery:
+class CommonQAService:
     def __init__(self, bus):
         self.bus = bus
-        self.skill_id = "common_query.neongeckocom"  # fake skill
+        self.skill_id = "common_query.openvoiceos"  # fake skill
         self.active_queries: Dict[str, Query] = dict()
         self.enclosure = EnclosureAPI(self.bus, self.skill_id)
         self._vocabs = {}
