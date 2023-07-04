@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a23...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a24...HEAD)
+
+**Fixed bugs:**
+
+- hotfix/default\_cfg [\#330](https://github.com/OpenVoiceOS/ovos-core/pull/330) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- Bug - start-mycroft.sh debug is not handled. [\#312](https://github.com/OpenVoiceOS/ovos-core/issues/312)
+
+## [V0.0.8a24](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a24) (2023-06-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a23...V0.0.8a24)
 
 **Fixed bugs:**
 
@@ -624,17 +636,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a27...V0.0.5a28)
 
-**Fixed bugs:**
-
-- change ssh events in ssh gui drop down [\#215](https://github.com/OpenVoiceOS/ovos-core/pull/215) ([AIIX](https://github.com/AIIX))
-
 ## [V0.0.5a27](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a27) (2022-10-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a26...V0.0.5a27)
-
-**Merged pull requests:**
-
-- refactor/update\_readme [\#214](https://github.com/OpenVoiceOS/ovos-core/pull/214) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a26](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a26) (2022-10-13)
 
