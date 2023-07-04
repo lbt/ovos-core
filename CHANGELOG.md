@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a24...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a25...HEAD)
+
+**Merged pull requests:**
+
+- \[padatious\] Fix thread [\#331](https://github.com/OpenVoiceOS/ovos-core/pull/331) ([goldyfruit](https://github.com/goldyfruit))
+
+## [V0.0.8a25](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a25) (2023-07-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a24...V0.0.8a25)
 
 **Fixed bugs:**
 
@@ -437,10 +445,6 @@
 ## [V0.0.6a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a12) (2023-01-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a11...V0.0.6a12)
-
-**Closed issues:**
-
-- voice service has multiple errors, DeviceAPI and Hotword engine [\#216](https://github.com/OpenVoiceOS/ovos-core/issues/216)
 
 ## [V0.0.6a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a11) (2023-01-03)
 
