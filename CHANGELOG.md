@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a25...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a26...HEAD)
+
+**Closed issues:**
+
+- Enable GitHub Discussion. [\#333](https://github.com/OpenVoiceOS/ovos-core/issues/333)
+
+**Merged pull requests:**
+
+- Update skills-essential.txt [\#332](https://github.com/OpenVoiceOS/ovos-core/pull/332) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a26](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a26) (2023-07-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a25...V0.0.8a26)
 
 **Merged pull requests:**
 
@@ -630,11 +642,6 @@
 ## [V0.0.5a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a29) (2022-10-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a28...V0.0.5a29)
-
-**Merged pull requests:**
-
-- feat/new license workflow [\#218](https://github.com/OpenVoiceOS/ovos-core/pull/218) ([JarbasAl](https://github.com/JarbasAl))
-- pipaudit workflow [\#217](https://github.com/OpenVoiceOS/ovos-core/pull/217) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a28) (2022-10-17)
 
