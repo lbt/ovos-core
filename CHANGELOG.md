@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a27...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a28...HEAD)
+
+**Merged pull requests:**
+
+- refactor and improve padatious matching [\#326](https://github.com/OpenVoiceOS/ovos-core/pull/326) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a28](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a28) (2023-07-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a27...V0.0.8a28)
 
 **Merged pull requests:**
 
@@ -582,10 +590,6 @@
 ## [V0.0.5a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a37) (2022-11-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a36...V0.0.5a37)
-
-**Implemented enhancements:**
-
-- feat/opm query api [\#220](https://github.com/OpenVoiceOS/ovos-core/pull/220) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a36) (2022-11-10)
 
