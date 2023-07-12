@@ -36,7 +36,7 @@ from ovos_utils.sound import play_error_sound
 # skill_id: the skill this handler belongs to
 IntentMatch = namedtuple('IntentMatch',
                          ['intent_service', 'intent_type',
-                          'intent_data', 'skill_id']
+                          'intent_data', 'skill_id', 'utterance']
                          )
 
 
@@ -263,7 +263,10 @@ class IntentService:
                     match = match_func(utterances, lang, message)
                     if match:
                         break
+            LOG.debug(f"intent matching took: {stopwatch.time}")
             if match:
+                message.data["utterance"] = match.utterance
+
                 if match.skill_id:
                     self.converse.activate_skill(match.skill_id)
                     # If the service didn't report back the skill_id it
