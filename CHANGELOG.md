@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a28...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a29...HEAD)
+
+**Implemented enhancements:**
+
+- bump\_padacioso 0.2.1a7 [\#335](https://github.com/OpenVoiceOS/ovos-core/pull/335) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a29](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a29) (2023-07-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a28...V0.0.8a29)
 
 **Merged pull requests:**
 
@@ -631,17 +639,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a31...V0.0.5a32)
 
-**Merged pull requests:**
-
-- shared code from ovos\_utils [\#222](https://github.com/OpenVoiceOS/ovos-core/pull/222) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [V0.0.5a31](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a31) (2022-10-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a30...V0.0.5a31)
-
-**Implemented enhancements:**
-
-- reviewed german qml translation [\#221](https://github.com/OpenVoiceOS/ovos-core/pull/221) ([emphasize](https://github.com/emphasize))
 
 ## [V0.0.5a30](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a30) (2022-10-19)
 
