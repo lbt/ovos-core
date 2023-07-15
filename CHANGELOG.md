@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a29...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a30...HEAD)
+
+**Merged pull requests:**
+
+- Validate dependency resolution compat. [\#337](https://github.com/OpenVoiceOS/ovos-core/pull/337) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.8a30](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a30) (2023-07-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a29...V0.0.8a30)
 
 **Implemented enhancements:**
 
@@ -630,10 +638,6 @@
 ## [V0.0.5a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a33) (2022-10-21)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a32...V0.0.5a33)
-
-**Fixed bugs:**
-
-- Add ovos\_workshop dependency for MycroftSkill imports [\#223](https://github.com/OpenVoiceOS/ovos-core/pull/223) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a32](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a32) (2022-10-20)
 
