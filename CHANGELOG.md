@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a30...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a31...HEAD)
+
+**Implemented enhancements:**
+
+- feat/pipeline [\#336](https://github.com/OpenVoiceOS/ovos-core/pull/336) ([JarbasAl](https://github.com/JarbasAl))
+
+**Merged pull requests:**
+
+- Fix CodeCov automation [\#340](https://github.com/OpenVoiceOS/ovos-core/pull/340) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.8a31](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a31) (2023-07-15)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a30...V0.0.8a31)
 
 **Merged pull requests:**
 
@@ -626,14 +638,6 @@
 ## [V0.0.5a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a34) (2022-10-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a33...V0.0.5a34)
-
-**Fixed bugs:**
-
-- fix/reload mid tts/stt [\#225](https://github.com/OpenVoiceOS/ovos-core/pull/225) ([JarbasAl](https://github.com/JarbasAl))
-
-**Merged pull requests:**
-
-- refactor SkillGUI class to import from ovos\_utils [\#224](https://github.com/OpenVoiceOS/ovos-core/pull/224) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.5a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a33) (2022-10-21)
 
