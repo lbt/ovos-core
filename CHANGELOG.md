@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a31...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a32...HEAD)
+
+**Implemented enhancements:**
+
+- feat/context\_session [\#308](https://github.com/OpenVoiceOS/ovos-core/pull/308) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a32](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a32) (2023-08-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a31...V0.0.8a32)
 
 **Implemented enhancements:**
 
@@ -630,10 +638,6 @@
 ## [V0.0.5a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a35) (2022-10-31)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a34...V0.0.5a35)
-
-**Implemented enhancements:**
-
-- Update dependencies to stable versions [\#226](https://github.com/OpenVoiceOS/ovos-core/pull/226) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.5a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a34) (2022-10-25)
 
