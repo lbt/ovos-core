@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a32...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a33...HEAD)
+
+**Fixed bugs:**
+
+- unittests hang forever test\_event\_container.py  [\#342](https://github.com/OpenVoiceOS/ovos-core/issues/342)
+
+**Merged pull requests:**
+
+- refactor/sound\_output\_in\_ovos\_audio [\#345](https://github.com/OpenVoiceOS/ovos-core/pull/345) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a33](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a33) (2023-08-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a32...V0.0.8a33)
 
 **Implemented enhancements:**
 
@@ -619,10 +631,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a37...V0.0.5a38)
 
-**Fixed bugs:**
-
--  Replace / by \_ in name to avoid issue when writing the cache file. [\#228](https://github.com/OpenVoiceOS/ovos-core/pull/228) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [V0.0.5a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a37) (2022-11-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a36...V0.0.5a37)
@@ -630,10 +638,6 @@
 ## [V0.0.5a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a36) (2022-11-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5a35...V0.0.5a36)
-
-**Fixed bugs:**
-
-- emit theme get on theme change [\#227](https://github.com/OpenVoiceOS/ovos-core/pull/227) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.5a35](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5a35) (2022-10-31)
 
