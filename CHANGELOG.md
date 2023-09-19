@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a33...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a34...HEAD)
+
+**Implemented enhancements:**
+
+- feat/runtime skill installer  [\#347](https://github.com/OpenVoiceOS/ovos-core/pull/347) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a34](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a34) (2023-09-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a33...V0.0.8a34)
 
 **Fixed bugs:**
 
