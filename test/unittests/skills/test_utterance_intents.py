@@ -3,6 +3,8 @@ import unittest
 from ovos_utils.messagebus import FakeBus
 
 from ovos_bus_client.message import Message
+# TODO - rewrite tests around pipeline config, not padatious deprecated config flag
+
 from ovos_core.intent_services.padacioso_service import FallbackIntentContainer, PadaciosoService
 
 

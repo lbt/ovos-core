@@ -14,28 +14,53 @@
 #
 """Intent service for Mycroft's fallback system."""
 import operator
+import time
 from collections import namedtuple
 
-import time
 from ovos_config import Configuration
 
-import ovos_core.intent_services
-from ovos_utils import flatten_list
+from ovos_bus_client.message import Message
+from ovos_plugin_manager.templates.pipeline import PipelineStagePlugin, IntentMatch
+from ovos_utils import flatten_list, classproperty
 from ovos_utils.log import LOG
 from ovos_workshop.skills.fallback import FallbackMode
 
 FallbackRange = namedtuple('FallbackRange', ['start', 'stop'])
 
 
-class FallbackService:
+class FallbackService(PipelineStagePlugin):
     """Intent Service handling fallback skills."""
 
-    def __init__(self, bus):
-        self.bus = bus
-        self.fallback_config = Configuration()["skills"].get("fallbacks", {})
+    def __init__(self, bus, config=None):
+        config = config or Configuration()["skills"].get("fallbacks", {})
+        super().__init__(bus, config)
         self.registered_fallbacks = {}  # skill_id: priority
+
+    # plugin api
+    @classproperty
+    def matcher_id(self):
+        return "fallback"
+
+    def register_bus_events(self):
         self.bus.on("ovos.skills.fallback.register", self.handle_register_fallback)
         self.bus.on("ovos.skills.fallback.deregister", self.handle_deregister_fallback)
+
+    def match(self, utterances: list, lang: str, message: Message):
+        return self._fallback_range(utterances, lang, message, FallbackRange(0, 101))
+
+    def match_high(self, utterances: list, lang: str, message: Message):
+        return self.high_prio(utterances, lang, message)
+
+    def match_medium(self, utterances: list, lang: str, message: Message):
+        return self.medium_prio(utterances, lang, message)
+
+    def match_low(self, utterances: list, lang: str, message: Message):
+        return self.low_prio(utterances, lang, message)
+
+    # implementation
+    @property
+    def fallback_config(self):
+        return self.config
 
     def handle_register_fallback(self, message):
         skill_id = message.data.get("skill_id")
@@ -165,7 +190,12 @@ class FallbackService:
         for skill_id, prio in sorted_handlers:
             result = self.attempt_fallback(utterances, skill_id, lang, message)
             if result:
-                return ovos_core.intent_services.IntentMatch('Fallback', None, {}, None, utterances[0])
+                return IntentMatch(intent_service=self.matcher_id,
+                                   intent_type=f"fallback_{skill_id}",
+                                   intent_data={},
+                                   skill_id=skill_id,
+                                   utterance=utterances[0],
+                                   confidence=prio / 100)
 
         # old style deprecated fallback skill singleton class
         LOG.debug("checking for FallbackSkillsV1")
@@ -178,7 +208,12 @@ class FallbackService:
         response = self.bus.wait_for_response(msg, timeout=10)
 
         if response and response.data['handled']:
-            return ovos_core.intent_services.IntentMatch('Fallback', None, {}, None, utterances[0])
+            return IntentMatch(intent_service=self.matcher_id,
+                               intent_type=f"legacy_fallback_{fb_range.stop}",
+                               intent_data={},
+                               skill_id="fallbacks.openvoiceos",
+                               utterance=utterances[0],
+                               confidence=(fb_range.stop - fb_range.start) / 100)
         return None
 
     def high_prio(self, utterances, lang, message):

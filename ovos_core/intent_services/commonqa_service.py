@@ -1,12 +1,11 @@
 import re
-from threading import Lock, Event
-
 import time
 from itertools import chain
-from ovos_bus_client.message import Message, dig_for_message
+from threading import Lock, Event
 
-import ovos_core.intent_services
-from ovos_utils import flatten_list
+from ovos_bus_client.message import Message, dig_for_message
+from ovos_plugin_manager.templates.pipeline import PipelineStagePlugin, IntentMatch
+from ovos_utils import flatten_list, classproperty
 from ovos_utils.enclosure.api import EnclosureAPI
 from ovos_utils.log import LOG
 from ovos_utils.messagebus import get_message_lang
@@ -15,14 +14,14 @@ from ovos_workshop.resource_files import CoreResources
 EXTENSION_TIME = 10
 
 
-class CommonQAService:
+class CommonQAService(PipelineStagePlugin):
     """Intent Service handling common query skills.
     All common query skills answer and the best answer is selected
     This is in contrast to triggering best intent directly.
     """
 
-    def __init__(self, bus):
-        self.bus = bus
+    def __init__(self, bus, config=None):
+        super().__init__(bus, config)
         self.skill_id = "common_query.openvoiceos"  # fake skill
         self.query_replies = {}  # cache of received replies
         self.query_extensions = {}  # maintains query timeout extensions
@@ -32,9 +31,47 @@ class CommonQAService:
         self.answered = False
         self.enclosure = EnclosureAPI(self.bus, self.skill_id)
         self._vocabs = {}
+
+    @classproperty
+    def matcher_id(self):
+        return "common_qa"
+
+    # plugin api
+    def register_bus_events(self):
         self.bus.on('question:query.response', self.handle_query_response)
         self.bus.on('common_query.question', self.handle_question)
 
+    def match(self, utterances, lang, message):
+        """Send common query request and select best response
+
+        Args:
+            utterances (list): List of tuples,
+                               utterances and normalized version
+            lang (str): Language code
+            message: Message for session context
+        Returns:
+            IntentMatch or None
+        """
+        # we call flatten in case someone is sending the old style list of tuples
+        utterances = flatten_list(utterances)
+        match = None
+        for utterance in utterances:
+            if self.is_question_like(utterance, lang):
+                message.data["lang"] = lang  # only used for speak
+                message.data["utterance"] = utterance
+                answered = self.handle_question(message)
+                if answered:
+                    match = IntentMatch(
+                        intent_service=self.matcher_id,
+                        intent_type="common_query",
+                        intent_data={},
+                        skill_id=self.skill_id,
+                        utterance=utterance,
+                        confidence=1.0)
+                break
+        return match
+
+    # implementation
     def voc_match(self, utterance, voc_filename, lang, exact=False):
         """Determine if the given utterance contains the vocabulary provided.
 
@@ -83,30 +120,6 @@ class CommonQAService:
         if self.voc_match(utterance, "common_play", lang):
             return False
         return True
-
-    def match(self, utterances, lang, message):
-        """Send common query request and select best response
-
-        Args:
-            utterances (list): List of tuples,
-                               utterances and normalized version
-            lang (str): Language code
-            message: Message for session context
-        Returns:
-            IntentMatch or None
-        """
-        # we call flatten in case someone is sending the old style list of tuples
-        utterances = flatten_list(utterances)
-        match = None
-        for utterance in utterances:
-            if self.is_question_like(utterance, lang):
-                message.data["lang"] = lang  # only used for speak
-                message.data["utterance"] = utterance
-                answered = self.handle_question(message)
-                if answered:
-                    match = ovos_core.intent_services.IntentMatch('CommonQuery', None, {}, None, utterance)
-                break
-        return match
 
     def handle_question(self, message):
         """ Send the phrase to the CommonQuerySkills and prepare for handling

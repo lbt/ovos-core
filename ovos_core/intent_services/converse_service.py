@@ -3,35 +3,39 @@ import time
 from ovos_config.config import Configuration
 from ovos_config.locale import setup_locale
 
-import ovos_core.intent_services
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
-from ovos_utils import flatten_list
+from ovos_plugin_manager.templates.pipeline import PipelineStagePlugin, IntentMatch
+from ovos_utils import flatten_list, classproperty
 from ovos_utils.log import LOG
 from ovos_utils.messagebus import get_message_lang
 from ovos_workshop.permissions import ConverseMode, ConverseActivationMode
 
 
-class ConverseService:
+class ConverseService(PipelineStagePlugin):
     """Intent Service handling conversational skills."""
 
-    def __init__(self, bus):
-        self.bus = bus
+    def __init__(self, bus, config=None):
+        config = config or Configuration().get("skills", {}).get("converse") or {}
+        super().__init__(bus, config)
         self._consecutive_activations = {}
+
+    # plugin api
+    @classproperty
+    def matcher_id(self):
+        return "converse"
+
+    def match(self, utterances: list, lang: str, message: Message):
+        return self.converse_with_skills(utterances, lang, message)
+
+    def register_bus_events(self):
         self.bus.on('mycroft.speech.recognition.unknown', self.reset_converse)
         self.bus.on('intent.service.skills.deactivate', self.handle_deactivate_skill_request)
         self.bus.on('intent.service.skills.activate', self.handle_activate_skill_request)
         self.bus.on('active_skill_request', self.handle_activate_skill_request)  # TODO backwards compat, deprecate
         self.bus.on('intent.service.active_skills.get', self.handle_get_active_skills)
 
-    @property
-    def config(self):
-        """
-        Returns:
-            converse_config (dict): config for converse handling options
-        """
-        return Configuration().get("skills", {}).get("converse") or {}
-
+    # implementation
     @property
     def active_skills(self):
         session = SessionManager.get()
@@ -290,7 +294,12 @@ class ConverseService:
         # check if any skill wants to handle utterance
         for skill_id in self._collect_converse_skills(message):
             if self.converse(utterances, skill_id, lang, message):
-                return ovos_core.intent_services.IntentMatch('Converse', None, None, skill_id, utterances[0])
+                return IntentMatch(intent_service=self.matcher_id,
+                                   intent_type=f"converse_{skill_id}",
+                                   intent_data={},
+                                   skill_id=skill_id,
+                                   confidence=1.0,
+                                   utterance=utterances[0])
         return None
 
     def handle_activate_skill_request(self, message):
