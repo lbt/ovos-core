@@ -26,6 +26,7 @@ from ovos_utils.log import LOG, log_deprecation, deprecated
 class IntentService(_IS):
     """contains only junk code that logs deprecation warnings to not break downstream api"""
 
+    @deprecated("mycroft.skills module is deprecated, migrate to ovos_core.intent_services.IntentService", "0.0.8")
     def __init__(self, bus):
         self.bus = bus
         self.pipeline_plugins = {}
@@ -151,7 +152,6 @@ class IntentService(_IS):
         Args:
             message (Message): message containing vocab info
         """
-        pass
 
     @deprecated("handle_register_intent moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -161,7 +161,6 @@ class IntentService(_IS):
         Args:
             message (Message): message containing intent info
         """
-        pass
 
     @deprecated("handle_detach_intent moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -171,7 +170,6 @@ class IntentService(_IS):
         Args:
             message (Message): message containing intent info
         """
-        pass
 
     @deprecated("handle_detach_skill moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -181,7 +179,6 @@ class IntentService(_IS):
         Args:
             message (Message): message containing intent info
         """
-        pass
 
     @deprecated("handle_get_adapt moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -191,7 +188,6 @@ class IntentService(_IS):
         Args:
             message (Message): message containing utterance
         """
-        pass
 
     @deprecated("handle_adapt_manifest moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -201,7 +197,6 @@ class IntentService(_IS):
         Argument:
             message: query message to reply to.
         """
-        pass
 
     @deprecated("handle_vocab_manifest moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -211,7 +206,6 @@ class IntentService(_IS):
         Argument:
             message: query message to reply to.
         """
-        pass
 
     @deprecated("handle_get_padatious moved to PadatiousService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -221,7 +215,6 @@ class IntentService(_IS):
         Args:
             message (Message): message triggering the method
         """
-        pass
 
     @deprecated("handle_padatious_manifest moved to PadatiousService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -231,7 +224,6 @@ class IntentService(_IS):
         Args:
             message (Message): message triggering the method
         """
-        pass
 
     @deprecated("handle_entity_manifest moved to PadatiousService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -241,7 +233,6 @@ class IntentService(_IS):
         Args:
             message (Message): message triggering the method
         """
-        pass
 
     @deprecated("do_converse moved to ConverseService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -257,9 +248,6 @@ class IntentService(_IS):
             lang (str): current language
             message (Message): message containing interaction info.
         """
-        # NOTE: can not delete method for backwards compat with upstream
-        LOG.warning("self.do_converse has been deprecated!\n"
-                    "use self.converse.converse instead")
         return self.converse.converse(utterances, skill_id, lang, message)
 
     @deprecated("do_converse moved to ConverseService, overriding this method has no effect, "
@@ -268,8 +256,6 @@ class IntentService(_IS):
         """DEPRECATED: do not use, method only for api backwards compatibility
         Logs a warning
         """
-        # NOTE: can not delete method for backwards compat with upstream
-        LOG.warning("handle_converse_error has been deprecated!")
 
     @deprecated("do_converse moved to ConverseService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
@@ -281,9 +267,6 @@ class IntentService(_IS):
         Args:
             skill_id (str): skill to remove
         """
-        # NOTE: can not delete method for backwards compat with upstream
-        LOG.warning("self.remove_active_skill has been deprecated!\n"
-                    "use self.converse.deactivate_skill instead")
         self.converse.deactivate_skill(skill_id)
 
     @deprecated("do_converse moved to ConverseService, overriding this method has no effect, "
@@ -296,9 +279,6 @@ class IntentService(_IS):
         Args:
             skill_id (str): identifier of skill to be added.
         """
-        # NOTE: can not delete method for backwards compat with upstream
-        LOG.warning("self.add_active_skill has been deprecated!\n"
-                    "use self.converse.activate_skill instead")
         self.converse.activate_skill(skill_id)
 
     @deprecated("send_metrics/selene has been deprecated, overriding this method has no effect, "
