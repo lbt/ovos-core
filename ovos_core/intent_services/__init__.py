@@ -474,7 +474,10 @@ class IntentService(IntentServiceCompatLayer):
                 message.data["utterance"] = match.utterance
 
                 if match.skill_id:
-                    self.converse.activate_skill(match.skill_id)  # TODO - use Session
+                    # update converse session
+                    session = SessionManager.get(message)
+                    session.activate_skill(match.skill_id)
+
                     message.context["skill_id"] = match.skill_id
                     # If the service didn't report back the skill_id it
                     # takes on the responsibility of making the skill "active"
