@@ -35,6 +35,12 @@ class IntentServiceCompatLayer:
     def __init__(self, bus):
         self.bus = bus
         self.pipeline_plugins = {}
+        self._converse = None
+        self._common_qa = None
+        self._fallback = None
+        self._adapt_service = None
+        self._padatious_service = None
+        self._padacioso_service = None
 
     @deprecated("skill manifest moved to SkillManager, "
                 "this handler is not connected to bus events, subclassing it has no effect")
@@ -69,37 +75,55 @@ class IntentServiceCompatLayer:
     def converse(self):
         log_deprecation("self.converse has been deprecated, "
                         "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.pipeline_plugins.get("converse")
+        if self._converse is None:
+            self._converse = self.pipeline_plugins.get("converse")
+        return self._converse
 
     @property
     def common_qa(self):
         log_deprecation("self.common_qa has been deprecated, "
                         "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.pipeline_plugins.get("common_qa")
+        if self._common_qa is None:
+            self._common_qa = self.pipeline_plugins.get("common_qa")
+        return self._common_qa
 
     @property
     def fallback(self):
         log_deprecation("self.fallback has been deprecated, "
                         "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.pipeline_plugins.get("fallback")
+        if self._fallback is None:
+            self._fallback = self.pipeline_plugins.get("fallback")
+        return self._fallback
 
     @property
     def adapt_service(self):
         log_deprecation("self.adapt_service has been deprecated, "
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.pipeline_plugins.get("adapt")
+                        "get plugin object reference via self.pipeline_plugins.get('adapt')", "0.1.0")
+        if self._adapt_service is None:
+            _p = self.pipeline_plugins.get("adapt")
+            self._adapt_service = AdaptService(self.bus)
+            self._adapt_service.bind(_p)
+        return self._adapt_service
 
     @property
     def padacioso_service(self):
         log_deprecation("self.padacioso has been deprecated, "
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.pipeline_plugins.get("padacioso")
+                        "get plugin object reference via self.pipeline_plugins.get('padacioso')", "0.1.0")
+        if self._padacioso_service is None:
+            _p = self.pipeline_plugins.get("padacioso")
+            self._padacioso_service = PadatiousService(self.bus, config={"regex_only": True})
+            self._padacioso_service.bind(_p)
+        return self._padacioso_service
 
     @property
     def padatious_service(self):
         log_deprecation("self.padatious has been deprecated, "
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.pipeline_plugins.get("padatious") or self.padacioso_service
+                        "get plugin object reference via self.pipeline_plugins.get('padatious')", "0.1.0")
+        if self._padatious_service is None:
+            _p = self.pipeline_plugins.get("padatious")
+            self._padatious_service = PadatiousService(self.bus)
+            self._padatious_service.bind(_p)
+        return self._padatious_service
 
     @property
     def skill_names(self):
@@ -111,19 +135,13 @@ class IntentServiceCompatLayer:
     def registered_intents(self):
         log_deprecation("self.registered_intents has been deprecated, moved to AdaptService,"
                         "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        adapt = self.pipeline_plugins.get("adapt")
-        if adapt:
-            return adapt.registered_intents
-        return []
+        return self.adapt_service.registered_intents
 
     @property
     def registered_vocab(self):
         log_deprecation("self.registered_vocab has been deprecated, moved to AdaptService,"
                         "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        adapt = self.pipeline_plugins.get("adapt")
-        if adapt:
-            return adapt.registered_vocab
-        return []
+        return self.adapt_service.registered_vocab
 
     @deprecated("skill names have been replaced across the whole ecosystem with skill_ids, "
                 "this handler is no longer connected to the messagebus", "0.0.8")
