@@ -44,7 +44,6 @@ class IntentService:
 
         # Intents API
         self.bus.on('intent.service.intent.get', self.handle_get_intent)
-        self.bus.on('intent.service.skills.get', self.handle_get_skills)
 
         # Pipeline API
         self.bus.on('recognizer_loop:utterance', self.handle_utterance)
@@ -115,18 +114,6 @@ class IntentService:
         return matchers
 
     # service implementation
-    @deprecated("skill manifest moved to SkillManager, "
-                "this handler is not connected to bus events, subclassing it has no effect")
-    def handle_get_skills(self, message):
-        """Send registered skills to caller.
-
-        Argument:
-            message: query message to reply to.
-        """
-        # TODO - move this to SkillManager
-        self.bus.emit(message.reply("intent.service.skills.reply",
-                                    {"skills": []}))
-
     def _handle_transformers(self, message):
         """
         Pipe utterance through transformer plugins to get more metadata.

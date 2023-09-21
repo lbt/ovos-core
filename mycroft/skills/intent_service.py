@@ -144,6 +144,16 @@ class IntentService(_IS):
         """
         return skill_id
 
+    @deprecated("use 'skillmanager.list' -> 'mycroft.skills.list' instead "
+                "this handler is not connected to bus events, subclassing it has no effect", "0.0.8")
+    def handle_get_skills(self, message):
+        """Send registered skills to caller.
+
+        Argument:
+            message: query message to reply to.
+        """
+        self.bus.emit(message.reply("intent.service.skills.reply", {"skills": []}))
+
     @deprecated("handle_register_intent moved to AdaptService, overriding this method has no effect, "
                 "it has been disconnected from the bus event", "0.0.8")
     def handle_register_vocab(self, message):
