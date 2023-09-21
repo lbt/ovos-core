@@ -17,7 +17,6 @@ from ovos_config.locale import setup_locale
 
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
-from ovos_core.intent_services.adapt_service import AdaptService
 from ovos_core.intent_services.commonqa_service import CommonQAService
 from ovos_core.intent_services.converse_service import ConverseService
 from ovos_core.intent_services.fallback_service import FallbackService
@@ -26,244 +25,9 @@ from ovos_plugin_manager.templates.pipeline import PipelineStagePlugin
 from ovos_utils.log import LOG, deprecated, log_deprecation
 from ovos_utils.messagebus import get_message_lang
 from ovos_utils.metrics import Stopwatch
-from ovos_core.intent_services.padatious_service import PadatiousService, PadatiousMatcher
 
 
-class IntentServiceCompatLayer:
-    """contains only junk code that logs deprecation warnings to not break downstream api"""
-
-    def __init__(self, bus):
-        self.bus = bus
-        self.pipeline_plugins = {}
-        self._converse = None
-        self._common_qa = None
-        self._fallback = None
-        self._adapt_service = None
-        self._padatious_service = None
-        self._padacioso_service = None
-
-    @deprecated("skill manifest moved to SkillManager, "
-                "this handler is not connected to bus events, subclassing it has no effect")
-    def handle_get_skills(self, message):
-        """Send registered skills to caller.
-
-        Argument:
-            message: query message to reply to.
-        """
-        # TODO - move this to SkillManager
-        self.bus.emit(message.reply("intent.service.skills.reply",
-                                    {"skills": self.skill_names  # TODO - skill_ids
-                                     }))
-
-    # deprecated properties / handlers
-    # convenience properties around default pipeline components / backwards compat
-    @property
-    def active_skills(self):
-        log_deprecation("self.active_skills is deprecated! use Session instead", "0.0.9")
-        session = SessionManager.get()
-        return session.active_skills
-
-    @active_skills.setter
-    def active_skills(self, val):
-        log_deprecation("self.active_skills is deprecated! use Session instead", "0.0.9")
-        session = SessionManager.get()
-        session.active_skills = []
-        for skill_id, ts in val:
-            session.activate_skill(skill_id)
-
-    @property
-    def converse(self):
-        log_deprecation("self.converse has been deprecated, "
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        if self._converse is None:
-            self._converse = self.pipeline_plugins.get("converse")
-        return self._converse
-
-    @property
-    def common_qa(self):
-        log_deprecation("self.common_qa has been deprecated, "
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        if self._common_qa is None:
-            self._common_qa = self.pipeline_plugins.get("common_qa")
-        return self._common_qa
-
-    @property
-    def fallback(self):
-        log_deprecation("self.fallback has been deprecated, "
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        if self._fallback is None:
-            self._fallback = self.pipeline_plugins.get("fallback")
-        return self._fallback
-
-    @property
-    def adapt_service(self):
-        log_deprecation("self.adapt_service has been deprecated, "
-                        "get plugin object reference via self.pipeline_plugins.get('adapt')", "0.1.0")
-        if self._adapt_service is None:
-            _p = self.pipeline_plugins.get("adapt")
-            self._adapt_service = AdaptService(self.bus)
-            self._adapt_service.bind(_p)
-        return self._adapt_service
-
-    @property
-    def padacioso_service(self):
-        log_deprecation("self.padacioso has been deprecated, "
-                        "get plugin object reference via self.pipeline_plugins.get('padacioso')", "0.1.0")
-        if self._padacioso_service is None:
-            _p = self.pipeline_plugins.get("padacioso")
-            self._padacioso_service = PadatiousService(self.bus, config={"regex_only": True})
-            self._padacioso_service.bind(_p)
-        return self._padacioso_service
-
-    @property
-    def padatious_service(self):
-        log_deprecation("self.padatious has been deprecated, "
-                        "get plugin object reference via self.pipeline_plugins.get('padatious')", "0.1.0")
-        if self._padatious_service is None:
-            _p = self.pipeline_plugins.get("padatious")
-            self._padatious_service = PadatiousService(self.bus)
-            self._padatious_service.bind(_p)
-        return self._padatious_service
-
-    @property
-    def skill_names(self):
-        log_deprecation("self.skill_names has been deprecated and is always an empty dict,"
-                        " skill names no longer in use, reference skill_id directly", "0.0.8")
-        return {}
-
-    @property
-    def registered_intents(self):
-        log_deprecation("self.registered_intents has been deprecated, moved to AdaptService,"
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.adapt_service.registered_intents
-
-    @property
-    def registered_vocab(self):
-        log_deprecation("self.registered_vocab has been deprecated, moved to AdaptService,"
-                        "pipeline plugin object references can be found under self.pipeline_plugins", "0.1.0")
-        return self.adapt_service.registered_vocab
-
-    @deprecated("skill names have been replaced across the whole ecosystem with skill_ids, "
-                "this handler is no longer connected to the messagebus", "0.0.8")
-    def update_skill_name_dict(self, message):
-        """Messagebus handler, updates dict of id to skill name conversions."""
-        pass
-
-    @deprecated("skill names have been replaced across the whole ecosystem with skill_ids, "
-                "get_skill_name is no longer necessary", "0.0.8")
-    def get_skill_name(self, skill_id):
-        """Get skill name from skill ID.
-
-        Args:
-            skill_id: a skill id as encoded in Intent handlers.
-
-        Returns:
-            (str) Skill name or the skill id if the skill wasn't found
-        """
-        return skill_id
-
-    @deprecated("handle_register_intent moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_register_vocab(self, message):
-        """Register adapt vocabulary.
-
-        Args:
-            message (Message): message containing vocab info
-        """
-        pass
-
-    @deprecated("handle_register_intent moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_register_intent(self, message):
-        """Register adapt intent.
-
-        Args:
-            message (Message): message containing intent info
-        """
-        pass
-
-    @deprecated("handle_detach_intent moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_detach_intent(self, message):
-        """Remover adapt intent.
-
-        Args:
-            message (Message): message containing intent info
-        """
-        pass
-
-    @deprecated("handle_detach_skill moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_detach_skill(self, message):
-        """Remove all intents registered for a specific skill.
-
-        Args:
-            message (Message): message containing intent info
-        """
-        pass
-
-    @deprecated("handle_get_adapt moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_get_adapt(self, message):
-        """handler getting the adapt response for an utterance.
-
-        Args:
-            message (Message): message containing utterance
-        """
-        pass
-
-    @deprecated("handle_adapt_manifest moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_adapt_manifest(self, message):
-        """Send adapt intent manifest to caller.
-
-        Argument:
-            message: query message to reply to.
-        """
-        pass
-
-    @deprecated("handle_vocab_manifest moved to AdaptService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_vocab_manifest(self, message):
-        """Send adapt vocabulary manifest to caller.
-
-        Argument:
-            message: query message to reply to.
-        """
-        pass
-
-    @deprecated("handle_get_padatious moved to PadatiousService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_get_padatious(self, message):
-        """messagebus handler for perfoming padatious parsing.
-
-        Args:
-            message (Message): message triggering the method
-        """
-        pass
-
-    @deprecated("handle_padatious_manifest moved to PadatiousService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_padatious_manifest(self, message):
-        """Messagebus handler returning the registered padatious intents.
-
-        Args:
-            message (Message): message triggering the method
-        """
-        pass
-
-    @deprecated("handle_entity_manifest moved to PadatiousService, overriding this method has no effect, "
-                "it has been disconnected from the bus event", "0.0.8")
-    def handle_entity_manifest(self, message):
-        """Messagebus handler returning the registered padatious entities.
-
-        Args:
-            message (Message): message triggering the method
-        """
-        pass
-
-
-class IntentService(IntentServiceCompatLayer):
+class IntentService:
     """OpenVoiceOS intent service. parses utterances using a variety of systems.
 
     The intent service also provides the internal API for registering and
@@ -351,6 +115,18 @@ class IntentService(IntentServiceCompatLayer):
         return matchers
 
     # service implementation
+    @deprecated("skill manifest moved to SkillManager, "
+                "this handler is not connected to bus events, subclassing it has no effect")
+    def handle_get_skills(self, message):
+        """Send registered skills to caller.
+
+        Argument:
+            message: query message to reply to.
+        """
+        # TODO - move this to SkillManager
+        self.bus.emit(message.reply("intent.service.skills.reply",
+                                    {"skills": []}))
+
     def _handle_transformers(self, message):
         """
         Pipe utterance through transformer plugins to get more metadata.
