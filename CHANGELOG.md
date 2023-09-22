@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a36...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a37...HEAD)
+
+**Implemented enhancements:**
+
+- feat/pipeline\_session [\#352](https://github.com/OpenVoiceOS/ovos-core/pull/352) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a37](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a37) (2023-09-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a36...V0.0.8a37)
 
 **Merged pull requests:**
 
