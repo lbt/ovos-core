@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a35...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a36...HEAD)
+
+**Merged pull requests:**
+
+- Update README.md: Update Link [\#351](https://github.com/OpenVoiceOS/ovos-core/pull/351) ([1Maxnet1](https://github.com/1Maxnet1))
+
+## [V0.0.8a36](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a36) (2023-09-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a35...V0.0.8a36)
 
 **Implemented enhancements:**
 
@@ -626,10 +634,6 @@
 ## [V0.0.6a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a1) (2022-11-23)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.5...V0.0.6a1)
-
-**Implemented enhancements:**
-
-- add factory reset ui [\#231](https://github.com/OpenVoiceOS/ovos-core/pull/231) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.5) (2022-11-16)
 
