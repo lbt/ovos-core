@@ -73,6 +73,9 @@ class IntentService:
         self.common_qa = CommonQAService(bus)
         self.utterance_plugins = UtteranceTransformersService(bus, config=config)
         self.metadata_plugins = MetadataTransformersService(bus, config=config)
+        # connection SessionManager to the bus,
+        # this will sync default session across all components
+        SessionManager.connect_to_bus(self.bus)
 
         self.bus.on('register_vocab', self.handle_register_vocab)
         self.bus.on('register_intent', self.handle_register_intent)
@@ -273,11 +276,18 @@ class IntentService:
 
             stopwatch = Stopwatch()
 
+            # get session
+            sess = SessionManager.get(message)
+            if sess.session_id == "default":
+                # Default session, check if it needs to be (re)-created
+                if sess.expired():
+                    sess = SessionManager.reset_default_session()
+            sess.lang = lang
+
             # match
             match = None
             with stopwatch:
                 # Loop through the matching functions until a match is found.
-                sess = SessionManager.get(message)
                 for match_func in self.get_pipeline(session=sess):
                     match = match_func(utterances, lang, message)
                     if match:
@@ -287,7 +297,7 @@ class IntentService:
                 message.data["utterance"] = match.utterance
 
                 if match.skill_id:
-                    self.converse.activate_skill(match.skill_id)
+                    self.converse.activate_skill(match.skill_id, message=message)
                     message.context["skill_id"] = match.skill_id
                     # If the service didn't report back the skill_id it
                     # takes on the responsibility of making the skill "active"
@@ -306,6 +316,9 @@ class IntentService:
                 # Ask politely for forgiveness for failing in this vital task
                 self.send_complete_intent_failure(message)
 
+            # sync any changes made to the default session, eg by ConverseService
+            if sess.session_id == "default":
+                SessionManager.sync()
             return match, message.context, stopwatch
 
         except Exception as err:
