@@ -2,7 +2,20 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a37...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a38...HEAD)
+
+**Implemented enhancements:**
+
+- Persona Initiative - Long Live the LLM [\#297](https://github.com/OpenVoiceOS/ovos-core/issues/297)
+- default session managed by core [\#354](https://github.com/OpenVoiceOS/ovos-core/pull/354) ([JarbasAl](https://github.com/JarbasAl))
+
+**Fixed bugs:**
+
+- fix docker build [\#267](https://github.com/OpenVoiceOS/ovos-core/issues/267)
+
+## [V0.0.8a38](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a38) (2023-09-22)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a37...V0.0.8a38)
 
 **Implemented enhancements:**
 
@@ -598,11 +611,6 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a5...V0.0.6a6)
 
-**Fixed bugs:**
-
-- port/fix/ intent name colision [\#233](https://github.com/OpenVoiceOS/ovos-core/issues/233)
-- Handle multiple intents with the same name \(\#2921\) [\#235](https://github.com/OpenVoiceOS/ovos-core/pull/235) ([JarbasAl](https://github.com/JarbasAl))
-
 **Closed issues:**
 
 - Install confusion [\#239](https://github.com/OpenVoiceOS/ovos-core/issues/239)
@@ -634,10 +642,6 @@
 ## [V0.0.6a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a2) (2022-11-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a1...V0.0.6a2)
-
-**Fixed bugs:**
-
-- Fix show\_pages index api [\#234](https://github.com/OpenVoiceOS/ovos-core/pull/234) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.6a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a1) (2022-11-23)
 
