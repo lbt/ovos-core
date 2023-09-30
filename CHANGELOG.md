@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a40...HEAD)
+
+**Fixed bugs:**
+
+- fix/session dropping active\_skills [\#355](https://github.com/OpenVoiceOS/ovos-core/pull/355) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a40](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a40) (2023-09-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a39...V0.0.8a40)
+
 ## [V0.0.8a39](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a39) (2023-09-29)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a38...V0.0.8a39)
@@ -634,10 +646,6 @@
 ## [V0.0.6a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a3) (2022-11-30)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a2...V0.0.6a3)
-
-**Implemented enhancements:**
-
-- page background color support for show image and show animated image [\#236](https://github.com/OpenVoiceOS/ovos-core/pull/236) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.6a2](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a2) (2022-11-25)
 
