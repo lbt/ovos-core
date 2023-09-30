@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a40...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a41...HEAD)
+
+**Merged pull requests:**
+
+- add more tests / fix codecov workflow [\#356](https://github.com/OpenVoiceOS/ovos-core/pull/356) ([JarbasAl](https://github.com/JarbasAl))
+- Update ovos-utils and ovos-workshop to latest alpha versions [\#339](https://github.com/OpenVoiceOS/ovos-core/pull/339) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [V0.0.8a41](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a41) (2023-09-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a40...V0.0.8a41)
 
 **Fixed bugs:**
 
@@ -631,17 +640,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a4...V0.0.6a5)
 
-**Implemented enhancements:**
-
-- Add config option to retry mic init on start \(default True\) [\#238](https://github.com/OpenVoiceOS/ovos-core/pull/238) ([NeonDaniel](https://github.com/NeonDaniel))
-
 ## [V0.0.6a4](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a4) (2022-12-08)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a3...V0.0.6a4)
-
-**Fixed bugs:**
-
-- Fix display settings ui [\#237](https://github.com/OpenVoiceOS/ovos-core/pull/237) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.6a3](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a3) (2022-11-30)
 
