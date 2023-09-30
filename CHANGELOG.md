@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a41...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a42...HEAD)
+
+**Merged pull requests:**
+
+- unittests/fallback\_service [\#357](https://github.com/OpenVoiceOS/ovos-core/pull/357) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a42](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a42) (2023-09-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a41...V0.0.8a42)
 
 **Merged pull requests:**
 
@@ -631,10 +639,6 @@
 ## [V0.0.6a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a6) (2022-12-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a5...V0.0.6a6)
-
-**Closed issues:**
-
-- Install confusion [\#239](https://github.com/OpenVoiceOS/ovos-core/issues/239)
 
 ## [V0.0.6a5](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a5) (2022-12-08)
 
