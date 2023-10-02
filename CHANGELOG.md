@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a42...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a43...HEAD)
+
+**Fixed bugs:**
+
+- unittests/fallbackV1 [\#358](https://github.com/OpenVoiceOS/ovos-core/pull/358) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a43](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a43) (2023-09-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a42...V0.0.8a43)
 
 **Merged pull requests:**
 
@@ -631,10 +639,6 @@
 ## [V0.0.6a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a7) (2022-12-14)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a6...V0.0.6a7)
-
-**Fixed bugs:**
-
-- Reorg shutdown to prevent logged exceptions in skill shutdown [\#240](https://github.com/OpenVoiceOS/ovos-core/pull/240) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a6) (2022-12-13)
 
