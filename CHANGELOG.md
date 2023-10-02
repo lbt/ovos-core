@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a43...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a44...HEAD)
+
+**Merged pull requests:**
+
+- unittests/skill\_self\_activation [\#360](https://github.com/OpenVoiceOS/ovos-core/pull/360) ([JarbasAl](https://github.com/JarbasAl))
+- unitests/converse [\#359](https://github.com/OpenVoiceOS/ovos-core/pull/359) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a44](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a44) (2023-10-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a43...V0.0.8a44)
 
 **Fixed bugs:**
 
@@ -631,10 +640,6 @@
 ## [V0.0.6a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a8) (2022-12-14)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a7...V0.0.6a8)
-
-**Merged pull requests:**
-
-- relax lingua\_franca version [\#242](https://github.com/OpenVoiceOS/ovos-core/pull/242) ([builderjer](https://github.com/builderjer))
 
 ## [V0.0.6a7](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a7) (2022-12-14)
 
