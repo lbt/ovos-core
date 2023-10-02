@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a45...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a46...HEAD)
+
+**Fixed bugs:**
+
+- fix/get\_response some more [\#362](https://github.com/OpenVoiceOS/ovos-core/pull/362) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a46](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a46) (2023-10-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a45...V0.0.8a46)
 
 **Fixed bugs:**
 
@@ -640,10 +648,6 @@
 ## [V0.0.6a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a9) (2022-12-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a8...V0.0.6a9)
-
-**Implemented enhancements:**
-
-- Add display setting for menu labels [\#244](https://github.com/OpenVoiceOS/ovos-core/pull/244) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.6a8](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a8) (2022-12-14)
 
