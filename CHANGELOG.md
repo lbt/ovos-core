@@ -2,11 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a46...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a47...HEAD)
 
 **Fixed bugs:**
 
-- fix/get\_response some more [\#362](https://github.com/OpenVoiceOS/ovos-core/pull/362) ([JarbasAl](https://github.com/JarbasAl))
+- unittests/get\_response\_reprompting [\#363](https://github.com/OpenVoiceOS/ovos-core/pull/363) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a47](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a47) (2023-10-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a46...V0.0.8a47)
+
+**Fixed bugs:**
+
+- unittests/get\_response\_return\_val [\#362](https://github.com/OpenVoiceOS/ovos-core/pull/362) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.8a46](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a46) (2023-10-02)
 
@@ -47,7 +55,7 @@
 
 **Merged pull requests:**
 
-- add more tests / fix codecov workflow [\#356](https://github.com/OpenVoiceOS/ovos-core/pull/356) ([JarbasAl](https://github.com/JarbasAl))
+- unittests/explicit\_session + fix/codecov workflow [\#356](https://github.com/OpenVoiceOS/ovos-core/pull/356) ([JarbasAl](https://github.com/JarbasAl))
 - Update ovos-utils and ovos-workshop to latest alpha versions [\#339](https://github.com/OpenVoiceOS/ovos-core/pull/339) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.8a41](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a41) (2023-09-30)
@@ -56,7 +64,7 @@
 
 **Fixed bugs:**
 
-- fix/session dropping active\_skills [\#355](https://github.com/OpenVoiceOS/ovos-core/pull/355) ([JarbasAl](https://github.com/JarbasAl))
+- unittests/session active\_skills [\#355](https://github.com/OpenVoiceOS/ovos-core/pull/355) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.8a40](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a40) (2023-09-30)
 
@@ -555,10 +563,6 @@
 ## [V0.0.6a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a21) (2023-01-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a20...V0.0.6a21)
-
-**Implemented enhancements:**
-
-- improve skill loading [\#245](https://github.com/OpenVoiceOS/ovos-core/pull/245) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.6a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a20) (2023-01-26)
 
