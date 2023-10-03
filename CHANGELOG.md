@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a47...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a48...HEAD)
+
+**Merged pull requests:**
+
+- refactor/simplify\_session [\#364](https://github.com/OpenVoiceOS/ovos-core/pull/364) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a48](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a48) (2023-10-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a47...V0.0.8a48)
 
 **Fixed bugs:**
 
@@ -599,10 +607,6 @@
 ## [V0.0.6a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a16) (2023-01-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a15...V0.0.6a16)
-
-**Implemented enhancements:**
-
-- Refactor/skill class from workshop [\#246](https://github.com/OpenVoiceOS/ovos-core/pull/246) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.6a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a15) (2023-01-18)
 
