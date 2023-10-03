@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a48...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a49...HEAD)
+
+**Merged pull requests:**
+
+- Delete .github/workflows/publish\_docker.yml [\#365](https://github.com/OpenVoiceOS/ovos-core/pull/365) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a49](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a49) (2023-10-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a48...V0.0.8a49)
 
 **Merged pull requests:**
 
@@ -648,10 +656,6 @@
 ## [V0.0.6a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a10) (2022-12-31)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a9...V0.0.6a10)
-
-**Fixed bugs:**
-
-- Update factory reset message [\#247](https://github.com/OpenVoiceOS/ovos-core/pull/247) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a9](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a9) (2022-12-15)
 
