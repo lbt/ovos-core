@@ -2,7 +2,23 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a49...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a50...HEAD)
+
+**Implemented enhancements:**
+
+- feat: explicit message response to activate/deactivate skill [\#369](https://github.com/OpenVoiceOS/ovos-core/pull/369) ([mikejgray](https://github.com/mikejgray))
+
+**Closed issues:**
+
+- \[ENHANCEMENT\] activate\_skill and deactivate\_skill don't return a response [\#353](https://github.com/OpenVoiceOS/ovos-core/issues/353)
+
+**Merged pull requests:**
+
+- unittests/get\_response\_cascade [\#366](https://github.com/OpenVoiceOS/ovos-core/pull/366) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a50](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a50) (2023-10-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a49...V0.0.8a50)
 
 **Merged pull requests:**
 
@@ -560,10 +576,6 @@
 
 - fix/ready [\#269](https://github.com/OpenVoiceOS/ovos-core/pull/269) ([JarbasAl](https://github.com/JarbasAl))
 
-**Closed issues:**
-
-- roadmap - 0.0.6 [\#249](https://github.com/OpenVoiceOS/ovos-core/issues/249)
-
 ## [V0.0.6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6) (2023-01-27)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a22...V0.0.6)
@@ -623,23 +635,14 @@
 **Fixed bugs:**
 
 - Prevent logging errors when a blacklisted skill is handled as expected [\#257](https://github.com/OpenVoiceOS/ovos-core/pull/257) ([NeonDaniel](https://github.com/NeonDaniel))
-- Ignore setuptools pip-audit failure [\#253](https://github.com/OpenVoiceOS/ovos-core/pull/253) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a14) (2023-01-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a13...V0.0.6a14)
 
-**Fixed bugs:**
-
-- Prevent exceptions if a user doesn't reply to an `ask_yesno` prompt [\#252](https://github.com/OpenVoiceOS/ovos-core/pull/252) ([NeonDaniel](https://github.com/NeonDaniel))
-
 ## [V0.0.6a13](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a13) (2023-01-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a12...V0.0.6a13)
-
-**Fixed bugs:**
-
-- Fix system url web view [\#251](https://github.com/OpenVoiceOS/ovos-core/pull/251) ([AIIX](https://github.com/AIIX))
 
 ## [V0.0.6a12](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a12) (2023-01-10)
 
@@ -648,10 +651,6 @@
 ## [V0.0.6a11](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a11) (2023-01-03)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a10...V0.0.6a11)
-
-**Implemented enhancements:**
-
-- add "last.voc" ressource [\#248](https://github.com/OpenVoiceOS/ovos-core/pull/248) ([emphasize](https://github.com/emphasize))
 
 ## [V0.0.6a10](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a10) (2022-12-31)
 
