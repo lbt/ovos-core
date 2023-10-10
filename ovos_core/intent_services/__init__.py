@@ -29,7 +29,7 @@ from ovos_utils.intents.intent_service_interface import open_intent_envelope
 from ovos_utils.log import LOG, deprecated, log_deprecation
 from ovos_utils.messagebus import get_message_lang
 from ovos_utils.metrics import Stopwatch
-
+from ovos_core.intent_services.persona_service import PersonaPipeline
 try:
     from ovos_core.intent_services.padatious_service import PadatiousService, PadatiousMatcher
 except ImportError:
@@ -61,6 +61,7 @@ class IntentService:
         self.skill_names = {}
 
         # TODO - replace with plugins
+        self.persona_service = PersonaPipeline(self.bus)
         self.adapt_service = AdaptService()
         if PadaciosoService is not PadatiousService:
             self.padatious_service = PadatiousService(bus, config['padatious'])
@@ -226,7 +227,9 @@ class IntentService:
             "fallback_medium": self.fallback.medium_prio,
             "padatious_low": padatious_matcher.match_low,
             "padacioso_low": self.padacioso_service.match_low,
-            "fallback_low": self.fallback.low_prio
+            "fallback_low": self.fallback.low_prio,
+            "persona": self.persona_service.match,
+            "persona_converse": self.persona_service.match_converse
         }
         skips = skips or []
         pipeline = [k for k in session.pipeline if k not in skips]
