@@ -51,22 +51,6 @@ class PersonaPipeline(OVOSAbstractApplication):
         answer = self.persona.chatbox_ask(utterance, self.active_persona, self.lang)
         self.bus.emit(message.response(data={"utterance": answer, "lang": self.lang}))
 
-    # intents to chat with a persona
-    @intent_handler("summon.intent")
-    def handle_summon_persona(self, message):
-        # enable a persona temporarily and override converse method
-        self.handle_enable_persona(message)
-
-    # NB: ActivePersona keyword is virtual,
-    # it is only set/removed via context
-    @intent_handler(IntentBuilder("ReleasePersona")
-                    .require("ActivePersona")
-                    .require("Release")
-                    )
-    def handle_release_persona(self, message):
-        self.handle_disable_persona(message)
-        # TODO - speak some goodbye dialog
-
     # active skills timeout
     def handle_deactivate(self, message):
         """ skill is no longer considered active by the intent service
