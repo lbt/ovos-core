@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a50...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a51...HEAD)
+
+**Fixed bugs:**
+
+- fix/get\_response\_not\_ponging [\#372](https://github.com/OpenVoiceOS/ovos-core/pull/372) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a51](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a51) (2023-10-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a50...V0.0.8a51)
 
 **Implemented enhancements:**
 
