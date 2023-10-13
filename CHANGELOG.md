@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a51...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a52...HEAD)
+
+**Implemented enhancements:**
+
+- Refactor/converse messages [\#371](https://github.com/OpenVoiceOS/ovos-core/pull/371) ([emphasize](https://github.com/emphasize))
+
+## [V0.0.8a52](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a52) (2023-10-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a51...V0.0.8a52)
 
 **Fixed bugs:**
 
