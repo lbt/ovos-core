@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a53...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a54...HEAD)
+
+**Fixed bugs:**
+
+- unittests/message\_routing [\#374](https://github.com/OpenVoiceOS/ovos-core/pull/374) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a54](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a54) (2023-10-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a53...V0.0.8a54)
 
 **Merged pull requests:**
 
@@ -644,10 +652,6 @@
 ## [V0.0.6a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a17) (2023-01-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a16...V0.0.6a17)
-
-**Fixed bugs:**
-
-- Bump minimum plugin version for ocp fix [\#259](https://github.com/OpenVoiceOS/ovos-core/pull/259) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a16](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a16) (2023-01-20)
 
