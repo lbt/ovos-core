@@ -2,7 +2,16 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a52...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a53...HEAD)
+
+**Merged pull requests:**
+
+- fix unittests for ovos-utils==0.0.36a9 [\#375](https://github.com/OpenVoiceOS/ovos-core/pull/375) ([JarbasAl](https://github.com/JarbasAl))
+- unittests/event\_scheduler [\#373](https://github.com/OpenVoiceOS/ovos-core/pull/373) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a53](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a53) (2023-10-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a52...V0.0.8a53)
 
 **Implemented enhancements:**
 
@@ -647,10 +656,6 @@
 ## [V0.0.6a15](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a15) (2023-01-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a14...V0.0.6a15)
-
-**Fixed bugs:**
-
-- Prevent logging errors when a blacklisted skill is handled as expected [\#257](https://github.com/OpenVoiceOS/ovos-core/pull/257) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a14](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a14) (2023-01-17)
 
