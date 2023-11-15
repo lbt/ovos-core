@@ -46,16 +46,15 @@ class CommonQAService:
         self.bus.on('common_query.question', self.handle_question)
         # TODO: Register available CommonQuery skills
 
-    def voc_match(self, utterance, voc_filename, lang, exact=False):
-        """Determine if the given utterance contains the vocabulary provided.
+    def voc_match(self, utterance: str, voc_filename: str, lang: str,
+                  exact: bool = False) -> bool:
+        """
+        Determine if the given utterance contains the vocabulary provided.
 
-        By default the method checks if the utterance contains the given vocab
+        By default, the method checks if the utterance contains the given vocab
         thereby allowing the user to say things like "yes, please" and still
         match against "Yes.voc" containing only "yes". An exact match can be
         requested.
-
-        The method checks the "res/text/{lang}" folder of mycroft-core.
-        The result is cached to avoid hitting the disk each time the method is called.
 
         Args:
             utterance (str): Utterance to be tested
@@ -86,7 +85,7 @@ class CommonQAService:
 
         return match
 
-    def is_question_like(self, utterance, lang):
+    def is_question_like(self, utterance: str, lang: str):
         # skip utterances with less than 3 words
         if len(utterance.split(" ")) < 3:
             return False
@@ -95,8 +94,9 @@ class CommonQAService:
             return False
         return True
 
-    def match(self, utterances, lang, message):
-        """Send common query request and select best response
+    def match(self, utterances: str, lang: str, message: Message):
+        """
+        Send common query request and select best response
 
         Args:
             utterances (list): List of tuples,
@@ -122,9 +122,9 @@ class CommonQAService:
                 break
         return match
 
-    def handle_question(self, message):
-        """ Send the phrase to the CommonQuerySkills and prepare for handling
-            the replies.
+    def handle_question(self, message: Message):
+        """
+        Send the phrase to CommonQuerySkills and prepare for handling replies.
         """
         utt = message.data.get('utterance')
         sid = SessionManager.get(message).session_id
@@ -156,7 +156,7 @@ class CommonQAService:
 
         if timeout:
             LOG.warning(f"Timed out getting responses for: {query.query}")
-        self._query_timeout(msg)
+        self._query_timeout(msg.response(msg.data))
         if not query.completed.wait(10):
             raise TimeoutError("Timed out processing responses")
         answered = bool(query.answered)
@@ -165,7 +165,7 @@ class CommonQAService:
                   f"remaining active_queries={len(self.active_queries)}")
         return answered
 
-    def handle_query_response(self, message):
+    def handle_query_response(self, message: Message):
         search_phrase = message.data['phrase']
         skill_id = message.data['skill_id']
         searching = message.data.get('searching')
@@ -204,6 +204,13 @@ class CommonQAService:
                 query.responses_gathered.set()
 
     def _query_timeout(self, message: Message):
+        """
+        All accepted responses have been provided, either because all skills
+        replied or a timeout condition was met. The best response is selected,
+        spoken, and `question:action` is emitted so the associated skill's
+        handler can perform any additional actions.
+        @param message: question:query.response Message with `phrase` data
+        """
         query = self.active_queries.get(SessionManager.get(message).session_id)
         LOG.info(f'Check responses with {len(query.replies)} replies')
         search_phrase = message.data.get('phrase', "")
@@ -228,20 +235,20 @@ class CommonQAService:
                 pass
 
             # invoke best match
-            self.speak(best['answer'], message.forward("", best))
+            self.speak(best['answer'], message.reply("", best))
             LOG.info('Handling with: ' + str(best['skill_id']))
             cb = best.get('callback_data') or {}
-            self.bus.emit(message.forward('question:action',
-                                          data={'skill_id': best['skill_id'],
-                                                'phrase': search_phrase,
-                                                'callback_data': cb}))
+            self.bus.emit(message.reply('question:action',
+                                        data={'skill_id': best['skill_id'],
+                                              'phrase': search_phrase,
+                                              'callback_data': cb}))
             query.answered = True
         else:
             query.answered = False
         query.completed.set()
 
     # TODO: Should `speak` be `_speak`?
-    def speak(self, utterance, message=None):
+    def speak(self, utterance: str, message: Message = None):
         """Speak a sentence.
 
         Args:
