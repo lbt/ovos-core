@@ -77,9 +77,7 @@ class TestCommonQuery(unittest.TestCase):
             # stop thinking animation
             {'type': 'enclosure.mouth.reset',
              'data': {},
-             'context': {'destination': "audio", 'source': 'skills',
-                         'skill_id': "wiki.test"}
-             },
+             'context': qq_ctxt},
             # skill callback event
             {'type': 'question:action',
              'data': {'skill_id': 'wiki.test',
