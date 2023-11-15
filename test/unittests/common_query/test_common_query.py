@@ -78,13 +78,6 @@ class TestCommonQuery(unittest.TestCase):
             {'type': 'enclosure.mouth.reset',
              'data': {},
              'context': qq_ctxt},
-            # skill callback event
-            {'type': 'question:action',
-             'data': {'skill_id': 'wiki.test',
-                      'phrase': 'what is the speed of light',
-                      'callback_data': {'query': 'what is the speed of light',
-                                        'answer': 'answer 1'}},
-             'context': skill_ans_ctxt},
             # tell enclosure about active skill (speak method)
             {'type': 'enclosure.active_skill',
              'data': {'skill_id': 'wiki.test'},
@@ -97,6 +90,13 @@ class TestCommonQuery(unittest.TestCase):
                       'meta': {'skill': 'wiki.test'},
                       'lang': 'en-us'},
              'context': skill_ans_ctxt},
+            # skill callback event (after response is sent to Audio service)
+            {'type': 'question:action',
+             'data': {'skill_id': 'wiki.test',
+                      'phrase': 'what is the speed of light',
+                      'callback_data': {'query': 'what is the speed of light',
+                                        'answer': 'answer 1'}},
+             'context': skill_ans_ctxt}
         ]
 
         for ctr, msg in enumerate(expected):
