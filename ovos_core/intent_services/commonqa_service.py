@@ -28,6 +28,7 @@
 
 import re
 import time
+import ovos_core.intent_services
 from dataclasses import dataclass
 from itertools import chain
 from threading import Event
@@ -40,7 +41,6 @@ from ovos_utils.log import LOG
 from ovos_bus_client.util import get_message_lang
 from ovos_workshop.resource_files import CoreResources
 from ovos_config.config import Configuration
-from ovos_core.intent_services import IntentMatch
 
 
 # TODO: Remove below patches with ovos-core 0.0.8
@@ -140,8 +140,10 @@ class CommonQAService:
                 message.data["utterance"] = utterance
                 answered = self.handle_question(message)
                 if answered:
-                    match = IntentMatch('CommonQuery', None, {}, None,
-                                        utterance)
+                    match = ovos_core.intent_services.IntentMatch('CommonQuery',
+                                                                  None, {},
+                                                                  None,
+                                                                  utterance)
                 break
         return match
 
