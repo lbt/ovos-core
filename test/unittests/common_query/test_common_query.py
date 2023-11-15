@@ -78,17 +78,19 @@ class TestCommonQuery(unittest.TestCase):
             {'type': 'enclosure.mouth.reset',
              'data': {},
              'context': qq_ctxt},
-            # tell enclosure about active skill (speak method)
+            # tell enclosure about active skill (speak method). This is the
+            # skill that provided the response and may follow-up with actions
+            # in a callback method
             {'type': 'enclosure.active_skill',
              'data': {'skill_id': 'wiki.test'},
              'context': qq_ctxt},
-            # execution of speak method. CommonQuery determines what is spoken,
-            # so the event comes from that skill, not the one that offered the
-            # selected answer
+            # execution of speak method. This is called from CommonQuery, but
+            # should report the skill which provided the response to match the
+            # enclosure active_skill and any follow-up actions in the callback
             {'type': 'speak',
              'data': {'utterance': 'answer 1',
                       'expect_response': False,
-                      'meta': {'skill': self.cc.skill_id},
+                      'meta': {'skill': 'wiki.test'},
                       'lang': 'en-us'},
              'context': skill_ans_ctxt},
             # skill callback event (after response is sent to Audio service)

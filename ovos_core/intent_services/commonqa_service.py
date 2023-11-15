@@ -232,7 +232,7 @@ class CommonQAService:
                 LOG.debug(f"No more skills to wait for ({query.session_id})")
                 query.responses_gathered.set()
 
-    def _query_timeout(self, message):
+    def _query_timeout(self, message: Message):
         query = self.active_queries.get(SessionManager.get(message).session_id)
         LOG.info(f'Check responses with {len(query.replies)} replies')
         search_phrase = message.data.get('phrase', "")
@@ -257,7 +257,7 @@ class CommonQAService:
                 pass
 
             # invoke best match
-            self.speak(best['answer'], message)
+            self.speak(best['answer'], message.forward("", best))
             LOG.info('Handling with: ' + str(best['skill_id']))
             cb = best.get('callback_data') or {}
             self.bus.emit(message.forward('question:action',
@@ -269,24 +269,26 @@ class CommonQAService:
             query.answered = False
         query.completed.set()
 
+    # TODO: Should `speak` be `_speak`?
     def speak(self, utterance, message=None):
         """Speak a sentence.
 
         Args:
             utterance (str): response to be spoken
-            message (Message): Message associated with request
+            message (Message): Message associated with selected response
         """
+        selected_skill = message.data['skill_id']
         # registers the skill as being active
-        self.enclosure.register(self.skill_id)
+        self.enclosure.register(selected_skill)
 
         message = message or dig_for_message()
         lang = get_message_lang(message)
         data = {'utterance': utterance,
                 'expect_response': False,
-                'meta': {"skill": self.skill_id},
+                'meta': {"skill": selected_skill},
                 'lang': lang}
 
         m = message.forward("speak", data) if message \
             else Message("speak", data)
-        m.context["skill_id"] = self.skill_id
+        m.context["skill_id"] = selected_skill
         self.bus.emit(m)
