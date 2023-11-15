@@ -12,7 +12,9 @@ from ovos_bus_client.apis.enclosure import EnclosureAPI
 from ovos_utils.log import LOG
 from ovos_bus_client.util import get_message_lang
 from ovos_workshop.resource_files import CoreResources
+from ovos_config.config import Configuration
 
+# TODO: Can these be deprecated
 EXTENSION_TIME = 10
 MIN_RESPONSE_WAIT = 3
 
@@ -32,11 +34,18 @@ class Query:
 
 class CommonQAService:
     def __init__(self, bus):
+        global EXTENSION_TIME
+        global MIN_RESPONSE_WAIT
         self.bus = bus
         self.skill_id = "common_query.openvoiceos"  # fake skill
         self.active_queries: Dict[str, Query] = dict()
         self.enclosure = EnclosureAPI(self.bus, self.skill_id)
         self._vocabs = {}
+        config = Configuration().get('skills', {}).get("common_query") or dict()
+        self._extension_time = config.get('extension_time') or 10
+        self._min_response_wait = config.get('min_response_wait') or 3
+        EXTENSION_TIME = self._extension_time
+        MIN_RESPONSE_WAIT = self._min_response_wait
         self.bus.on('question:query.response', self.handle_query_response)
         self.bus.on('common_query.question', self.handle_question)
         # TODO: Register available CommonQuery skills
@@ -133,7 +142,7 @@ class CommonQAService:
 
         query.timeout_time = time.time() + 1
         timeout = False
-        while not query.responses_gathered.wait(EXTENSION_TIME):
+        while not query.responses_gathered.wait(self._extension_time):
             if time.time() > query.timeout_time + 1:
                 LOG.debug(f"Timeout gathering responses ({query.session_id})")
                 timeout = True
@@ -163,7 +172,7 @@ class CommonQAService:
         if searching:
             LOG.debug(f"{skill_id} is searching")
             # request extending the timeout by EXTENSION_TIME
-            query.timeout_time = time.time() + EXTENSION_TIME
+            query.timeout_time = time.time() + self._extension_time
             # TODO: Perhaps block multiple extensions?
             if skill_id not in query.extensions:
                 query.extensions.append(skill_id)
@@ -178,7 +187,8 @@ class CommonQAService:
                 LOG.debug(f"Done waiting for {skill_id}")
                 query.extensions.remove(skill_id)
 
-            time_to_wait = query.query_time + MIN_RESPONSE_WAIT - time.time()
+            time_to_wait = (query.query_time + self._min_response_wait -
+                            time.time())
             if time_to_wait > 0:
                 LOG.debug(f"Waiting {time_to_wait}s before checking extensions")
                 query.responses_gathered.wait(time_to_wait)
