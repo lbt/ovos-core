@@ -143,6 +143,8 @@ class CommonQAService:
         msg = message.reply('question:query', data={'phrase': utt})
         if "skill_id" not in msg.context:
             msg.context["skill_id"] = self.skill_id
+        # Define the timeout_msg here before any responses modify context
+        timeout_msg = msg.response(msg.data)
         self.bus.emit(msg)
 
         query.timeout_time = time.time() + 1
@@ -156,7 +158,7 @@ class CommonQAService:
 
         if timeout:
             LOG.warning(f"Timed out getting responses for: {query.query}")
-        self._query_timeout(msg.response(msg.data))
+        self._query_timeout(timeout_msg)
         if not query.completed.wait(10):
             raise TimeoutError("Timed out processing responses")
         answered = bool(query.answered)
