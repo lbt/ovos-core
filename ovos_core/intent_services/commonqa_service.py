@@ -236,11 +236,11 @@ class CommonQAService:
                 # TODO: Ask user to pick between ties or do it automagically
                 pass
 
-            # invoke best match
-            self.speak(best['answer'], message.reply("", best))
+            # invoke best match. `message` here already has source=skills ctx
+            self.speak(best['answer'], message.forward("", best))
             LOG.info('Handling with: ' + str(best['skill_id']))
             cb = best.get('callback_data') or {}
-            self.bus.emit(message.reply('question:action',
+            self.bus.emit(message.forward('question:action',
                                         data={'skill_id': best['skill_id'],
                                               'phrase': search_phrase,
                                               'callback_data': cb}))
