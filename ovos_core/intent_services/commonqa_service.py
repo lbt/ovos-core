@@ -288,7 +288,8 @@ class CommonQAService:
                 'meta': {"skill": selected_skill},
                 'lang': lang}
 
-        m = message.forward("speak", data) if message \
-            else Message("speak", data)
+        m = message.reply("speak", data) if message \
+            else Message("speak", data, {"source": "skills",
+                                         "destination": ["audio"]})
         m.context["skill_id"] = selected_skill
         self.bus.emit(m)
