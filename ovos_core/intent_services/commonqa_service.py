@@ -9,7 +9,7 @@ from ovos_bus_client.session import SessionManager
 from ovos_bus_client.message import Message, dig_for_message
 from ovos_utils import flatten_list
 from ovos_bus_client.apis.enclosure import EnclosureAPI
-from ovos_utils.log import LOG
+from ovos_utils.log import LOG, log_deprecation
 from ovos_bus_client.util import get_message_lang
 from ovos_workshop.resource_files import CoreResources
 from ovos_config.config import Configuration
@@ -86,6 +86,12 @@ class CommonQAService:
         return match
 
     def is_question_like(self, utterance: str, lang: str):
+        """
+        Check if the input utterance looks like a question for CommonQuery
+        @param utterance: user input to evaluate
+        @param lang: language of input
+        @return: True if input might be a question to handle here
+        """
         # skip utterances with less than 3 words
         if len(utterance.split(" ")) < 3:
             return False
@@ -237,19 +243,17 @@ class CommonQAService:
                 pass
 
             # invoke best match. `message` here already has source=skills ctx
-            self.speak(best['answer'], message.forward("", best))
+            if not best.get('handles_speech'):
+                self.speak(best['answer'], message.forward("", best))
             LOG.info('Handling with: ' + str(best['skill_id']))
-            cb = best.get('callback_data') or {}
+            response_data = {**best, "phrase": search_phrase}
             self.bus.emit(message.forward('question:action',
-                                          data={'skill_id': best['skill_id'],
-                                                'phrase': search_phrase,
-                                                'callback_data': cb}))
+                                          data=response_data))
             query.answered = True
         else:
             query.answered = False
         query.completed.set()
 
-    # TODO: Should `speak` be `_speak`?
     def speak(self, utterance: str, message: Message = None):
         """Speak a sentence.
 
@@ -257,6 +261,7 @@ class CommonQAService:
             utterance (str): response to be spoken
             message (Message): Message associated with selected response
         """
+        log_deprecation("Skills should handle `speak` calls.", "0.1.0")
         selected_skill = message.data['skill_id']
         # registers the skill as being active
         self.enclosure.register(selected_skill)
