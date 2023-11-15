@@ -241,9 +241,9 @@ class CommonQAService:
             LOG.info('Handling with: ' + str(best['skill_id']))
             cb = best.get('callback_data') or {}
             self.bus.emit(message.forward('question:action',
-                                        data={'skill_id': best['skill_id'],
-                                              'phrase': search_phrase,
-                                              'callback_data': cb}))
+                                          data={'skill_id': best['skill_id'],
+                                                'phrase': search_phrase,
+                                                'callback_data': cb}))
             query.answered = True
         else:
             query.answered = False

@@ -94,17 +94,18 @@ class TestCommonQuery(unittest.TestCase):
                       'lang': 'en-us'},
              'context': skill_ans_ctxt},
             # skill callback event (after response is sent to Audio service)
-            # the destination here is `skills`
+            # the destination here is `skills` and skill_id context is
+            # CommonQuery since this event is not dictated by the selected skill
             {'type': 'question:action',
              'data': {'skill_id': 'wiki.test',
                       'phrase': 'what is the speed of light',
                       'callback_data': {'query': 'what is the speed of light',
                                         'answer': 'answer 1'}},
-             'context': skill_ctxt}
+             'context': qq_ctxt}
         ]
 
         for ctr, msg in enumerate(expected):
-            m = self.bus.emitted_msgs[ctr]
+            m: dict = self.bus.emitted_msgs[ctr]
             if "session" in m.get("context", {}):
                 m["context"].pop("session")  # simplify test comparisons
             if "session" in msg.get("context", {}):
