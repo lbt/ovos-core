@@ -58,6 +58,9 @@ class Query:
 
 
 class CommonQAService:
+    # Left for `mycroft` backwards-compat.
+    _EXTENSION_TIME = 10
+
     def __init__(self, bus):
         self.bus = bus
         self.skill_id = "common_query.openvoiceos"  # fake skill
@@ -66,6 +69,7 @@ class CommonQAService:
         self._vocabs = {}
         config = Configuration().get('skills', {}).get("common_query") or dict()
         self._extension_time = config.get('extension_time') or 10
+        CommonQAService._EXTENSION_TIME = self._extension_time
         self._min_response_wait = config.get('min_response_wait') or 3
         self.bus.on('question:query.response', self.handle_query_response)
         self.bus.on('common_query.question', self.handle_question)
