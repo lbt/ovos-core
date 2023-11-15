@@ -94,12 +94,13 @@ class TestCommonQuery(unittest.TestCase):
                       'lang': 'en-us'},
              'context': skill_ans_ctxt},
             # skill callback event (after response is sent to Audio service)
+            # the destination here is `skills`
             {'type': 'question:action',
              'data': {'skill_id': 'wiki.test',
                       'phrase': 'what is the speed of light',
                       'callback_data': {'query': 'what is the speed of light',
                                         'answer': 'answer 1'}},
-             'context': skill_ans_ctxt}
+             'context': skill_ctxt}
         ]
 
         for ctr, msg in enumerate(expected):
