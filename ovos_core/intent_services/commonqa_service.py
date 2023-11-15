@@ -1,24 +1,49 @@
+# NEON AI (TM) SOFTWARE, Software Development Kit & Application Framework
+# All trademark and other rights reserved by their respective owners
+# Copyright 2008-2022 Neongecko.com Inc.
+# Contributors: Daniel McKnight, Guy Daniels, Elon Gasper, Richard Leeds,
+# Regina Bloomstine, Casimiro Ferreira, Andrii Pernatii, Kirill Hrymailo
+# BSD-3 License
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from this
+#    software without specific prior written permission.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+# CONTRIBUTORS  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+# OR PROFITS;  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 import re
 import time
+from dataclasses import dataclass
 from itertools import chain
 from threading import Event
 from typing import Dict
-from dataclasses import dataclass
-from ovos_bus_client.message import Message, dig_for_message
 from ovos_bus_client.session import SessionManager
-import ovos_core.intent_services
+from ovos_bus_client.message import Message, dig_for_message
 from ovos_utils import flatten_list
 from ovos_bus_client.apis.enclosure import EnclosureAPI
 from ovos_utils.log import LOG
 from ovos_bus_client.util import get_message_lang
 from ovos_workshop.resource_files import CoreResources
 from ovos_config.config import Configuration
-
-# TODO: Can these be deprecated
-EXTENSION_TIME = 10
-MIN_RESPONSE_WAIT = 3
+from ovos_core.intent_services import IntentMatch
 
 
+# TODO: Remove below patches with ovos-core 0.0.8
 @dataclass
 class Query:
     session_id: str
@@ -34,8 +59,6 @@ class Query:
 
 class CommonQAService:
     def __init__(self, bus):
-        global EXTENSION_TIME
-        global MIN_RESPONSE_WAIT
         self.bus = bus
         self.skill_id = "common_query.openvoiceos"  # fake skill
         self.active_queries: Dict[str, Query] = dict()
@@ -44,8 +67,6 @@ class CommonQAService:
         config = Configuration().get('skills', {}).get("common_query") or dict()
         self._extension_time = config.get('extension_time') or 10
         self._min_response_wait = config.get('min_response_wait') or 3
-        EXTENSION_TIME = self._extension_time
-        MIN_RESPONSE_WAIT = self._min_response_wait
         self.bus.on('question:query.response', self.handle_query_response)
         self.bus.on('common_query.question', self.handle_question)
         # TODO: Register available CommonQuery skills
@@ -119,7 +140,8 @@ class CommonQAService:
                 message.data["utterance"] = utterance
                 answered = self.handle_question(message)
                 if answered:
-                    match = ovos_core.intent_services.IntentMatch('CommonQuery', None, {}, None, utterance)
+                    match = IntentMatch('CommonQuery', None, {}, None,
+                                        utterance)
                 break
         return match
 
@@ -129,7 +151,13 @@ class CommonQAService:
         """
         utt = message.data.get('utterance')
         sid = SessionManager.get(message).session_id
-        query = Query(session_id=sid, query=utt, replies=[], extensions=[])
+        # TODO: Why are defaults not creating new objects on init?
+        query = Query(session_id=sid, query=utt, replies=[], extensions=[],
+                      query_time=time.time(), timeout_time=time.time() + 1,
+                      responses_gathered=Event(), completed=Event(),
+                      answered=False)
+        assert query.responses_gathered.is_set() is False
+        assert query.completed.is_set() is False
         self.active_queries[sid] = query
         self.enclosure.mouth_think()
 
@@ -156,7 +184,8 @@ class CommonQAService:
             raise TimeoutError("Timed out processing responses")
         answered = bool(query.answered)
         self.active_queries.pop(sid)
-        LOG.debug(f"answered={answered}")
+        LOG.debug(f"answered={answered}|"
+                  f"remaining active_queries={len(self.active_queries)}")
         return answered
 
     def handle_query_response(self, message):

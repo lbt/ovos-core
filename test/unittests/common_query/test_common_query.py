@@ -81,8 +81,7 @@ class TestCommonQuery(unittest.TestCase):
             # tell enclosure about active skill (speak method)
             {'type': 'enclosure.active_skill',
              'data': {'skill_id': 'wiki.test'},
-             'context': {'destination': "audio", 'source': 'skills',
-                         'skill_id': 'wiki.test'}},
+             'context': qq_ctxt},
             # execution of speak method
             {'type': 'speak',
              'data': {'utterance': 'answer 1',
