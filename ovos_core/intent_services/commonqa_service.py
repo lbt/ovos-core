@@ -273,7 +273,8 @@ class CommonQAService:
         """Speak a sentence.
 
         Args:
-            utterance (str):        sentence mycroft should speak
+            utterance (str): response to be spoken
+            message (Message): Message associated with request
         """
         # registers the skill as being active
         self.enclosure.register(self.skill_id)

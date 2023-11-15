@@ -82,11 +82,13 @@ class TestCommonQuery(unittest.TestCase):
             {'type': 'enclosure.active_skill',
              'data': {'skill_id': 'wiki.test'},
              'context': qq_ctxt},
-            # execution of speak method
+            # execution of speak method. CommonQuery determines what is spoken,
+            # so the event comes from that skill, not the one that offered the
+            # selected answer
             {'type': 'speak',
              'data': {'utterance': 'answer 1',
                       'expect_response': False,
-                      'meta': {'skill': 'wiki.test'},
+                      'meta': {'skill': self.cc.skill_id},
                       'lang': 'en-us'},
              'context': skill_ans_ctxt},
             # skill callback event (after response is sent to Audio service)
