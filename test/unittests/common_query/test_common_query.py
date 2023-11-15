@@ -25,12 +25,17 @@ class TestCommonQuery(unittest.TestCase):
         self.bus.emitted_msgs = []
         self.assertEqual(self.cc.skill_id, "common_query.openvoiceos")
 
-        qq_ctxt = {"source": "audio", "destination": "skills", 'skill_id': self.cc.skill_id}
-        qq_ans_ctxt = {"source": "skills", "destination": "audio", 'skill_id': self.cc.skill_id}
+        qq_ctxt = {"source": "audio",
+                   "destination": "skills",
+                   'skill_id': self.cc.skill_id}
+        qq_ans_ctxt = {"source": "skills",
+                       "destination": "audio",
+                       'skill_id': self.cc.skill_id}
+        original_ctxt = dict(qq_ctxt)
         self.bus.emit(Message("common_query.question",
                               {"utterance": "what is the speed of light"},
                               qq_ctxt))
-
+        self.assertEqual(qq_ctxt, original_ctxt, qq_ctxt)
         skill_ctxt = {"source": "audio", "destination": "skills", 'skill_id': 'wiki.test'}
         skill_ans_ctxt = {"source": "skills", "destination": "audio", 'skill_id': 'wiki.test'}
 
