@@ -102,4 +102,4 @@ class TestCommonQuery(unittest.TestCase):
                 m["context"].pop("session")  # simplify test comparisons
             if "session" in msg.get("context", {}):
                 msg["context"].pop("session")  # simplify test comparisons
-            self.assertEqual(msg, m)
+            self.assertEqual(msg, m, f"emitted={m}")
