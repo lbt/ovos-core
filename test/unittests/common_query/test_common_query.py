@@ -34,7 +34,7 @@ class TestCommonQuery(unittest.TestCase):
         original_ctxt = dict(qq_ctxt)
         self.bus.emit(Message("common_query.question",
                               {"utterance": "what is the speed of light"},
-                              qq_ctxt))
+                              dict(qq_ctxt)))
         self.assertEqual(qq_ctxt, original_ctxt, qq_ctxt)
         skill_ctxt = {"source": "audio", "destination": "skills", 'skill_id': 'wiki.test'}
         skill_ans_ctxt = {"source": "skills", "destination": "audio", 'skill_id': 'wiki.test'}
