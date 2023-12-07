@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a54...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a55...HEAD)
+
+**Fixed bugs:**
+
+- fix lang detect [\#379](https://github.com/OpenVoiceOS/ovos-core/pull/379) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+- 'Session' object has no attribute 'valid\_languages' [\#378](https://github.com/OpenVoiceOS/ovos-core/issues/378)
+
+## [V0.0.8a55](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a55) (2023-10-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a54...V0.0.8a55)
 
 **Fixed bugs:**
 
@@ -644,10 +656,6 @@
 ## [V0.0.6a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a18) (2023-01-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a17...V0.0.6a18)
-
-**Implemented enhancements:**
-
-- Lng: Add cs-cz noise words [\#260](https://github.com/OpenVoiceOS/ovos-core/pull/260) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a17](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a17) (2023-01-20)
 
