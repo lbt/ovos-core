@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a55...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a56...HEAD)
+
+**Fixed bugs:**
+
+- fix/2-letter-langcode-handling [\#381](https://github.com/OpenVoiceOS/ovos-core/pull/381) ([JarbasAl](https://github.com/JarbasAl))
+
+**Closed issues:**
+
+-  ignoring stt\_lang, en is not in enabled languages: \['fr-fr', 'fr-fr', 'en-us'\] [\#380](https://github.com/OpenVoiceOS/ovos-core/issues/380)
+
+## [V0.0.8a56](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a56) (2023-12-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a55...V0.0.8a56)
 
 **Fixed bugs:**
 
