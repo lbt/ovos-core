@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a58...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a59...HEAD)
+
+**Merged pull requests:**
+
+- Update requirements.txt [\#387](https://github.com/OpenVoiceOS/ovos-core/pull/387) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a59](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a59) (2023-12-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a58...V0.0.8a59)
 
 **Merged pull requests:**
 
@@ -183,10 +191,6 @@
 
 - Persona Initiative - Long Live the LLM [\#297](https://github.com/OpenVoiceOS/ovos-core/issues/297)
 - default session managed by core [\#354](https://github.com/OpenVoiceOS/ovos-core/pull/354) ([JarbasAl](https://github.com/JarbasAl))
-
-**Fixed bugs:**
-
-- fix docker build [\#267](https://github.com/OpenVoiceOS/ovos-core/issues/267)
 
 ## [V0.0.8a38](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a38) (2023-09-22)
 
@@ -664,10 +668,6 @@
 ## [V0.0.6a20](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a20) (2023-01-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a19...V0.0.6a20)
-
-**Implemented enhancements:**
-
-- Add `skills-essential` optional dependencies [\#266](https://github.com/OpenVoiceOS/ovos-core/pull/266) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a19) (2023-01-25)
 
