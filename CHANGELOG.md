@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a57...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a58...HEAD)
+
+**Merged pull requests:**
+
+- Update requirements.txt [\#386](https://github.com/OpenVoiceOS/ovos-core/pull/386) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a58](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a58) (2023-12-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a57...V0.0.8a58)
 
 **Merged pull requests:**
 
@@ -664,10 +672,6 @@
 ## [V0.0.6a19](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a19) (2023-01-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a18...V0.0.6a19)
-
-**Fixed bugs:**
-
-- Actually use the advertised audio device and sample rate with the audio test. [\#265](https://github.com/OpenVoiceOS/ovos-core/pull/265) ([gmsoft-tuxicoman](https://github.com/gmsoft-tuxicoman))
 
 ## [V0.0.6a18](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a18) (2023-01-24)
 
