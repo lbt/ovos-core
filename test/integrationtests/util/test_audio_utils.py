@@ -2,9 +2,7 @@
 from unittest import TestCase, mock
 
 from test.util import Anything
-from mycroft.util import (play_ogg, play_mp3, play_wav, play_audio_file,
-                          record)
-from mycroft.util.file_utils import get_temp_path
+from ovos_utils.file_utils import get_temp_path
 
 test_config = {
     'play_wav_cmdline': 'mock_wav %1',

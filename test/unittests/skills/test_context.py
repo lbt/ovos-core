@@ -1,6 +1,6 @@
 from unittest import TestCase, mock
 
-from mycroft.skills.context import adds_context, removes_context
+from ovos_workshop.decorators import adds_context, removes_context
 """
 Tests for the adapt context decorators.
 """

@@ -1,12 +1,12 @@
 from unittest import TestCase, mock
 
-from mycroft.util.network_utils import connected
+from ovos_utils.network_utils import is_connected
 
 
 class TestNetworkConnected(TestCase):
     def test_default_config_succeeds(self):
         """Check that happy path succeeds"""
-        self.assertTrue(connected())
+        self.assertTrue(is_connected())
 
 
 @mock.patch('ovos_config.config.Configuration')
@@ -23,7 +23,7 @@ class TestNetworkFailure(TestCase):
                 "ncsi_expected_text": "Unexpected text"
             }
         }
-        self.assertFalse(connected())
+        self.assertFalse(is_connected())
 
     def test_secondary_dns_succeeds(self, mock_conf):
         """Check that only primary DNS failing still succeeds"""
@@ -36,7 +36,7 @@ class TestNetworkFailure(TestCase):
                 "ncsi_expected_text": "Microsoft NCSI"
             }
         }
-        self.assertTrue(connected())
+        self.assertTrue(is_connected())
 
     def test_dns_success_url_fail(self, mock_conf):
         """Check that URL connection failure results in False response"""
@@ -49,4 +49,4 @@ class TestNetworkFailure(TestCase):
                 "ncsi_expected_text": "Microsoft NCSI"
             }
         }
-        self.assertFalse(connected())
+        self.assertFalse(is_connected())

@@ -1,7 +1,6 @@
 import unittest
 
-from adapt.intent import IntentBuilder
-from mycroft.skills.intent_service_interface import IntentServiceInterface
+from ovos_workshop.intents import IntentServiceInterface, IntentBuilder
 
 
 class MockEmitter:

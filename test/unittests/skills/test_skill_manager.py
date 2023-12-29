@@ -12,50 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from unittest import TestCase, skip
+from unittest import skip
 from unittest.mock import Mock, patch
 
-from mycroft.skills.skill_loader import SkillLoader
-from mycroft.skills.skill_manager import SkillManager, UploadQueue
-from ..base import MycroftUnitTestBase
 from ovos_bus_client.message import Message
-
-
-class TestUploadQueue(TestCase):
-
-    def test_upload_queue_create(self):
-        queue = UploadQueue()
-        self.assertFalse(queue.started)
-        queue.start()
-        self.assertTrue(queue.started)
-
-    def test_upload_queue_use(self):
-        queue = UploadQueue()
-        queue.start()
-        specific_loader = Mock(spec=SkillLoader, instance=Mock())
-        loaders = [Mock(), specific_loader, Mock(), Mock()]
-        # Check that putting items on the queue makes it longer
-        for i, l in enumerate(loaders):
-            queue.put(l)
-            self.assertEqual(len(queue), i + 1)
-        # Check that adding an existing item replaces that item
-        queue.put(specific_loader)
-        self.assertEqual(len(queue), len(loaders))
-        # Check that sending items empties the queue
-        queue.send()
-        self.assertEqual(len(queue), 0)
-
-    def test_upload_queue_preloaded(self):
-        queue = UploadQueue()
-        loaders = [Mock(), Mock(), Mock(), Mock()]
-        for i, l in enumerate(loaders):
-            queue.put(l)
-            self.assertEqual(len(queue), i + 1)
-        # Check that starting the queue will send all the items in the queue
-        queue.start()
-        self.assertEqual(len(queue), 0)
-        for l in loaders:
-            l.instance.settings_meta.upload.assert_called_once_with()
+from ovos_core.skill_manager import SkillManager
+from ovos_workshop.skill_launcher import SkillLoader
+from ..base import MycroftUnitTestBase
 
 
 class TestSkillManager(MycroftUnitTestBase):

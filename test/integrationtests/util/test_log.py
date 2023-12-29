@@ -16,7 +16,7 @@ import unittest
 import sys
 from io import StringIO
 from threading import Thread
-from mycroft.util.log import LOG
+from ovos_utils.log import LOG
 
 
 class CaptureLogs(list):

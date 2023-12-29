@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mycroft.util import camel_case_split
+from ovos_utils import camel_case_split
 
 
 class TestStringFunctions(TestCase):

@@ -4,19 +4,17 @@ import unittest
 import pytest
 
 import ovos_config.config
-import mycroft.audio.audioservice
+
 from os.path import dirname, join
 from unittest.mock import patch
 
 import ovos_plugin_common_play
 from ovos_plugin_common_play import OCPAudioBackend, OCP, PlayerState, MediaState, TrackState, PlaybackType
-from mycroft.audio.interface import AudioService as MycroftAudioService
-# from ovos_plugin_common_play.ocp.mycroft_cps import MycroftAudioService
+from ovos_bus_client.apis.ocp import ClassicAudioServiceInterface as MycroftAudioService
 
 from mycroft.audio.audioservice import AudioService
-# from mycroft.configuration import Configuration
-from mycroft.skills.intent_service import IntentService
-from mycroft.skills.skill_loader import SkillLoader
+from ovos_core.intent_services import IntentService
+from ovos_workshop.skill_launcher import SkillLoader
 from ovos_utils.messagebus import FakeBus
 
 # Patch Configuration in the audioservice module to ensure its patched

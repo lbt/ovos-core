@@ -17,8 +17,8 @@ import unittest
 import pathlib
 import json
 
-from mycroft.dialog import MustacheDialogRenderer, load_dialogs, get
-from mycroft.util import resolve_resource_file
+from ovos_utils.dialog import MustacheDialogRenderer, load_dialogs, get_dialog
+from ovos_utils.file_utils import resolve_resource_file
 
 
 # TODO - move to ovos-workshop
@@ -107,15 +107,15 @@ class DialogTest(unittest.TestCase):
         resource = resolve_resource_file(str(res_file))
         with open(resource) as f:
             results = [line.strip() for line in f]
-        string = get(phrase)
+        string = get_dialog(phrase)
         self.assertIn(string, results)
 
         # Check that the filename is returned if phrase is missing for lang
-        string = get(phrase, lang='ne-ne')
+        string = get_dialog(phrase, lang='ne-ne')
         self.assertEqual(string, phrase)
 
         # Check that name is retured if phrase is missing
-        string = get('testing aardwark')
+        string = get_dialog('testing aardwark')
         self.assertEqual(string, 'testing aardwark')
 
 

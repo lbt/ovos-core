@@ -1,7 +1,7 @@
 from unittest import TestCase, mock
 
-from mycroft.util.process_utils import (_update_log_level, bus_logging_status,
-                                        create_daemon, ProcessStatus,
+from ovos_utils import create_daemon
+from ovos_utils.process_utils import ( ProcessStatus,
                                         StatusCallbackMap)
 
 
@@ -39,43 +39,6 @@ class TestCreateDaemon(TestCase):
         self.assertEqual(test_kwargs, passed_kwargs)
 
 
-@mock.patch('mycroft.util.process_utils.LOG')
-class TestUpdateLogLevel(TestCase):
-    def test_no_data(self, mock_log):
-        mock_log.level = 'UNSET'
-        log_msg = {'msg_type': 'mycroft.debug.log',
-                   'data': {}}
-        _update_log_level(log_msg, 'Test')
-        self.assertEqual(mock_log.level, 'UNSET')
-
-    def test_set_debug(self, mock_log):
-        mock_log.level = 'UNSET'
-        log_msg = {'type': 'mycroft.debug.log',
-                   'data': {'level': 'DEBUG'}}
-        _update_log_level(log_msg, 'Test')
-        self.assertEqual(mock_log.level, 'DEBUG')
-
-    def test_set_lowecase_debug(self, mock_log):
-        mock_log.level = 'UNSET'
-        log_msg = {'type': 'mycroft.debug.log',
-                   'data': {'level': 'debug'}}
-        _update_log_level(log_msg, 'Test')
-        self.assertEqual(mock_log.level, 'DEBUG')
-
-    def test_set_invalid_level(self, mock_log):
-        mock_log.level = 'UNSET'
-        log_msg = {'type': 'mycroft.debug.log',
-                   'data': {'level': 'snowcrash'}}
-        _update_log_level(log_msg, 'Test')
-        self.assertEqual(mock_log.level, 'UNSET')
-
-    def test_set_bus_logging(self, mock_log):
-        mock_log.level = 'UNSET'
-        log_msg = {'type': 'mycroft.debug.log',
-                   'data': {'bus': True}}
-        self.assertFalse(bus_logging_status())
-        _update_log_level(log_msg, 'Test')
-        self.assertTrue(bus_logging_status())
 
 
 def create_mock_message(msg_type):

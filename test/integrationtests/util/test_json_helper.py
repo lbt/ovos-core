@@ -17,7 +17,7 @@ import unittest
 
 from os.path import dirname, join
 
-from mycroft.util.json_helper import load_commented_json
+from ovos_utils.json_helper import load_commented_json
 
 
 class TestFileLoad(unittest.TestCase):

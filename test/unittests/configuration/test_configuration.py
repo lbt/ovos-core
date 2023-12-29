@@ -2,16 +2,16 @@ import json
 from typing import OrderedDict
 from unittest.mock import MagicMock, patch
 from unittest import TestCase, skip
-import mycroft.configuration
+
 from os.path import dirname, isfile
-from mycroft.configuration import LocalConf
+from ovos_config import LocalConf, Configuration, RemoteConf
 
 
 class TestConfiguration(TestCase):
     def test_get(self):
         d1 = {'a': 1, 'b': {'c': 1, 'd': 2}}
         d2 = {'b': {'d': 'changed'}}
-        d = mycroft.configuration.Configuration.get([d1, d2])
+        d = Configuration.get([d1, d2])
         self.assertEqual(d['a'], d1['a'])
         self.assertEqual(d['b']['d'], d2['b']['d'])
         self.assertEqual(d['b']['c'], d1['b']['c'])
@@ -26,7 +26,7 @@ class TestConfiguration(TestCase):
         dev_api.get_location.return_value = remote_location
         mock_api.return_value = dev_api
 
-        rc = mycroft.configuration.RemoteConf()
+        rc = RemoteConf()
         self.assertTrue(rc['test_config'])
         self.assertEqual(rc['location']['city']['name'], 'Stockholm')
 
@@ -40,7 +40,7 @@ class TestConfiguration(TestCase):
         mock_exists.return_value = True
         mock_isfile.return_value = True
         mock_json_loader.return_value = local_conf
-        lc = mycroft.configuration.LocalConf('test')
+        lc = LocalConf('test')
         self.assertEqual(lc, local_conf)
 
         # Test merge method
@@ -54,12 +54,12 @@ class TestConfiguration(TestCase):
         self.assertEqual(mock_json_dump.call_args[0][0], lc)
         # exists but is not file
         mock_isfile.return_value = False
-        lc = mycroft.configuration.LocalConf('test')
+        lc = LocalConf('test')
         self.assertEqual(lc, {})
 
         # does not exist
         mock_exists.return_value = False
-        lc = mycroft.configuration.LocalConf('test')
+        lc = LocalConf('test')
         self.assertEqual(lc, {})
 
     def test_file_formats(self):
@@ -91,4 +91,4 @@ class TestConfiguration(TestCase):
             self.assertEqual(json.loads(json.dumps(d)), d)
 
     def tearDown(self):
-        mycroft.configuration.Configuration.load_config_stack([{}], True)
+        Configuration.load_config_stack([{}], True)

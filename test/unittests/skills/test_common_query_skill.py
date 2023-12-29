@@ -1,9 +1,8 @@
 from unittest import TestCase, mock
 
 from ovos_bus_client.message import Message
-from mycroft.skills.common_query_skill import (CommonQuerySkill, CQSMatchLevel,
-                                               CQSVisualMatchLevel,
-                                               handles_visuals)
+from ovos_workshop.skills.common_query_skill import (CommonQuerySkill, CQSMatchLevel,
+                                               CQSVisualMatchLevel)
 from test.unittests.mocks import AnyCallable
 
 
@@ -22,11 +21,6 @@ class TestCommonQuerySkill(TestCase):
         bus.on.assert_any_call('question:query', AnyCallable())
         bus.on.assert_any_call('question:action', AnyCallable())
         skill.shutdown()
-
-    def test_handles_visuals(self):
-        """Test the helper method to determine if the skill handles visuals."""
-        self.assertTrue(handles_visuals('mycroft_mark_2'))
-        self.assertFalse(handles_visuals('mycroft_mark_1'))
 
     def test_common_test_skill_action(self):
         """Test that the optional action is triggered."""

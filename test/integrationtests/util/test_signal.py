@@ -18,7 +18,7 @@ from shutil import rmtree
 from os.path import exists, isfile, join
 from tempfile import gettempdir
 
-from mycroft.util import create_signal, check_for_signal
+from ovos_utils.signal import create_signal, check_for_signal
 
 
 class TestSignals(unittest.TestCase):

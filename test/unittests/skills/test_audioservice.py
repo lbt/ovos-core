@@ -1,7 +1,7 @@
 from unittest import TestCase, mock
 
 from ovos_bus_client.message import Message
-from mycroft.skills.audioservice import AudioService
+from ovos_bus_client.apis.ocp import ClassicAudioServiceInterface as AudioService
 
 
 class TestAudioServiceControls(TestCase):

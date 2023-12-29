@@ -16,14 +16,13 @@ from unittest import TestCase, mock
 import time
 
 from adapt.intent import IntentBuilder
-from mycroft.configuration.locale import setup_locale
-from mycroft.configuration import Configuration
+from ovos_config.locale import setup_locale
+from ovos_config import Configuration
 from ovos_bus_client.message import Message
-from mycroft.skills.intent_service import IntentService
-from ovos_utils.messagebus import get_message_lang
+from ovos_core.intent_services import IntentService
+from ovos_bus_client.util import get_message_lang
 from ovos_utils.log import LOG
-from mycroft.skills.intent_services.adapt_service import (ContextManager,
-                                                          AdaptIntent)
+from ovos_core.intent_services.adapt_service import ContextManager
 
 from test.util import base_config
 
@@ -247,12 +246,3 @@ class TestIntentServiceApi(TestCase):
         self.assertEqual(reply.data['intent'], None)
 
 
-class TestAdaptIntent(TestCase):
-    """Test the AdaptIntent wrapper."""
-    def test_named_intent(self):
-        intent = AdaptIntent("CallEaglesIntent")
-        self.assertEqual(intent.name, "CallEaglesIntent")
-
-    def test_unnamed_intent(self):
-        intent = AdaptIntent()
-        self.assertEqual(intent.name, "")

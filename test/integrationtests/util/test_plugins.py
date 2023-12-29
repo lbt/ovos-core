@@ -14,7 +14,7 @@
 #
 from unittest import TestCase, mock
 
-import mycroft.util.plugins as mycroft_plugins
+from ovos_plugin_manager.plugin_entry import load_plugin
 
 
 def get_plug_mock(name):
@@ -44,13 +44,13 @@ class TestPlugins(TestCase):
         mock_pkg_res.iter_entry_points.side_effect = mock_iter_entry_points
 
         # Load a couple of existing modules and verify that they're Ok
-        plug = mycroft_plugins.load_plugin('mycroft.plugins.tts', 'dummy')
+        plug = load_plugin('mycroft.plugins.tts', 'dummy')
         self.assertEqual(plug.name, 'dummy')
-        plug = mycroft_plugins.load_plugin('mycroft.plugins.stt', 'deepspeech')
+        plug = load_plugin('mycroft.plugins.stt', 'deepspeech')
         self.assertEqual(plug.name, 'deepspeech')
 
     def test_load_nonexisting(self, mock_pkg_res):
         """Ensure that the return value is None when no plugin is found."""
         mock_pkg_res.iter_entry_points.side_effect = mock_iter_entry_points
-        plug = mycroft_plugins.load_plugin('mycroft.plugins.tts', 'blah')
+        plug = load_plugin('mycroft.plugins.tts', 'blah')
         self.assertEqual(plug, None)

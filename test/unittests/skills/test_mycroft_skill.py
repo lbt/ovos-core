@@ -21,14 +21,11 @@ from datetime import datetime
 from os.path import join, dirname, abspath
 from unittest.mock import MagicMock, patch
 
-from adapt.intent import IntentBuilder
 from ovos_config import Configuration
 
-from mycroft.skills.skill_data import (load_regex_from_file, load_regex,
-                                       load_vocabulary, read_vocab_file)
 from ovos_bus_client.message import Message
-from ovos_utils.intents.intent_service_interface import open_intent_envelope
 from ovos_workshop.decorators import resting_screen_handler, intent_handler
+from ovos_workshop.intents import open_intent_envelope, IntentBuilder
 from ovos_workshop.skills.mycroft_skill import MycroftSkill
 from ovos_workshop.skills.ovos import OVOSSkill
 from test.util import base_config
@@ -84,28 +81,9 @@ class TestOVOSSkill(unittest.TestCase):
     def setUp(self):
         self.emitter.reset()
 
-    def check_vocab(self, filename, results=None):
-        results = results or {}
-        intents = load_vocabulary(join(self.vocab_path, filename), 'A')
-        self.compare_dicts(intents, results)
-
-    def check_regex_from_file(self, filename, result_list=None):
-        result_list = result_list or []
-        regex_file = join(self.regex_path, filename)
-        self.assertEqual(sorted(load_regex_from_file(regex_file, 'A')),
-                         sorted(result_list))
-
     def compare_dicts(self, d1, d2):
         self.assertEqual(json.dumps(d1, sort_keys=True),
                          json.dumps(d2, sort_keys=True))
-
-    def check_read_vocab_file(self, path, result_list=None):
-        result_list = result_list or []
-        self.assertEqual(sorted(read_vocab_file(path)), sorted(result_list))
-
-    def check_regex(self, path, result_list=None):
-        result_list = result_list or []
-        self.assertEqual(sorted(load_regex(path, 'A')), sorted(result_list))
 
     def check_emitter(self, result_list):
         for msg_type in self.emitter.get_types():
@@ -604,7 +582,7 @@ class TestOVOSSkill(unittest.TestCase):
                                             'es', 'pt-PT']
         self.assertEqual(s.lang, 'en-us')
         self.assertEqual(s.secondary_langs, ['en', 'en-au', 'es',
-                                              'pt-pt'])
+                                             'pt-pt'])
         self.assertEqual(len(s.native_langs), len(set(s.native_langs)))
         self.assertEqual(set(s.native_langs), {'en-us', 'en-au', 'pt-pt'})
         s.config_core['lang'] = lang

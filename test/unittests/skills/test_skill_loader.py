@@ -19,8 +19,8 @@ from pathlib import Path
 from time import time
 from unittest.mock import Mock
 
-from mycroft.skills.mycroft_skill.mycroft_skill import MycroftSkill
-from mycroft.skills.skill_loader import SkillLoader
+from ovos_workshop.skills import MycroftSkill
+from ovos_workshop.skill_launcher import SkillLoader
 from ovos_utils import classproperty
 from ovos_utils.messagebus import FakeBus
 from ovos_utils.process_utils import RuntimeRequirements
