@@ -42,7 +42,6 @@ def main(alive_hook=on_alive, started_hook=on_started, ready_hook=on_ready,
     """
     init_service_logger("skills")
     reset_sigint_handler()
-    LOG.set_level("DEBUG")
 
     setup_locale()
 
