@@ -127,7 +127,7 @@ class StopService:
         elif result is not None:
             return result.data.get('result', False)
 
-    def match_stop(self, utterances, lang, message):
+    def match_stop_high(self, utterances, lang, message):
         """If utterance is an exact match for "stop" , run before intent stage
 
         Args:
@@ -138,41 +138,17 @@ class StopService:
         Returns:
             IntentMatch if handled otherwise None.
         """
+        if lang not in self._voc_cache:
+            return None
+
         # we call flatten in case someone is sending the old style list of tuples
-        utterances = flatten_list(utterances)
-        return self._match(message, utterances[0], lang, exact=True)
+        utterance = flatten_list(utterances)[0]
 
-    def match_stop_low(self, utterances, lang, message):
-        """ before fallback_low , if "stop" is in the utterance
-
-        Args:
-            utterances (list):  list of utterances
-            lang (string):      4 letter ISO language code
-            message (Message):  message to use to generate reply
-
-        Returns:
-            IntentMatch if handled otherwise None.
-        """
-        # we call flatten in case someone is sending the old style list of tuples
-        utterances = flatten_list(utterances)
-        return self._match(message, utterances[0], lang, exact=False)
-
-    def _match(self, message, utterance, lang, exact=True):
-
-        is_stop = self.voc_match(utterance, 'stop', exact=exact, lang=lang)
+        is_stop = self.voc_match(utterance, 'stop', exact=True, lang=lang)
         is_global_stop = self.voc_match(utterance, 'global_stop', exact=True, lang=lang) or \
                          (is_stop and not len(self.active_skills))
 
-        if exact:
-            conf = 1.0
-        else:
-            conf = match_one(utterance, self._voc_cache[lang]['stop'])[1]
-            if len(self.active_skills) > 0:
-                conf += 0.1
-            conf = round(min(conf, 1.0), 3)
-
-        if conf < self.config.get("min_conf", 0.5):
-            return None
+        conf = 1.0
 
         if is_global_stop:
             # emit a global stop, full stop anything OVOS is doing
@@ -187,6 +163,69 @@ class StopService:
                     return ovos_core.intent_services.IntentMatch('Stop', "stop", {"conf": conf},
                                                                  skill_id, utterance)
         return None
+
+    def match_stop_medium(self, utterances, lang, message):
+        """ if "stop" intent is in the utterance,
+        but it contains additional words not in .intent files
+
+        Args:
+            utterances (list):  list of utterances
+            lang (string):      4 letter ISO language code
+            message (Message):  message to use to generate reply
+
+        Returns:
+            IntentMatch if handled otherwise None.
+        """
+        if lang not in self._voc_cache:
+            return None
+
+        # we call flatten in case someone is sending the old style list of tuples
+        utterance = flatten_list(utterances)[0]
+
+        is_stop = self.voc_match(utterance, 'stop', exact=False, lang=lang)
+        if not is_stop:
+            is_global_stop = self.voc_match(utterance, 'global_stop', exact=False, lang=lang) or \
+                             (is_stop and not len(self.active_skills))
+            if not is_global_stop:
+                return None
+
+        return self.match_stop_low(utterances, lang, message)
+
+    def match_stop_low(self, utterances, lang, message):
+        """ before fallback_low , fuzzy match stop intent
+
+        Args:
+            utterances (list):  list of utterances
+            lang (string):      4 letter ISO language code
+            message (Message):  message to use to generate reply
+
+        Returns:
+            IntentMatch if handled otherwise None.
+        """
+        if lang not in self._voc_cache:
+            return None
+
+        # we call flatten in case someone is sending the old style list of tuples
+        utterance = flatten_list(utterances)[0]
+
+        conf = match_one(utterance, self._voc_cache[lang]['stop'])[1]
+        if len(self.active_skills) > 0:
+            conf += 0.1
+        conf = round(min(conf, 1.0), 3)
+
+        if conf < self.config.get("min_conf", 0.5):
+            return None
+
+        # check if any skill can stop
+        for skill_id in self._collect_stop_skills(message):
+            if self.stop_skill(skill_id, message):
+                return ovos_core.intent_services.IntentMatch('Stop', "stop", {"conf": conf},
+                                                             skill_id, utterance)
+
+        # emit a global stop, full stop anything OVOS is doing
+        self.bus.emit(message.reply("mycroft.stop", {}))
+        return ovos_core.intent_services.IntentMatch('Stop', "global_stop", {"conf": conf},
+                                                     "stop.openvoiceos", utterance)
 
     def voc_match(self, utt: str, voc_filename: str, lang: str,
                   exact: bool = False):
@@ -235,18 +274,19 @@ if __name__ == "__main__":
 
     s = StopService(FakeBus())
 
-    m = s.match_stop(["stop"], "en", Message(""))
+    m = s.match_stop_high(["stop"], "en", Message(""))
     # IntentMatch(intent_service='Stop', intent_type='global_stop',
     #             intent_data={'conf': 1.0}, skill_id='stop.openvoiceos', utterance='stop')
     print(m)
-    m = s.match_stop(["stop that right now"], "en", Message(""))
+    m = s.match_stop_high(["stop that right now"], "en", Message(""))
     # None
     print(m)
 
-    m = s.match_stop_low(["stop that right now"], "en", Message(""))
+    m = s.match_stop_medium(["stop that right now"], "en", Message(""))
     # IntentMatch(intent_service='Stop', intent_type='global_stop', intent_data={'conf': 0.643},
     #             skill_id='stop.openvoiceos', utterance='stop that right now')
     print(m)
+
     m = s.match_stop_low(["where is the nearest bus stop"], "en", Message(""))
     # None
     print(m)

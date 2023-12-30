@@ -218,7 +218,8 @@ class IntentService:
 
         matchers = {
             "converse": self.converse.converse_with_skills,
-            "stop_high": self.stop.match_stop,
+            "stop_high": self.stop.match_stop_high,
+            "stop_medium": self.stop.match_stop_medium,
             "stop_low": self.stop.match_stop_low,
             "padatious_high": padatious_matcher.match_high,
             "padacioso_high": self.padacioso_service.match_high,
