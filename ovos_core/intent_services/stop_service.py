@@ -10,6 +10,7 @@ from ovos_config.config import Configuration
 from ovos_utils import flatten_list
 from ovos_utils.bracket_expansion import expand_options
 from ovos_utils.log import LOG
+from ovos_utils.parse import match_one
 
 
 class StopService:
@@ -162,10 +163,16 @@ class StopService:
         is_global_stop = self.voc_match(utterance, 'global_stop', exact=True, lang=lang) or \
                          (is_stop and not len(self.active_skills))
 
-        # TODO - approximate conf based on utterance_remainder
-        conf = 0.8 if exact else 0.5
-        if len(self.active_skills) > 0:
-            conf += 0.1
+        if exact:
+            conf = 1.0
+        else:
+            conf = match_one(utterance, self._voc_cache[lang]['stop'])[1]
+            if len(self.active_skills) > 0:
+                conf += 0.1
+            conf = round(min(conf, 1.0), 3)
+
+        if conf < self.config.get("min_conf", 0.5):
+            return None
 
         if is_global_stop:
             # emit a global stop, full stop anything OVOS is doing
@@ -227,18 +234,19 @@ if __name__ == "__main__":
     from ovos_utils.fakebus import FakeBus
 
     s = StopService(FakeBus())
-    m = s.match_stop(["where is the nearest bus stop"], "en", Message(""))
-    # None
-    print(m)
+
     m = s.match_stop(["stop"], "en", Message(""))
     # IntentMatch(intent_service='Stop', intent_type='global_stop',
-    #             intent_data={'conf': 0.8}, skill_id='stop.openvoiceos', utterance='stop')
+    #             intent_data={'conf': 1.0}, skill_id='stop.openvoiceos', utterance='stop')
     print(m)
+    m = s.match_stop(["stop that right now"], "en", Message(""))
+    # None
+    print(m)
+
     m = s.match_stop_low(["stop that right now"], "en", Message(""))
-    # IntentMatch(intent_service='Stop', intent_type='global_stop', intent_data={'conf': 0.5},
+    # IntentMatch(intent_service='Stop', intent_type='global_stop', intent_data={'conf': 0.643},
     #             skill_id='stop.openvoiceos', utterance='stop that right now')
     print(m)
     m = s.match_stop_low(["where is the nearest bus stop"], "en", Message(""))
-    # IntentMatch(intent_service='Stop', intent_type='global_stop', intent_data={'conf': 0.5},
-    #             skill_id='stop.openvoiceos', utterance='where is the nearest bus stop')
+    # None
     print(m)
