@@ -38,7 +38,7 @@ class CommonQAService:
     def voc_match(self, utterance, voc_filename, lang, exact=False):
         """Determine if the given utterance contains the vocabulary provided.
 
-        By default the method checks if the utterance contains the given vocab
+        By default the method checks if the utterance contains the given locale
         thereby allowing the user to say things like "yes, please" and still
         match against "Yes.voc" containing only "yes". An exact match can be
         requested.
@@ -51,7 +51,7 @@ class CommonQAService:
             voc_filename (str): Name of vocabulary file (e.g. 'yes' for
                                 'res/text/en-us/yes.voc')
             lang (str): Language code, defaults to self.lang
-            exact (bool): Whether the vocab must exactly match the utterance
+            exact (bool): Whether the locale must exactly match the utterance
 
         Returns:
             bool: True if the utterance has the given vocabulary it

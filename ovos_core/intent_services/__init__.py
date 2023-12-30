@@ -22,6 +22,7 @@ from ovos_bus_client.session import SessionManager
 from ovos_core.intent_services.adapt_service import AdaptService
 from ovos_core.intent_services.commonqa_service import CommonQAService
 from ovos_core.intent_services.converse_service import ConverseService
+from ovos_core.intent_services.stop_service import StopService
 from ovos_core.intent_services.fallback_service import FallbackService
 from ovos_core.intent_services.padacioso_service import PadaciosoService
 from ovos_core.transformers import MetadataTransformersService, UtteranceTransformersService
@@ -71,6 +72,7 @@ class IntentService:
         self.fallback = FallbackService(bus)
         self.converse = ConverseService(bus)
         self.common_qa = CommonQAService(bus)
+        self.stop = StopService(bus)
         self.utterance_plugins = UtteranceTransformersService(bus, config=config)
         self.metadata_plugins = MetadataTransformersService(bus, config=config)
         # connection SessionManager to the bus,
@@ -97,7 +99,7 @@ class IntentService:
         self.bus.on('intent.service.adapt.get', self.handle_get_adapt)
         self.bus.on('intent.service.adapt.manifest.get',
                     self.handle_adapt_manifest)
-        self.bus.on('intent.service.adapt.vocab.manifest.get',
+        self.bus.on('intent.service.adapt.locale.manifest.get',
                     self.handle_vocab_manifest)
         self.bus.on('intent.service.padatious.get',
                     self.handle_get_padatious)
@@ -216,6 +218,8 @@ class IntentService:
 
         matchers = {
             "converse": self.converse.converse_with_skills,
+            "stop_high": self.stop.match_stop,
+            "stop_low": self.stop.match_stop_low,
             "padatious_high": padatious_matcher.match_high,
             "padacioso_high": self.padacioso_service.match_high,
             "adapt": self.adapt_service.match_intent,
@@ -356,7 +360,7 @@ class IntentService:
         """Register adapt vocabulary.
 
         Args:
-            message (Message): message containing vocab info
+            message (Message): message containing locale info
         """
         # TODO: 22.02 Remove backwards compatibility
         if _is_old_style_keyword_message(message):
@@ -517,8 +521,8 @@ class IntentService:
         Argument:
             message: query message to reply to.
         """
-        self.bus.emit(message.reply("intent.service.adapt.vocab.manifest",
-                                    {"vocab": self.registered_vocab}))
+        self.bus.emit(message.reply("intent.service.adapt.locale.manifest",
+                                    {"locale": self.registered_vocab}))
 
     def handle_get_padatious(self, message):
         """messagebus handler for perfoming padatious parsing.
