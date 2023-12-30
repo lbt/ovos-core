@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a59...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a60...HEAD)
+
+**Fixed bugs:**
+
+- defaults/do\_not\_force\_transformer\_plugins [\#388](https://github.com/OpenVoiceOS/ovos-core/pull/388) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a60](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a60) (2023-12-29)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a59...V0.0.8a60)
 
 **Merged pull requests:**
 
@@ -656,10 +664,6 @@
 ## [V0.0.6a22](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a22) (2023-01-26)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6a21...V0.0.6a22)
-
-**Merged pull requests:**
-
-- Update dependencies to stable versions [\#268](https://github.com/OpenVoiceOS/ovos-core/pull/268) ([NeonDaniel](https://github.com/NeonDaniel))
 
 ## [V0.0.6a21](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6a21) (2023-01-26)
 
