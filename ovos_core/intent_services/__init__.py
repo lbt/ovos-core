@@ -99,7 +99,7 @@ class IntentService:
         self.bus.on('intent.service.adapt.get', self.handle_get_adapt)
         self.bus.on('intent.service.adapt.manifest.get',
                     self.handle_adapt_manifest)
-        self.bus.on('intent.service.adapt.locale.manifest.get',
+        self.bus.on('intent.service.adapt.vocab.manifest.get',
                     self.handle_vocab_manifest)
         self.bus.on('intent.service.padatious.get',
                     self.handle_get_padatious)
@@ -360,7 +360,7 @@ class IntentService:
         """Register adapt vocabulary.
 
         Args:
-            message (Message): message containing locale info
+            message (Message): message containing vocab info
         """
         # TODO: 22.02 Remove backwards compatibility
         if _is_old_style_keyword_message(message):
@@ -521,8 +521,8 @@ class IntentService:
         Argument:
             message: query message to reply to.
         """
-        self.bus.emit(message.reply("intent.service.adapt.locale.manifest",
-                                    {"locale": self.registered_vocab}))
+        self.bus.emit(message.reply("intent.service.adapt.vocab.manifest",
+                                    {"vocab": self.registered_vocab}))
 
     def handle_get_padatious(self, message):
         """messagebus handler for perfoming padatious parsing.
