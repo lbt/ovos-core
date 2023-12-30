@@ -8,6 +8,7 @@ from ovos_bus_client.message import Message
 from ovos_bus_client.session import SessionManager
 from ovos_config.config import Configuration
 from ovos_utils import flatten_list
+from ovos_utils.bracket_expansion import expand_options
 from ovos_utils.log import LOG
 
 
@@ -26,10 +27,10 @@ class StopService:
             self._voc_cache[lang2] = {}
             for f in os.listdir(f"{base}/{lang}"):
                 with open(f"{base}/{lang}/{f}") as fi:
-                    lines = [l for l in fi.read().split("\n")
+                    lines = [expand_options(l) for l in fi.read().split("\n")
                              if l.strip() and not l.startswith("#")]
                     n = f.split(".", 1)[0]
-                    self._voc_cache[lang2][n] = lines
+                    self._voc_cache[lang2][n] = flatten_list(lines)
 
     @property
     def config(self):
@@ -224,6 +225,7 @@ class StopService:
 
 if __name__ == "__main__":
     from ovos_utils.fakebus import FakeBus
+
     s = StopService(FakeBus())
     m = s.match_stop(["where is the nearest bus stop"], "en", Message(""))
     # None
