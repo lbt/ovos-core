@@ -35,7 +35,7 @@ class StopService:
     def config(self):
         """
         Returns:
-            converse_config (dict): config for converse handling options
+            stop_config (dict): config for stop handling options
         """
         return Configuration().get("skills", {}).get("stop") or {}
 
@@ -53,7 +53,7 @@ class StopService:
 
     def get_active_skills(self, message=None):
         """Active skill ids ordered by converse priority
-        this represents the order in which converse will be called
+        this represents the order in which stop will be called
 
         Returns:
             active_skills (list): ordered list of skill_ids
@@ -94,19 +94,20 @@ class StopService:
 
         self.bus.on("skill.stop.pong", handle_ack)
 
-        # ask skills if they want to converse
+        # ask skills if they can stop
         for skill_id in active_skills:
             self.bus.emit(message.forward(f"{skill_id}.stop.ping",
                                           {"skill_id": skill_id}))
 
-        # wait for all skills to acknowledge they want to converse
+        # wait for all skills to acknowledge they can stop
         event.wait(timeout=0.5)
 
         self.bus.remove("skill.stop.pong", handle_ack)
         return want_stop or active_skills
 
     def stop_skill(self, skill_id, message):
-        """Call skill and ask if they want to process the utterance.
+        """Tell a skill to stop anything it's doing,
+        taking into account the message Session
 
         Args:
             skill_id: skill to query.
@@ -115,8 +116,8 @@ class StopService:
         Returns:
             handled (bool): True if handled otherwise False.
         """
-        converse_msg = message.reply(f"{skill_id}.stop.request")
-        result = self.bus.wait_for_response(converse_msg, 'skill.stop.response')
+        stop_msg = message.reply(f"{skill_id}.stop")
+        result = self.bus.wait_for_response(stop_msg, f"{skill_id}.stop.response")
         if result and 'error' in result.data:
             error_msg = result.data['error']
             LOG.error(f"{skill_id}: {error_msg}")
@@ -166,6 +167,7 @@ class StopService:
             conf += 0.1
 
         if is_global_stop:
+            # emit a global stop, full stop anything OVOS is doing
             self.bus.emit(message.reply("mycroft.stop", {}))
             return ovos_core.intent_services.IntentMatch('Stop', "global_stop", {"conf": conf},
                                                          "stop.openvoiceos", utterance)
