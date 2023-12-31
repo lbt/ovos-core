@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/OpenVoiceOS/ovos-core/tree/HEAD)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a60...HEAD)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a61...HEAD)
+
+**Fixed bugs:**
+
+- error\_handling/very\_large\_utterances [\#392](https://github.com/OpenVoiceOS/ovos-core/pull/392) ([JarbasAl](https://github.com/JarbasAl))
+
+## [V0.0.8a61](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.8a61) (2023-12-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.8a60...V0.0.8a61)
 
 **Fixed bugs:**
 
@@ -652,10 +660,6 @@
 ## [V0.0.7a1](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.7a1) (2023-02-02)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-core/compare/V0.0.6...V0.0.7a1)
-
-**Fixed bugs:**
-
-- fix/ready [\#269](https://github.com/OpenVoiceOS/ovos-core/pull/269) ([JarbasAl](https://github.com/JarbasAl))
 
 ## [V0.0.6](https://github.com/OpenVoiceOS/ovos-core/tree/V0.0.6) (2023-01-27)
 
