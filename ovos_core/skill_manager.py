@@ -578,6 +578,14 @@ class SkillManager(Thread):
 
                 if skill_dir not in self.skill_loaders:
                     self._load_skill(skill_dir)
+                else:
+                    instance = self.skill_loaders[skill_dir].instance
+                    if instance is None:
+                        LOG.info(f"Unloading dead skill from {skill_dir}")
+                        self._unload_skill(skill_dir)
+                        LOG.info(f"Trying to reload skill from {skill_dir}")
+                        self._load_skill(skill_dir)
+
 
     def _get_skill_loader(self, skill_directory, init_bus=True):
         bus = None
