@@ -194,9 +194,14 @@ class PadatiousService:
         """Generic method for registering a padatious object.
 
         Args:
-            message (Message): trigger for action
-            object_name (str): type of entry to register
+            message (Message): dict describingt he object
+                must have a "name" key and either "file_name" or "samples"
+                key. "file_name": is a file with 1 sample per line.
+                "samples": is a list of samples.
+            object_name (str): type of entry to register (ie "intent" or
+                "entity" etc)
             register_func (callable): function to call for registration
+                which belongs to a particular lang container.
         """
         file_name = message.data.get('file_name')
         samples = message.data.get("samples")
