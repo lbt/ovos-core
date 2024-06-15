@@ -534,6 +534,7 @@ class SkillManager(Thread):
 
     def _load_new_skills(self, network=None, internet=None, gui=None):
         """Handle load of skills installed since startup."""
+        ignored_skills = self.skills_config.get("ignored_skills") or []
         if network is None:
             network = self._network_event.is_set()
         if internet is None:
@@ -551,6 +552,10 @@ class SkillManager(Thread):
                 replaced_skills = []
                 # by definition skill_id == folder name
                 skill_id = os.path.basename(skill_dir)
+                if skill_id in ignored_skills:
+                    LOG.info(f"Ignoring {skill_id} as requested in config")
+                    continue
+
                 skill_loader = self._get_skill_loader(skill_dir, init_bus=False)
                 requirements = skill_loader.runtime_requirements
                 if not network and requirements.network_before_load:
